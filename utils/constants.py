@@ -1,4 +1,4 @@
-PARAMS_CURRENT_MULTIPLIERS = [
+PARAM_NAMES_CURRENT_MULTIPLIERS = [
     "multipliers.ICaLPCa_multiplier",
     "multipliers.ICab_multiplier",
     "multipliers.IClCa_multiplier",
@@ -19,7 +19,7 @@ PARAMS_CURRENT_MULTIPLIERS = [
     "multipliers.Jup_multiplier",
 ]
 
-PARAMS_EXTRACELLULAR = [
+PARAM_NAMES_EXTRACELLULAR = [
     "extracellular.cao",
     "extracellular.clo",
     "extracellular.nao",
@@ -27,9 +27,9 @@ PARAMS_EXTRACELLULAR = [
 ]
 
 
-PARAMS_CELLTYPE = ["environment.celltype"]
+PARAM_NAMES_CELLTYPE = ["environment.celltype"]
 
-PARAMS_PKA = [
+PARAM_NAMES_PKA = [
     "PKA.fICaL_PKA",
     "PKA.fIKs_PKA",
     "PKA.fINaK_PKA",
@@ -48,3 +48,10 @@ PLOT_VARIABLES_DEFAULT = [
     "IKr.IKr",
     "IKs.IKs",
 ]
+
+CELL_TYPE_DICT = {"endo": 0, "epi": 1, "mid": 2}
+
+
+BCL_DEFAULT = 1000
+TOTAL_BEATS_DEFAULT = 10
+SHOW_LAST_BEATS_DEFAULT = 1

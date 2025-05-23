@@ -2,11 +2,11 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 from components.slider import make_slider
-from utils.constants import PARAMS_CURRENT_MULTIPLIERS
+from utils.constants import PARAM_NAMES_CURRENT_MULTIPLIERS
 
 # Make sliders for current multipliers
 list_sliders = []
-for par in PARAMS_CURRENT_MULTIPLIERS:
+for par in PARAM_NAMES_CURRENT_MULTIPLIERS:
     slider = make_slider(
         label=par, id_prefix=par.replace(".", "_"), default_value=1, slider_range=[0, 3]
     )
@@ -38,8 +38,13 @@ def make_current_multiplier_section():
                     dbc.Col(
                         dropdown_block(
                             label="Cell type",
-                            options=["endo", "epi", "mid"],
-                            default_value="endo",
+                            # options=["endo", "epi", "mid"],
+                            options=[
+                                {"label": "endo", "value": 0},
+                                {"label": "epi", "value": 1},
+                                {"label": "mid", "value": 2},
+                            ],
+                            default_value=0,
                             component_id="cell_type",
                         ),
                         width=4,

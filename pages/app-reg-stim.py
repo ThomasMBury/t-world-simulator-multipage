@@ -14,14 +14,18 @@ from dash import html, dcc, callback, Input, Output, ctx, State
 import dash_bootstrap_components as dbc
 
 from utils.constants import (
-    PARAMS_EXTRACELLULAR,
-    PARAMS_CELLTYPE,
-    PARAMS_PKA,
-    PARAMS_CURRENT_MULTIPLIERS,
+    PARAM_NAMES_EXTRACELLULAR,
+    PARAM_NAMES_CELLTYPE,
+    PARAM_NAMES_PKA,
+    PARAM_NAMES_CURRENT_MULTIPLIERS,
     PLOT_VARIABLES_DEFAULT,
+    BCL_DEFAULT,
+    SHOW_LAST_BEATS_DEFAULT,
+    TOTAL_BEATS_DEFAULT,
+    CELL_TYPE_DICT,
 )
 from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
-from utils.model import MODEL, VARIABLE_NAMES, PARAMS_DEFAULT, INITIAL_VALUES
+from utils.model import MODEL, VARIABLE_NAMES, MODEL_PARAMS_DEFAULT, INITIAL_VALUES
 from utils.config import PARAM_LIMITS
 from utils.simulation import sim_model
 from utils.figures import make_simulation_fig
@@ -37,6 +41,12 @@ from layout.figure_panel import (
     make_fig_panel,
     make_run_save_buttons,
 )
+
+from callbacks.sync_bcl_bpm import register_sync_input_bcl_bpm
+from callbacks.sync_slider_box import register_sync_slider_box
+from callbacks.buttons import register_phosphorylation_buttons
+from callbacks.presets import register_change_to_preset_params
+
 import myokit as myokit
 
 import pandas as pd
@@ -47,11 +57,6 @@ dash.register_page(__name__)
 # Create simulation object
 simulation = myokit.Simulation(MODEL)
 
-# Default protocol values
-bcl_def = 1000
-total_beats_def = 20
-beats_keep_def = 1
-
 
 # Run default simulation
 df_sim = sim_model(
@@ -59,19 +64,19 @@ df_sim = sim_model(
     INITIAL_VALUES,
     PLOT_VARIABLES_DEFAULT,
     params={},
-    bcl=bcl_def,
-    total_beats=total_beats_def,
-    beats_keep=beats_keep_def,
+    bcl=BCL_DEFAULT,
+    total_beats=TOTAL_BEATS_DEFAULT,
+    beats_keep=SHOW_LAST_BEATS_DEFAULT,
 )
 
 # Need to convert df to dict to store as json on app
 simulation_data = {"data-frame": df_sim.to_dict("records")}
 
 # Make dict contianing all parameter values to save
-parameter_data = PARAMS_DEFAULT.copy()
-parameter_data["bcl"] = bcl_def
-parameter_data["total_beats"] = total_beats_def
-parameter_data["beats_keep"] = beats_keep_def
+parameter_data = MODEL_PARAMS_DEFAULT.copy()
+parameter_data["bcl"] = BCL_DEFAULT
+parameter_data["total_beats"] = TOTAL_BEATS_DEFAULT
+parameter_data["beats_keep"] = SHOW_LAST_BEATS_DEFAULT
 
 
 # Make default figure
@@ -93,11 +98,9 @@ layout = dbc.Container(
         [
             dbc.Col(
                 [
-                    make_protocol_section(
-                        bcl_def, total_beats_def, beats_keep_def, PARAM_LIMITS
-                    ),
+                    make_protocol_section(),
                     make_current_multiplier_section(),
-                    make_extracellular_inputs(PARAMS_DEFAULT),
+                    make_extracellular_inputs(MODEL_PARAMS_DEFAULT),
                     make_phosphorylation_section(),
                 ],
                 width=4,
@@ -117,133 +120,115 @@ layout = dbc.Container(
 )
 layout = html.Div(layout)
 
+# --------------
+# Callback functions
+# --------------
 
-# -----------------
-# Callback function to sync BCL and BPM boxes
-# -----------------
-@callback(
-    [
-        Output(
-            "bcl",
-            "value",
-            allow_duplicate=True,
-        ),
-        Output("bpm", "value"),
-    ],
-    [
-        Input("bcl", "value"),
-        Input("bpm", "value"),
-    ],
-    prevent_initial_call=True,
-)
-def sync_input(bcl, bpm):
-    input_id = ctx.triggered[0]["prop_id"].split(".")[0]
-    if input_id == "bcl":
-        bpm = None if bcl is None else int(60000 / float(bcl) * 100) / 100
-    else:
-        bcl = None if bpm is None else int(60000 / float(bpm) * 100) / 100
-    return bcl, bpm
-
+register_sync_input_bcl_bpm()
 
 # --------------
 # Callback functions to sync sliders with respective input boxes
-# ---------------
+# --------------
 
 
-def sync_slider_box(box_value, slider_value):
-    trigger_id = ctx.triggered[0]["prop_id"].split(".")[0]
-    box_value_out = box_value if trigger_id[-3:] == "box" else slider_value
-    slider_value_out = slider_value if trigger_id[-6:] == "slider" else box_value
+# def sync_slider_box(box_value, slider_value):
+#     trigger_id = ctx.triggered[0]["prop_id"].split(".")[0]
+#     box_value_out = box_value if trigger_id[-3:] == "box" else slider_value
+#     slider_value_out = slider_value if trigger_id[-6:] == "slider" else box_value
 
-    return box_value_out, slider_value_out
+#     return box_value_out, slider_value_out
 
 
-for par in PARAMS_CURRENT_MULTIPLIERS + PARAMS_PKA:
-    par_id = par.replace(".", "_")
-    callback(
-        [
-            Output("{}_box".format(par_id), "value", allow_duplicate=True),
-            Output("{}_slider".format(par_id), "value", allow_duplicate=True),
-        ],
-        [
-            Input("{}_box".format(par_id), "value"),
-            Input("{}_slider".format(par_id), "value"),
-        ],
-        prevent_initial_call=True,
-    )(sync_slider_box)
+# for par in PARAM_NAMES_CURRENT_MULTIPLIERS + PARAM_NAMES_PKA:
+#     par_id = par.replace(".", "_")
+#     callback(
+#         [
+#             Output("{}_box".format(par_id), "value", allow_duplicate=True),
+#             Output("{}_slider".format(par_id), "value", allow_duplicate=True),
+#         ],
+#         [
+#             Input("{}_box".format(par_id), "value"),
+#             Input("{}_slider".format(par_id), "value"),
+#         ],
+#         prevent_initial_call=True,
+#     )(sync_slider_box)
 
+register_sync_slider_box()
 
 # --------------
 # Callback to update phosphor sliders on button click to set all to 0/1
 # ---------------
 
 
-@callback(
-    [
-        Output("{}_slider".format(par.replace(".", "_")), "value", allow_duplicate=True)
-        for par in PARAMS_PKA
-    ],
-    Input("no-beta-ars", "n_clicks"),
-    prevent_initial_call=True,
-)
-def set_all_sliders_to_zero(n_clicks):
-    return [0] * len(PARAMS_PKA)
+# @callback(
+#     [
+#         Output("{}_slider".format(par.replace(".", "_")), "value", allow_duplicate=True)
+#         for par in PARAM_NAMES_PKA
+#     ],
+#     Input("no-beta-ars", "n_clicks"),
+#     prevent_initial_call=True,
+# )
+# def set_all_sliders_to_zero(n_clicks):
+#     return [0] * len(PARAM_NAMES_PKA)
 
 
-@callback(
-    [
-        Output("{}_slider".format(par.replace(".", "_")), "value", allow_duplicate=True)
-        for par in PARAMS_PKA
-    ],
-    Input("full-beta-ars", "n_clicks"),
-    prevent_initial_call=True,
-)
-def set_all_sliders_to_one(n_clicks):
-    return [1] * len(PARAMS_PKA)
+# @callback(
+#     [
+#         Output("{}_slider".format(par.replace(".", "_")), "value", allow_duplicate=True)
+#         for par in PARAM_NAMES_PKA
+#     ],
+#     Input("full-beta-ars", "n_clicks"),
+#     prevent_initial_call=True,
+# )
+# def set_all_sliders_to_one(n_clicks):
+#     return [1] * len(PARAM_NAMES_PKA)
+
+register_phosphorylation_buttons()
 
 
 # -------------
 # Callback to update sliders and ECM boxes with a change in preset param config
 # --------------
 
-# Default slider and box parameters
-pars_slider_box_default = PARAMS_DEFAULT.copy()
-# Don't need cell type, or phosphorylation parameters here
-_ = pars_slider_box_default.pop("environment.celltype")
+register_change_to_preset_params()
+# # Default slider and box parameters
+# pars_slider_box_default = MODEL_PARAMS_DEFAULT.copy()
+# # Don't need cell type, or phosphorylation parameters here
+# _ = pars_slider_box_default.pop("environment.celltype")
 
-pars_ead = {}
-pars_ead["multipliers.IKr_multiplier"] = 0.15
-pars_ead["extracellular.nao"] = 137
-pars_ead["extracellular.clo"] = 148
-pars_ead["extracellular.cao"] = 2
-bcl_ead = 4000
+# pars_ead = {}
+# pars_ead["multipliers.IKr_multiplier"] = 0.15
+# pars_ead["extracellular.nao"] = 137
+# pars_ead["extracellular.clo"] = 148
+# pars_ead["extracellular.cao"] = 2
+# bcl_ead = 4000
 
-# Output includes all sliders and ECM boxes
-outputs_callback_preset = [
-    Output("multipliers_IKr_multiplier_slider", "value", allow_duplicate=True),
-    Output("extracellular_nao_box", "value", allow_duplicate=True),
-    Output("extracellular_clo_box", "value", allow_duplicate=True),
-    Output("extracellular_cao_box", "value", allow_duplicate=True),
-    Output("bcl", "value", allow_duplicate=True),
-]
+# # Output includes all sliders and ECM boxes
+# outputs_callback_preset = [
+#     Output("multipliers_IKr_multiplier_slider", "value", allow_duplicate=True),
+#     Output("extracellular_nao_box", "value", allow_duplicate=True),
+#     Output("extracellular_clo_box", "value", allow_duplicate=True),
+#     Output("extracellular_cao_box", "value", allow_duplicate=True),
+#     Output("bcl", "value", allow_duplicate=True),
+# ]
 
-# Input is dropdown box that contains preset labels
-inputs_callback_presets = Input("dropdown_presets", "value")
+# # Input is dropdown box that contains preset labels
+# inputs_callback_presets = Input("dropdown_presets", "value")
 
 
-@callback(
-    outputs_callback_preset,
-    inputs_callback_presets,
-    prevent_initial_call=True,
-    allow_duplicate=True,
-)
-def udpate_sliders_and_boxes(preset):
-    if preset == "default":
-        return [PARAMS_DEFAULT[key] for key in pars_ead.keys()] + [bcl_def]
-    elif preset == "EAD":
-        return list(pars_ead.values()) + [bcl_ead]
-    else:
-        return 0
+# @callback(
+#     outputs_callback_preset,
+#     inputs_callback_presets,
+#     prevent_initial_call=True,
+#     allow_duplicate=True,
+# )
+# def udpate_sliders_and_boxes(preset):
+#     if preset == "default":
+#         return [MODEL_PARAMS_DEFAULT[key] for key in pars_ead.keys()] + [BCL_DEFAULT]
+#     elif preset == "EAD":
+#         return list(pars_ead.values()) + [bcl_ead]
+#     else:
+#         return 0
 
 
 # ---------
@@ -316,15 +301,15 @@ states_callback_run = dict(
     current_plot_var=State("tabs", "value"),
     params_cond={
         par: State("{}_box".format(par.replace(".", "_")), "value")
-        for par in PARAMS_CURRENT_MULTIPLIERS
+        for par in PARAM_NAMES_CURRENT_MULTIPLIERS
     },
     params_extracell={
         par: State("{}_box".format(par.replace(".", "_")), "value")
-        for par in PARAMS_EXTRACELLULAR
+        for par in PARAM_NAMES_EXTRACELLULAR
     },
     params_pka={
         par: State("{}_box".format(par.replace(".", "_")), "value")
-        for par in PARAMS_PKA
+        for par in PARAM_NAMES_PKA
     },
 )
 
@@ -351,20 +336,16 @@ def run_sim_and_update_fig(
     params = {}
 
     # Multipliers
-    for par in PARAMS_CURRENT_MULTIPLIERS:
-        params[par] = PARAMS_DEFAULT[par] * params_cond[par]
+    for par in PARAM_NAMES_CURRENT_MULTIPLIERS:
+        params[par] = MODEL_PARAMS_DEFAULT[par] * params_cond[par]
 
     # Extracellular
-    for par in PARAMS_EXTRACELLULAR:
+    for par in PARAM_NAMES_EXTRACELLULAR:
         params[par] = params_extracell[par]
 
     # Phosphorylation
-    for par in PARAMS_PKA:
+    for par in PARAM_NAMES_PKA:
         params[par] = params_pka[par]
-
-    # Cell type
-    cell_type_dict = {"endo": 0, "epi": 1, "mid": 2}
-    params["environment.celltype"] = cell_type_dict[cell_type]
 
     # Make dict contianing all parameter values to save
     parameter_data = params.copy()

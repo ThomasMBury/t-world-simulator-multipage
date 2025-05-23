@@ -1,8 +1,14 @@
 from dash import html, dcc
 import dash_bootstrap_components as dbc
+from utils.constants import (
+    BCL_DEFAULT,
+    TOTAL_BEATS_DEFAULT,
+    SHOW_LAST_BEATS_DEFAULT,
+)
+from utils.config import PARAM_LIMITS
 
 
-def make_protocol_section(bcl_def, total_beats_def, beats_keep_def, PARAM_LIMITS):
+def make_protocol_section():
     return html.Div(
         [
             dcc.Markdown("-----\n**Protocol settings**:"),
@@ -11,7 +17,7 @@ def make_protocol_section(bcl_def, total_beats_def, beats_keep_def, PARAM_LIMITS
                     html.Label("Basic cycle length =", style={"fontSize": 14}),
                     dcc.Input(
                         id="bcl",
-                        value=bcl_def,
+                        value=BCL_DEFAULT,
                         type="number",
                         style={"width": 80, "display": "inline-block"},
                         min=1,
@@ -33,7 +39,7 @@ def make_protocol_section(bcl_def, total_beats_def, beats_keep_def, PARAM_LIMITS
                     html.Label("Number of beats = ", style={"fontSize": 14}),
                     dcc.Input(
                         id="total_beats",
-                        value=total_beats_def,
+                        value=TOTAL_BEATS_DEFAULT,
                         type="number",
                         style={"width": 80},
                         min=1,
@@ -47,7 +53,7 @@ def make_protocol_section(bcl_def, total_beats_def, beats_keep_def, PARAM_LIMITS
                     html.Label("Show last ", style={"fontSize": 14}),
                     dcc.Input(
                         id="beats_keep",
-                        value=beats_keep_def,
+                        value=SHOW_LAST_BEATS_DEFAULT,
                         type="number",
                         style={"width": 80},
                         min=1,

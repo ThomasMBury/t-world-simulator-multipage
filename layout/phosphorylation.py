@@ -2,11 +2,11 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 from components.slider import make_slider
-from utils.constants import PARAMS_PKA
+from utils.constants import PARAM_NAMES_PKA
 
 # Make sliders for phosphorylation levels
 list_sliders_pka = []
-for par in PARAMS_PKA:
+for par in PARAM_NAMES_PKA:
     slider = make_slider(
         label=par, id_prefix=par.replace(".", "_"), default_value=0, slider_range=[0, 1]
     )
