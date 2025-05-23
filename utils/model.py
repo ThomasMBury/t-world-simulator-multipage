@@ -11,7 +11,9 @@ from utils.constants import (
 )
 
 # Load model and initial values
+# model = myokit.load_model("models/TWorld_May_2025_tmb.mmt")
 model = myokit.load_model("models/TWorld_Apr_2025_tmb.mmt")
+
 variable_names = [var.qname() for var in list(model.variables(const=False))]
 initial_values = model.initial_values(as_floats=True)
 

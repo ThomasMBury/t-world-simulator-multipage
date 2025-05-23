@@ -1,0 +1,1542 @@
+[[model]]
+author: Myokit CellML 1 API
+name: TWorld
+# Initial values
+membrane.v                           = -8.70655895407835061e1
+CaMK.camk_trap                       =  4.14775695414328974e-2
+CaMK.camk_f_ICaL                     =  1.49310462149601003e-1
+CaMK.camk_f_RyR                      =  5.83425856770706033e-2
+CaMK.camk_f_PLB                      =  1.02519516890396001e-2
+CaMK.casig_serca_trap                =  4.14775695414004025e-2
+intracellular_ions.buffers_NaBj      =  3.55888399344769990
+intracellular_ions.buffers_NaBsl     =  7.76467094025442006e-1
+intracellular_ions.buffers_TnClow    =  1.04491410305814006e-2
+intracellular_ions.buffers_TnCHc     =  1.24415836833344007e-1
+intracellular_ions.buffers_TnCHm     =  4.75139089328611031e-3
+intracellular_ions.buffers_CaM       =  3.26761159683871009e-4
+intracellular_ions.buffers_Myosin_ca =  4.35725142843640997e-3
+intracellular_ions.buffers_Myosin_mg =  1.34587917639654997e-1
+intracellular_ions.buffers_SRB       =  2.47759889601233997e-3
+intracellular_ions.buffers_SLLj      =  4.15486833433121022e-3
+intracellular_ions.buffers_SLLsl     =  8.10233315864154063e-3
+intracellular_ions.buffers_SLHj      =  4.97605868295565024e-2
+intracellular_ions.buffers_SLHsl     =  9.60185900338078047e-2
+intracellular_ions.buffers_Csqn      =  1.32358809148371992
+intracellular_ions.naj               =  8.88424477947198987
+intracellular_ions.nasl              =  8.88341217642103054
+intracellular_ions.nai               =  8.88365804124162040
+intracellular_ions.ki                =  1.34213097948671987e2
+intracellular_ions.cli               =  1.55745509675962008e1
+intracellular_ions.casr              =  7.09622552333154966e-1
+intracellular_ions.caj               =  9.20580586542241966e-5
+intracellular_ions.casl              =  9.62428218317655005e-5
+intracellular_ions.cai               =  9.66105402693763000e-5
+INa.m                                =  1.15997496446638006e-3
+INa.h                                =  7.91660456106285992e-1
+INa.j                                =  7.91587530878067991e-1
+INa.hp                               =  6.12409807882460022e-1
+INa.jp                               =  7.91052149435448992e-1
+INa.m_P                              =  3.34028683421829994e-3
+INa.h_P                              =  6.47375310489835987e-1
+INa.j_P                              =  6.47279109941896968e-1
+INa.hp_P                             =  4.19158183843564014e-1
+INa.jp_P                             =  4.18669666153645981e-1
+INaL.mL                              =  2.24902633151065996e-4
+INaL.hL                              =  4.78572465113524026e-1
+INaL.hLp                             =  2.58793079229037992e-1
+ICaL.d                               =  6.00992839633468041e-26
+ICaL.ff                              =  9.99999988243592042e-1
+ICaL.fs                              =  9.11094950010905014e-1
+ICaL.fcaf                            =  9.99999988251085048e-1
+ICaL.fcas                            =  9.91477881027688968e-1
+ICaL.jca                             =  9.99993204834444982e-1
+ICaL.ffp                             =  9.99999987868131046e-1
+ICaL.fcafp                           =  9.99999987980700999e-1
+ICaL.nca                             =  5.28788208273222975e-3
+ICaL.nca_i                           =  6.21547539490541028e-3
+ICaL.d_P                             = 0
+ICaL.ff_P                            =  9.99999987992091000e-1
+ICaL.fs_P                            =  9.30411822666438959e-1
+ICaL.fcaf_P                          =  9.99999987985881966e-1
+ICaL.fcas_P                          =  9.99145398038995047e-1
+ICaL.fBPf                            =  9.99999987992091000e-1
+ICaL.fcaBPf                          =  9.99999987985881966e-1
+ICaL.ical_pureCDI_junc               =  9.98342275864489981e-1
+ICaL.ical_pureCDI_sl                 =  9.98263185911480000e-1
+Ito.xtos                             =  2.86101402392893993e-4
+Ito.ytos                             =  7.68184915918178945e-1
+Ito.xtof                             =  2.86099374494749989e-4
+Ito.ytof                             =  9.99998646875180031e-1
+Ito.xtos_p                           =  1.32590983159417000e-4
+Ito.xtof_p                           =  1.32590043205026988e-4
+Ito.ytos_p                           =  7.77117031645023992e-1
+Ito.ytof_p                           =  9.99998646879750042e-1
+IKr.C0                               =  9.97558791218494001e-1
+IKr.C1                               =  9.60122333286174043e-4
+IKr.C2                               =  8.04204051120587025e-4
+IKr.I                                =  3.55901681542090999e-5
+IKr.O                                =  6.41292278097939979e-4
+IKs.xs_junc                          =  3.11875010014238986e-2
+IKs.xs_sl                            =  3.12048105743730000e-2
+ryr.jrel_icaldep_act                 = -9.23949112019060968e-15
+ryr.jrel_icaldep_f1                  =  9.99994847409610976e-1
+ryr.jrel_icaldep_f2                  =  9.98725931920675047e-1
+ryr.ryr_R                            =  8.21525956842405036e-1
+ryr.ryr_O                            =  3.33929041065478997e-8
+ryr.ryr_I                            =  4.57362306340243018e-9
+ryr.ryr_CaRI                         =  6.53313479138347974e-2
+ryr.ryr_R_p                          =  8.21663945287199993e-1
+ryr.ryr_O_p                          =  5.00978004918836978e-8
+ryr.ryr_I_p                          =  6.86118926495390029e-9
+ryr.ryr_CaRI_p                       =  6.51828099424918983e-2
+contraction.contraction_TmBlocked    =  9.92378492940848012e-1
+contraction.contraction_XW           =  2.85370717430549021e-3
+contraction.contraction_XS           =  1.91507884532543006e-3
+contraction.contraction_ZETAS        = 0
+contraction.contraction_ZETAW        = 0
+contraction.contraction_Ca_TRPN      =  3.19778784167467980e-2
+
+[CaMK]
+CaMK0 = 0.1
+    in [1]
+CaMK_Phos_ss_ICaL = CaMK_active / (CaMK_active + K_Phos_CaMK)
+    in [1]
+CaMK_Phos_ss_PLB = CaMK_active / (CaMK_active + 10 [mM])
+    in [1]
+CaMK_Phos_ss_RyR = CaMK_active / (CaMK_active + 1 [mM])
+    in [1]
+CaMK_active = bound + camk_trap
+    in [mM]
+K_Phos_CaMK = 0.35 [mM]
+    in [mM]
+Km_CaMK_Ca = 0.0075 [mM]
+    in [mM]
+PP1_tot = Whole_cell_PP1
+    in [1]
+Whole_cell_PP1 = 0.13698
+    in [1]
+alpha = 0.05 [1/mM/ms]
+    in [1/mM/ms]
+alpha_serca = 0.05 [1/mM/ms]
+    in [1/mM/ms]
+beta = 0.00068 [mS/uF]
+    in [mS/uF]
+bound = CaMK0 * (1 [mM] - camk_trap) / (1 + Km_CaMK_Ca / intracellular_ions.caj)
+    in [mM]
+bound_serca = CaMK0 * (1 [mM] - casig_serca_trap) / (1 + Km_CaMK_Ca / intracellular_ions.caj)
+    in [mM]
+dot(camk_f_ICaL) = (CaMK_Phos_ss_ICaL - camk_f_ICaL) / tau_cal
+    in [1]
+dot(camk_f_PLB) = (CaMK_Phos_ss_PLB - camk_f_PLB) / tau_plb
+    in [1]
+dot(camk_f_RyR) = (CaMK_Phos_ss_RyR - camk_f_RyR) / tau_ryr
+    in [1]
+dot(camk_trap) = alpha * bound * CaMK_active - beta * camk_trap * (0.1 + 0.9 * PP1_tot / 0.1371)
+    in [mM]
+casig_SERCA_act = bound_serca + casig_serca_trap
+    in [mM]
+dot(casig_serca_trap) = alpha_serca * bound_serca * casig_SERCA_act - beta * casig_serca_trap * (0.1 + 0.9 * PP1_tot / 0.1371)
+    in [mM]
+tau_cal = tau_ryr
+    in [ms]
+tau_plb = 100000 [ms]
+    in [ms]
+tau_ryr = 10000 [ms]
+    in [ms]
+
+[ICaL]
+Afcaf = 0.3 + 0.6 / (1 + exp((membrane.v - 9.24247 [mV]) / 27.96201 [mV]))
+    in [1]
+Afcas = 1 - Afcaf
+    in [1]
+Aff = 0.52477
+    in [1]
+Afs = 1 - Aff
+    in [1]
+ICaK = ICaK_junc + ICaK_sl
+    in [A/F]
+ICaK_i_BP = PCaK_P * PhiCaK_i * d_P * (fBP * (1 - nca_i) + jca * fcaBP * nca_i)
+    in [A/F]
+ICaK_i_CaMK = PCaKp * PhiCaK_i * d * (fp * (1 - nca_i) + jca * fcap * nca_i)
+    in [A/F]
+ICaK_i_NP = PCaK * PhiCaK_i * d * (f * (1 - nca_i) + jca * fca * nca_i)
+    in [A/F]
+ICaK_i_PKA = PCaK_P * PhiCaK_i * d_P * (f_P * (1 - nca_i) + jca * fcap_P * nca_i)
+    in [A/F]
+ICaK_junc = ((1 - fICaL_CaMKonly - fICaL_PKAonly - fICaL_BP) * ICaK_ss_NP + fICaL_CaMKonly * ICaK_ss_CaMK + fICaL_PKAonly * ICaK_ss_PKA + fICaL_BP * ICaK_ss_BP) * ical_pureCDI_junc * ICaL_fractionSS
+    in [A/F]
+ICaK_sl = ((1 - fICaL_CaMKonly - fICaL_PKAonly - fICaL_BP) * ICaK_i_NP + fICaL_CaMKonly * ICaK_i_CaMK + fICaL_PKAonly * ICaK_i_PKA + fICaL_BP * ICaK_i_BP) * ical_pureCDI_sl * (1 - ICaL_fractionSS)
+    in [A/F]
+ICaK_ss_BP = PCaK_P * PhiCaK_ss * d_P * (fBP * (1 - nca) + jca * fcaBP * nca)
+    in [A/F]
+ICaK_ss_CaMK = PCaKp * PhiCaK_ss * d * (fp * (1 - nca) + jca * fcap * nca)
+    in [A/F]
+ICaK_ss_NP = PCaK * PhiCaK_ss * d * (f * (1 - nca) + jca * fca * nca)
+    in [A/F]
+ICaK_ss_PKA = PCaK_P * PhiCaK_ss * d_P * (f_P * (1 - nca) + jca * fcap_P * nca)
+    in [A/F]
+ICaL = ICaL_junc + ICaL_sl
+    in [A/F]
+ICaL_fractionSS = 0.8
+    in [1]
+ICaL_i_BP = PCa_P * PhiCaL_i * d_P * (fBP * (1 - nca_i) + jca * fcaBP * nca_i)
+    in [A/F]
+ICaL_i_CaMK = PCap * PhiCaL_i * d * (fp * (1 - nca_i) + jca * fcap * nca_i)
+    in [A/F]
+ICaL_i_NP = PCa * PhiCaL_i * d * (f * (1 - nca_i) + jca * fca * nca_i)
+    in [A/F]
+ICaL_i_PKA = PCa_P * PhiCaL_i * d_P * (f_P * (1 - nca_i) + jca * fcap_P * nca_i)
+    in [A/F]
+ICaL_junc = ((1 - fICaL_CaMKonly - fICaL_PKAonly - fICaL_BP) * ICaL_ss_NP + fICaL_CaMKonly * ICaL_ss_CaMK + fICaL_PKAonly * ICaL_ss_PKA + fICaL_BP * ICaL_ss_BP) * ical_pureCDI_junc * ICaL_fractionSS
+    in [A/F]
+ICaL_sl = ((1 - fICaL_CaMKonly - fICaL_PKAonly - fICaL_BP) * ICaL_i_NP + fICaL_CaMKonly * ICaL_i_CaMK + fICaL_PKAonly * ICaL_i_PKA + fICaL_BP * ICaL_i_BP) * ical_pureCDI_sl * (1 - ICaL_fractionSS)
+    in [A/F]
+ICaL_ss_BP = PCa_P * PhiCaL_ss * d_P * (fBP * (1 - nca) + jca * fcaBP * nca)
+    in [A/F]
+ICaL_ss_CaMK = PCap * PhiCaL_ss * d * (fp * (1 - nca) + jca * fcap * nca)
+    in [A/F]
+ICaL_ss_NP = PCa * PhiCaL_ss * d * (f * (1 - nca) + jca * fca * nca)
+    in [A/F]
+ICaL_ss_PKA = PCa_P * PhiCaL_ss * d_P * (f_P * (1 - nca) + jca * fcap_P * nca)
+    in [A/F]
+ICaNa = ICaNa_junc + ICaNa_sl
+    in [A/F]
+ICaNa_i_BP = PCaNa_P * PhiCaNa_i * d_P * (fBP * (1 - nca_i) + jca * fcaBP * nca_i)
+    in [A/F]
+ICaNa_i_CaMK = PCaNap * PhiCaNa_i * d * (fp * (1 - nca_i) + jca * fcap * nca_i)
+    in [A/F]
+ICaNa_i_NP = PCaNa * PhiCaNa_i * d * (f * (1 - nca_i) + jca * fca * nca_i)
+    in [A/F]
+ICaNa_i_PKA = PCaNa_P * PhiCaNa_i * d_P * (f_P * (1 - nca_i) + jca * fcap_P * nca_i)
+    in [A/F]
+ICaNa_junc = ((1 - fICaL_CaMKonly - fICaL_PKAonly - fICaL_BP) * ICaNa_ss_NP + fICaL_CaMKonly * ICaNa_ss_CaMK + fICaL_PKAonly * ICaNa_ss_PKA + fICaL_BP * ICaNa_ss_BP) * ical_pureCDI_junc * ICaL_fractionSS
+    in [A/F]
+ICaNa_sl = ((1 - fICaL_CaMKonly - fICaL_PKAonly - fICaL_BP) * ICaNa_i_NP + fICaL_CaMKonly * ICaNa_i_CaMK + fICaL_PKAonly * ICaNa_i_PKA + fICaL_BP * ICaNa_i_BP) * ical_pureCDI_sl * (1 - ICaL_fractionSS)
+    in [A/F]
+ICaNa_ss_BP = PCaNa_P * PhiCaNa_ss * d_P * (fBP * (1 - nca) + jca * fcaBP * nca)
+    in [A/F]
+ICaNa_ss_CaMK = PCaNap * PhiCaNa_ss * d * (fp * (1 - nca) + jca * fcap * nca)
+    in [A/F]
+ICaNa_ss_NP = PCaNa * PhiCaNa_ss * d * (f * (1 - nca) + jca * fca * nca)
+    in [A/F]
+ICaNa_ss_PKA = PCaNa_P * PhiCaNa_ss * d_P * (f_P * (1 - nca) + jca * fcap_P * nca)
+    in [A/F]
+ICa_tot = ICaL + ICaK + ICaNa
+    in [A/F]
+Ii = 0.5 * (intracellular_ions.nai + intracellular_ions.ki + intracellular_ions.cli + 4 * intracellular_ions.cai) / 1000 [mM]
+    in [1]
+Io = 0.5 * (extracellular.nao + extracellular.ko + extracellular.clo + 4 * extracellular.cao) / 1000 [mM]
+    in [1]
+Iss = 0.5 * (intracellular_ions.nasl + intracellular_ions.ki + intracellular_ions.cli + 4 * intracellular_ions.casl) / 1000 [mM]
+    in [1]
+Kmn = 0.00222 [mM]
+    in [mM]
+PCa = piecewise(environment.celltype == 1, PCa_b * multipliers.ICaLPCa_multiplier * 1.025, environment.celltype == 2, PCa_b * multipliers.ICaLPCa_multiplier * 1.1, PCa_b * multipliers.ICaLPCa_multiplier)
+    in [1]
+PCaK =  2.21139954662870998e-4 * PCa
+    in [1]
+PCaK_P =  2.21139954662870998e-4 * PCa_P
+    in [1]
+PCaKp =  2.21139954662870998e-4 * PCap
+    in [1]
+PCaNa =  7.73432969581949454e-4 * PCa
+    in [1]
+PCaNa_P =  7.73432969581949454e-4 * PCa_P
+    in [1]
+PCaNap =  7.73432969581949454e-4 * PCap
+    in [1]
+PCa_P = piecewise(environment.celltype == 1, PCa_Pb * 1.025, environment.celltype == 2, PCa_Pb * 1.1, PCa_Pb)
+    in [1]
+PCa_Pb = 1.9 * PCa
+    in [1]
+PCa_b =  1.57679999999999995e-4
+    in [1]
+PCap = 1.1 * PCa
+    in [1]
+PhiCaK_i = 1 * membrane.vffrt * (gamma_ki * intracellular_ions.ki * exp(1 * membrane.vfrt) - gamma_ko * extracellular.ko) / (exp(1 * membrane.vfrt) - 1)
+    in [1]
+PhiCaK_ss = 1 * membrane.vffrt * (gamma_kss * intracellular_ions.ki * exp(1 * membrane.vfrt) - gamma_ko * extracellular.ko) / (exp(1 * membrane.vfrt) - 1)
+    in [1]
+PhiCaL_i = 4 * membrane.vffrt * (gamma_cai * intracellular_ions.cai * exp(2 * membrane.vfrt) - gamma_cao * extracellular.cao) / (exp(2 * membrane.vfrt) - 1)
+    in [1]
+PhiCaL_ss = 4 * membrane.vffrt * (gamma_cass * intracellular_ions.casl * exp(2 * membrane.vfrt) - gamma_cao * extracellular.cao) / (exp(2 * membrane.vfrt) - 1)
+    in [1]
+PhiCaNa_i = 1 * membrane.vffrt * (gamma_nai * intracellular_ions.nai * exp(1 * membrane.vfrt) - gamma_nao * extracellular.nao) / (exp(1 * membrane.vfrt) - 1)
+    in [1]
+PhiCaNa_ss = 1 * membrane.vffrt * (gamma_nass * intracellular_ions.nasl * exp(1 * membrane.vfrt) - gamma_nao * extracellular.nao) / (exp(1 * membrane.vfrt) - 1)
+    in [1]
+anca = 1 / (k2n / km2n + (1 + Kmn / intracellular_ions.caj)^3.80763)
+    in [1]
+anca_i = 1 / (k2n / km2n + (1 + Kmn / intracellular_ions.casl)^3.80763)
+    in [1]
+constA = 1820000 * (dielConstant * physical_constants.T)^(-1.5)
+    in [1]
+dot(d) = (dss - d) / td
+    in [1]
+dPss = piecewise(1 <= 1.0323 * exp(-1.0553 * exp(-0.081 [1/mV] * (membrane.v + 12.62483 [mV]))), 1, 1.0323 * exp(-1.0553 * exp(-0.081 [1/mV] * (membrane.v + 12.62483 [mV]))))
+    in [1]
+dot(d_P) = (dPss - d_P) / td
+    in [1]
+dielConstant = 74 [1/K]
+    in [1/K]
+dss = piecewise(1 <= 1.0763 * exp(-1.007 * exp(-0.0829 [1/mV] * (membrane.v + 3.62483 [mV]))), 1, 1.0763 * exp(-1.007 * exp(-0.0829 [1/mV] * (membrane.v + 3.62483 [mV]))))
+    in [1]
+f = Aff * ff + Afs * fs
+    in [1]
+fBP = Aff * fBPf + Afs * fs_P
+    in [1]
+dot(fBPf) = (fBPss - fBPf) / tffp
+    in [1]
+fBPss = fss_P
+    in [1]
+fICaLP = PKA.fICaL_PKA
+    in [1]
+fICaL_BP = fICaLp * fICaL_P
+    in [1]
+fICaL_CaMKonly = fICaLp - fICaL_BP
+    in [1]
+fICaL_P = fICaLP
+    in [1]
+fICaL_PKAonly = fICaL_P - fICaL_BP
+    in [1]
+fICaLp = CaMK.camk_f_ICaL
+    in [1]
+f_P = Aff * ff_P + Afs * fs_P
+    in [1]
+fca = Afcaf * fcaf + Afcas * fcas
+    in [1]
+fcaBP = Afcaf * fcaBPf + Afcas * fcas_P
+    in [1]
+dot(fcaBPf) = (fcaBPss - fcaBPf) / tfcafp
+    in [1]
+fcaBPss = fcass_P
+    in [1]
+dot(fcaf) = (fcass - fcaf) / tfcaf
+    in [1]
+dot(fcaf_P) = (fcass_P - fcaf_P) / tfcaf
+    in [1]
+dot(fcafp) = (fcass - fcafp) / tfcafp
+    in [1]
+fcap = Afcaf * fcafp + Afcas * fcas
+    in [1]
+fcap_P = Afcaf * fcaf_P + Afcas * fcas_P
+    in [1]
+dot(fcas) = (fcass - fcas) / tfcas
+    in [1]
+dot(fcas_P) = (fcass_P - fcas_P) / tfcas
+    in [1]
+fcass = fss
+    in [1]
+fcass_P = fss_P
+    in [1]
+dot(ff) = (fss - ff) / tff
+    in [1]
+dot(ff_P) = (fss_P - ff_P) / tff
+    in [1]
+dot(ffp) = (fss - ffp) / tffp
+    in [1]
+fp = Aff * ffp + Afs * fs
+    in [1]
+dot(fs) = (fss - fs) / tfs
+    in [1]
+dot(fs_P) = (fss_P - fs_P) / tfs
+    in [1]
+fss = 1 / (1 + exp((membrane.v + 19.58 [mV]) / 3.696 [mV]))
+    in [1]
+fss_P = 1 / (1 + exp((membrane.v + 25.58 [mV]) / 3.696 [mV]))
+    in [1]
+gamma_cai = 10^(-constA * 4 * (sqrt(Ii) / (1 + sqrt(Ii)) - 0.3 * Ii))
+    in [1]
+gamma_cao = 10^(-constA * 4 * (sqrt(Io) / (1 + sqrt(Io)) - 0.3 * Io))
+    in [1]
+gamma_cass = 10^(-constA * 4 * (sqrt(Iss) / (1 + sqrt(Iss)) - 0.3 * Iss))
+    in [1]
+gamma_ki = 10^(-constA * 1 * (sqrt(Ii) / (1 + sqrt(Ii)) - 0.3 * Ii))
+    in [1]
+gamma_ko = 10^(-constA * 1 * (sqrt(Io) / (1 + sqrt(Io)) - 0.3 * Io))
+    in [1]
+gamma_kss = 10^(-constA * 1 * (sqrt(Iss) / (1 + sqrt(Iss)) - 0.3 * Iss))
+    in [1]
+gamma_nai = 10^(-constA * 1 * (sqrt(Ii) / (1 + sqrt(Ii)) - 0.3 * Ii))
+    in [1]
+gamma_nao = 10^(-constA * 1 * (sqrt(Io) / (1 + sqrt(Io)) - 0.3 * Io))
+    in [1]
+gamma_nass = 10^(-constA * 1 * (sqrt(Iss) / (1 + sqrt(Iss)) - 0.3 * Iss))
+    in [1]
+dot(ical_pureCDI_junc) = -ical_pureCDI_junc * sigmoidTransition / tauTransition + (1 - ical_pureCDI_junc) * rateRecovery
+    in [1]
+dot(ical_pureCDI_sl) = -ical_pureCDI_sl * sigmoidTransition2 / tauTransition2 + (1 - ical_pureCDI_sl) * rateRecovery
+    in [1]
+dot(jca) = (jcass - jca) / tjca
+    in [1]
+jcass = 1 / (1 + exp((membrane.v + 17.66945 [mV]) / 3.21501 [mV]))
+    in [1]
+k2n = 957.85903 [mS/uF]
+    in [mS/uF]
+km2n = jca * 0.84191 [mS/uF]
+    in [mS/uF]
+dot(nca) = anca * k2n - nca * km2n
+    in [1]
+dot(nca_i) = anca_i * k2n - nca_i * km2n
+    in [1]
+rateRecovery = 0.02313 [mS/uF]
+    in [mS/uF]
+sigmoidTransition = 1 - 1 / (1 + 1.86532 * intracellular_ions.caj / 0.032 [mM])
+    in [1]
+sigmoidTransition2 = 1 - 1 / (1 + 1.86532 * intracellular_ions.casl / 0.032 [mM])
+    in [1]
+tauTransition = 1.0967 [ms] + (1 - sigmoidTransition) * 141.4299 [ms]
+    in [ms]
+tauTransition2 = 1.0967 [ms] + (1 - sigmoidTransition2) * 141.4299 [ms]
+    in [ms]
+td = 1.5 [ms] + 1 [ms] / (exp(-0.05 [1/mV] * (membrane.v + 6 [mV])) + exp(0.09 [1/mV] * (membrane.v + 14 [mV])))
+    in [ms]
+tfcaf = 13.50673 [ms] + 1 [ms] / (0.1542 * exp(-(membrane.v - 1.31611 [mV]) / 11.3396 [mV]) + 0.1542 * exp((membrane.v - 1.31611 [mV]) / 11.3396 [mV]))
+    in [ms]
+tfcafp = 2.5 * tfcaf
+    in [ms]
+tfcas = 177.95813 [ms] + 1 [ms] / ( 4.73955000000000025e-4 * exp(-(membrane.v - 0.79049 [mV]) / 0.81777 [mV]) +  4.73955000000000025e-4 * exp((membrane.v + 2.40474 [mV]) / 1.90812 [mV]))
+    in [ms]
+tff = 6.17111 [ms] + 1 [ms] / (0.00126 * exp(-(membrane.v + 26.63596 [mV]) / 9.69961 [mV]) + 0.00126 * exp((membrane.v + 26.63596 [mV]) / 9.69961 [mV]))
+    in [ms]
+tffp = 2.5 * tff
+    in [ms]
+tfs =  2.71922488999999996e3 [ms] + 1 [ms] / ( 7.19411000000000014e-5 * exp(-(membrane.v + 5.74631 [mV]) / 10.8769 [mV]) +  7.19411000000000014e-5 * exp((membrane.v + 5.74631 [mV]) / 16.31535 [mV]))
+    in [ms]
+tjca = 66 [ms]
+    in [ms]
+
+[ICab]
+GCab = multipliers.ICab_multiplier * GCab_b
+    in [mS/uF]
+GCab_b =  5.15574999999999996e-4 [mS/uF]
+    in [mS/uF]
+ICab = ICab_junc + ICab_sl
+    in [A/F]
+ICab_junc = membrane.Fjunc * GCab * (membrane.v - reversal_potentials.ECaj)
+    in [A/F]
+ICab_sl = membrane.Fsl * GCab * (membrane.v - reversal_potentials.ECasl)
+    in [A/F]
+
+[ICl]
+GClCa = multipliers.IClCa_multiplier * GClCa_b
+    in [mS/uF]
+GClCa_b = 0.01615 [mS/uF]
+    in [mS/uF]
+GClb = multipliers.IClb_multiplier * GClb_b
+    in [mS/uF]
+GClb_b = 0.00241 [mS/uF]
+    in [mS/uF]
+IClCa = IClCa_junc + IClCa_sl
+    in [A/F]
+IClCa_junc = 0.5 * membrane.Fjunc * GClCa / (1 + KdClCa / intracellular_ions.caj) * (membrane.v - reversal_potentials.ECl)
+    in [A/F]
+IClCa_sl = 0.5 * membrane.Fsl * GClCa / (1 + KdClCa / intracellular_ions.casl) * (membrane.v - reversal_potentials.ECl)
+    in [A/F]
+IClb = GClb * (membrane.v - reversal_potentials.ECl)
+    in [A/F]
+KdClCa = 0.1 [mM]
+    in [mM]
+
+[IK1]
+GK1 = GK1_b * celltype_factor * sex_factor * multipliers.IK1_multiplier
+    in [mS/uF]
+GK1_b = 0.6992 [mS/uF]
+    in [mS/uF]
+IK1 = GK1 * sqrt(extracellular.ko / 5 [mM]) * K1ss * (membrane.v - reversal_potentials.EK)
+    in [A/F]
+K1ss = aK1 / (aK1 + bK1)
+    in [1]
+aK1 = 4.094 / (1 + exp(0.1217 [1/mV] * (membrane.v - reversal_potentials.EK - 49.934 [mV])))
+    in [1]
+bK1 = (15.72 * exp(0.0674 [1/mV] * (membrane.v - reversal_potentials.EK - 3.257 [mV])) + exp(0.0618 [1/mV] * (membrane.v - reversal_potentials.EK - 594.31 [mV]))) / (1 + exp(-0.1629 [1/mV] * (membrane.v - reversal_potentials.EK + 14.207 [mV])))
+    in [1]
+celltype_factor = piecewise(environment.celltype == 1, 1.1, environment.celltype == 2, 1.3, 1)
+    in [1]
+sex_factor = piecewise(environment.sex == 1, 1.07, environment.sex == 2, 0.92, 1)
+    in [1]
+
+[IKb]
+GKb = GKb_b * multipliers.IKb_multiplier
+    in [mS/uF]
+GKb_b = 0.010879 [mS/uF]
+    in [mS/uF]
+IKb = GKb * xkb * (membrane.v - reversal_potentials.EK)
+    in [A/F]
+xkb = 1 / (1 + exp(-(membrane.v - 10.8968 [mV]) / 23.9871 [mV]))
+    in [1]
+
+[IKr]
+dot(C0) = beta * C1 - alpha * C0
+    in [1]
+dot(C1) = alpha * C0 + beta_1 * C2 - (beta + alpha_1) * C1
+    in [1]
+dot(C2) = alpha_1 * C1 + beta_2 * O + beta_ItoC2 * I - (beta_1 + alpha_2 + alpha_C2ToI) * C2
+    in [1]
+GKr = GKr_b * celltype_factor * sex_factor * multipliers.IKr_multiplier
+    in [mS/uF]
+GKr_b = 0.043 [mS/uF]
+    in [mS/uF]
+dot(I) = alpha_C2ToI * C2 + alpha_i * O - (beta_ItoC2 + beta_i) * I
+    in [1]
+IKr = GKr * sqrt(extracellular.ko / 5 [mM]) * O * (membrane.v - reversal_potentials.EK)
+    in [A/F]
+dot(O) = alpha_2 * C2 + beta_i * I - (beta_2 + alpha_i) * O
+    in [1]
+alpha = 0.1161 [mS/uF] * exp(0.299 * membrane.vfrt)
+    in [mS/uF]
+alpha_1 = 0.154375 [mS/uF]
+    in [mS/uF]
+alpha_2 = 0.0578 [mS/uF] * exp(0.971 * membrane.vfrt)
+    in [mS/uF]
+alpha_C2ToI = 5.2e-5 [mS/uF] * exp(1.525 * membrane.vfrt)
+    in [mS/uF]
+alpha_i = 0.2533 [mS/uF] * exp(0.5953 * membrane.vfrt)
+    in [mS/uF]
+beta = 0.2442 [mS/uF] * exp(-1.604 * membrane.vfrt)
+    in [mS/uF]
+beta_1 = 0.1911 [mS/uF]
+    in [mS/uF]
+beta_2 = 0.000349 [mS/uF] * exp(-1.062 * membrane.vfrt)
+    in [mS/uF]
+beta_ItoC2 = beta_2 * beta_i * alpha_C2ToI / (alpha_2 * alpha_i)
+    in [mS/uF]
+beta_i = 0.04568 [mS/uF] * exp(-0.8209 * membrane.vfrt)
+    in [mS/uF]
+celltype_factor = piecewise(environment.celltype == 1, 1.25, environment.celltype == 2, 0.7, 1)
+    in [1]
+sex_factor = piecewise(environment.sex == 1, 1.1, environment.sex == 2, 0.87, 1)
+    in [1]
+
+[IKs]
+GKs = GKs_b * celltype_factor * sex_factor * multipliers.IKs_multiplier
+    in [mS/uF]
+GKs_b = 2.97002 [mS/uF]
+    in [mS/uF]
+IKs = IKs_junc + IKs_sl
+    in [A/F]
+IKs_junc = membrane.Fjunc * GKs * gks_junc * xs_junc^2 * (membrane.v - reversal_potentials.EKs)
+    in [A/F]
+IKs_sl = membrane.Fsl * GKs * gks_sl * xs_sl^2 * (membrane.v - reversal_potentials.EKs)
+    in [A/F]
+P_g_0 = gKs_factor * (0.2 + 0.2 * kPKA_IKs)
+    in [1]
+P_g_max = gKs_factor * (0.8 + 7 * kPKA_IKs)
+    in [1]
+P_tau_0 = 26 [mV] + 9 [mV] * kPKA_IKs
+    in [mV]
+P_tau_max = 40 [mV] + 4 [mV] * kPKA_IKs
+    in [mV]
+P_vh_0 = -1 [mV] - 10 [mV] * kPKA_IKs
+    in [mV]
+P_vh_max = -12 [mV] - 9 [mV] * kPKA_IKs
+    in [mV]
+VsTs_Ca_junc = P_tau_0 + (P_tau_max - P_tau_0) / (1 + (0.00015 [mM] / intracellular_ions.caj)^3)
+    in [mV]
+VsTs_Ca_sl = P_tau_0 + (P_tau_max - P_tau_0) / (1 + (0.00015 [mM] / intracellular_ions.casl)^3)
+    in [mV]
+VsXs_Ca_junc = P_vh_0 + (P_vh_max - P_vh_0) / (1 + (0.00035 [mM] / intracellular_ions.caj)^4)
+    in [mV]
+VsXs_Ca_sl = P_vh_0 + (P_vh_max - P_vh_0) / (1 + (0.00035 [mM] / intracellular_ions.casl)^4)
+    in [mV]
+celltype_factor = piecewise(environment.celltype == 2, 0.5, 1)
+    in [1]
+gKs_factor = 0.01
+    in [1]
+gks_junc = P_g_0 + (P_g_max - P_g_0) / (1 + (0.00015 [mM] / intracellular_ions.caj)^1.3)
+    in [1]
+gks_sl = P_g_0 + (P_g_max - P_g_0) / (1 + (0.00015 [mM] / intracellular_ions.casl)^1.3)
+    in [1]
+kPKA_IKs = PKA.fIKs_PKA
+    in [1]
+sex_factor = piecewise(environment.sex == 1, 1.09, environment.sex == 2, 0.905, 1)
+    in [1]
+tauxs_junc = 2 * (50 [ms] + (50 [ms] + 350 [ms] * exp(-(membrane.v + 30 [mV])^2 / 4000 [mV^2])) / (1 + exp(-(membrane.v + VsTs_Ca_junc) / 10 [mV])))
+    in [ms]
+tauxs_sl = 2 * (50 [ms] + (50 [ms] + 350 [ms] * exp(-(membrane.v + 30 [mV])^2 / 4000 [mV^2])) / (1 + exp(-(membrane.v + VsTs_Ca_sl) / 10 [mV])))
+    in [ms]
+dot(xs_junc) = (xsss_junc - xs_junc) / tauxs_junc
+    in [1]
+dot(xs_sl) = (xsss_sl - xs_sl) / tauxs_sl
+    in [1]
+xsss_junc = 1 / (1 + exp(-(membrane.v - VsXs_Ca_junc) / 25 [mV]))
+    in [1]
+xsss_sl = 1 / (1 + exp(-(membrane.v - VsXs_Ca_sl) / 25 [mV]))
+    in [1]
+
+[INa]
+GNa = GNa_b * multipliers.INa_multiplier
+    in [mS/uF]
+GNa_P = 1.25 * GNa
+    in [mS/uF]
+GNa_b = 22.08788 [mS/uF]
+    in [mS/uF]
+INa = INaj + INasl
+    in [A/F]
+INaBase = (1 - fINa_CaMKonly - fINa_PKAonly - fINa_BP) * INaBase_NP + fINa_CaMKonly * INaBase_CaMK + fINa_PKAonly * INaBase_PKA + fINa_BP * INaBase_BP
+    in [mS/uF]
+INaBase_BP = GNa_P * m_P^3 * hp_P * jp_P
+    in [mS/uF]
+INaBase_CaMK = GNa * m^3 * hp * jp
+    in [mS/uF]
+INaBase_NP = GNa * m^3 * h * j
+    in [mS/uF]
+INaBase_PKA = GNa_P * m_P^3 * h_P * j_P
+    in [mS/uF]
+INaj = membrane.Fjunc * INaBase * (membrane.v - reversal_potentials.ENaj)
+    in [A/F]
+INasl = membrane.Fsl * INaBase * (membrane.v - reversal_potentials.ENasl)
+    in [A/F]
+ah = piecewise(membrane.v >= -40 [mV], 0, 0.057 * exp(-(membrane.v + 80 [mV]) / 6.8 [mV]))
+    in [1]
+aj = piecewise(membrane.v >= -40 [mV], 0, (-25428 [1/mV] * exp(0.2444 [1/mV] * membrane.v) - 6.948e-6 [1/mV] * exp(-0.04391 [1/mV] * membrane.v)) * (membrane.v + 37.78 [mV]) / (1 + exp(0.311 [1/mV] * (membrane.v + 79.23 [mV]))))
+    in [1]
+bh = piecewise(membrane.v >= -40 [mV], 0.77 / (0.13 * (1 + exp(-(membrane.v + 10.66 [mV]) / 11.1 [mV]))), 2.7 * exp(0.079 [1/mV] * membrane.v) + 310000 * exp(0.3485 [1/mV] * membrane.v))
+    in [1]
+bj = piecewise(membrane.v >= -40 [mV], 0.6 * exp(0.057 [1/mV] * membrane.v) / (1 + exp(-0.1 [1/mV] * (membrane.v + 32 [mV]))), 0.02424 * exp(-0.01052 [1/mV] * membrane.v) / (1 + exp(-0.1378 [1/mV] * (membrane.v + 40.14 [mV]))))
+    in [1]
+fINa_BP = fINap * fINa_P
+    in [1]
+fINa_CaMKonly = fINap - fINa_BP
+    in [1]
+fINa_P = PKA.fINa_PKA
+    in [1]
+fINa_PKAonly = fINa_P - fINa_BP
+    in [1]
+fINap = CaMK.camk_f_RyR
+    in [1]
+dot(h) = (hss - h) / th
+    in [1]
+dot(h_P) = (hss_P - h_P) / th
+    in [1]
+dot(hp) = (hssp - hp) / th
+    in [1]
+dot(hp_P) = (hssp_P - hp_P) / th
+    in [1]
+hss = 1 / (1 + exp((membrane.v + 71.55 [mV]) / 7.43 [mV]))^2
+    in [1]
+hss_P = 1 / (1 + exp((membrane.v + 76.55 [mV]) / 7.43 [mV]))^2
+    in [1]
+hssp = 1 / (1 + exp((membrane.v + 77.55 [mV]) / 7.43 [mV]))^2
+    in [1]
+hssp_P = 1 / (1 + exp((membrane.v + 82.55 [mV]) / 7.43 [mV]))^2
+    in [1]
+dot(j) = (jss - j) / tj
+    in [1]
+dot(j_P) = (jss_P - j_P) / tj
+    in [1]
+dot(jp) = (jss - jp) / tjp
+    in [1]
+dot(jp_P) = (jssp_P - jp_P) / tjp
+    in [1]
+jss = hss
+    in [1]
+jss_P = hss_P
+    in [1]
+jssp_P = hssp_P
+    in [1]
+dot(m) = (mss - m) / tm
+    in [1]
+dot(m_P) = (mss_P - m_P) / tm
+    in [1]
+mss = 1 / (1 + exp(-(membrane.v + 56.86 [mV]) / 9.03 [mV]))^2
+    in [1]
+mss_P = 1 / (1 + exp(-(membrane.v + 61.86 [mV]) / 9.03 [mV]))^2
+    in [1]
+th = 1 [ms] / (ah + bh)
+    in [ms]
+tj = 1 [ms] / (aj + bj)
+    in [ms]
+tjp = 1.46 * tj
+    in [ms]
+tm = 0.1292 [ms] * exp(-((membrane.v + 45.79 [mV]) / 15.54 [mV])^2) + 0.06487 [ms] * exp(-((membrane.v - 4.823 [mV]) / 51.12 [mV])^2)
+    in [ms]
+
+[INaCa]
+E1_i = x1_i / (x1_i + x2_i + x3_i + x4_i)
+    in [1]
+E1_ss = x1_ss / (x1_ss + x2_ss + x3_ss + x4_ss)
+    in [1]
+E2_i = x2_i / (x1_i + x2_i + x3_i + x4_i)
+    in [1]
+E2_ss = x2_ss / (x1_ss + x2_ss + x3_ss + x4_ss)
+    in [1]
+E3_i = x3_i / (x1_i + x2_i + x3_i + x4_i)
+    in [1]
+E3_ss = x3_ss / (x1_ss + x2_ss + x3_ss + x4_ss)
+    in [1]
+E4_i = x4_i / (x1_i + x2_i + x3_i + x4_i)
+    in [1]
+E4_ss = x4_ss / (x1_ss + x2_ss + x3_ss + x4_ss)
+    in [1]
+Gncx = Gncx_b * celltype_factor * sex_factor * multipliers.INaCa_multiplier
+    in [mS/uF]
+Gncx_b = 0.00179 [mS/uF]
+    in [mS/uF]
+INaCa = INaCa_i + INaCa_ss
+    in [A/F]
+INaCa_fractionSS = 0.31
+    in [1]
+INaCa_i = (1 - INaCa_fractionSS) * Gncx * allo_i * (physical_constants.zna * JncxNa_i + physical_constants.zca * JncxCa_i)
+    in [A/F]
+INaCa_ss = INaCa_fractionSS * Gncx * allo_ss * (physical_constants.zna * JncxNa_ss + physical_constants.zca * JncxCa_ss)
+    in [A/F]
+JncxCa_i = E2_i * k2_i - E1_i * k1_i
+    in [mM/ms]
+JncxCa_ss = E2_ss * k2_ss - E1_ss * k1_ss
+    in [mM/ms]
+JncxNa_i = 3 * (E4_i * k7_i - E1_i * k8_i) + E3_i * k4pp_i - E2_i * k3pp_i
+    in [mM/ms]
+JncxNa_ss = 3 * (E4_ss * k7_ss - E1_ss * k8_ss) + E3_ss * k4pp_ss - E2_ss * k3pp_ss
+    in [mM/ms]
+KmCaAct = 0.00015 [mM]
+    in [mM]
+allo_i = 1 / (1 + (KmCaAct / intracellular_ions.casl)^2)
+    in [1]
+allo_ss = 1 / (1 + (KmCaAct / intracellular_ions.caj)^2)
+    in [1]
+celltype_factor = piecewise(environment.celltype == 1, 1.1, environment.celltype == 2, 1.4, 1)
+    in [1]
+h10_i = kasymm + 1 + extracellular.nao / kna1 * (1 + extracellular.nao / kna2)
+    in [1]
+h10_ss = kasymm + 1 + extracellular.nao / kna1 * (1 + extracellular.nao / kna2)
+    in [1]
+h11_i = extracellular.nao * extracellular.nao / (h10_i * kna1 * kna2)
+    in [1]
+h11_ss = extracellular.nao * extracellular.nao / (h10_ss * kna1 * kna2)
+    in [1]
+h12_i = 1 / h10_i
+    in [1]
+h12_ss = 1 / h10_ss
+    in [1]
+h1_i = 1 + intracellular_ions.nai / kna3 * (1 + hna)
+    in [1]
+h1_ss = 1 + intracellular_ions.nasl / kna3 * (1 + hna)
+    in [1]
+h2_i = intracellular_ions.nai * hna / (kna3 * h1_i)
+    in [1]
+h2_ss = intracellular_ions.nasl * hna / (kna3 * h1_ss)
+    in [1]
+h3_i = 1 / h1_i
+    in [1]
+h3_ss = 1 / h1_ss
+    in [1]
+h4_i = 1 + intracellular_ions.nai / kna1 * (1 + intracellular_ions.nai / kna2)
+    in [1]
+h4_ss = 1 + intracellular_ions.nasl / kna1 * (1 + intracellular_ions.nasl / kna2)
+    in [1]
+h5_i = intracellular_ions.nai * intracellular_ions.nai / (h4_i * kna1 * kna2)
+    in [1]
+h5_ss = intracellular_ions.nasl * intracellular_ions.nasl / (h4_ss * kna1 * kna2)
+    in [1]
+h6_i = 1 / h4_i
+    in [1]
+h6_ss = 1 / h4_ss
+    in [1]
+h7_i = 1 + extracellular.nao / kna3 * (1 + 1 / hna)
+    in [1]
+h7_ss = 1 + extracellular.nao / kna3 * (1 + 1 / hna)
+    in [1]
+h8_i = extracellular.nao / (kna3 * hna * h7_i)
+    in [1]
+h8_ss = extracellular.nao / (kna3 * hna * h7_ss)
+    in [1]
+h9_i = 1 / h7_i
+    in [1]
+h9_ss = 1 / h7_ss
+    in [1]
+hca = exp(qca * (membrane.v - 8.3117 [mV]) * physical_constants.F / (physical_constants.R * physical_constants.T))
+    in [1]
+hna = exp(qna * (membrane.v - 8.3117 [mV]) * physical_constants.F / (physical_constants.R * physical_constants.T))
+    in [1]
+k1_i = h12_i * extracellular.cao * kcaon
+    in [1]
+k1_ss = h12_ss * extracellular.cao * kcaon
+    in [1]
+k2_i = kcaoff
+    in [1]
+k2_ss = kcaoff
+    in [1]
+k3_i = k3p_i + k3pp_i
+    in [1]
+k3_ss = k3p_ss + k3pp_ss
+    in [1]
+k3p_i = h9_i * wca
+    in [1]
+k3p_ss = h9_ss * wca
+    in [1]
+k3pp_i = h8_i * wnaca
+    in [1]
+k3pp_ss = h8_ss * wnaca
+    in [1]
+k4_i = k4p_i + k4pp_i
+    in [1]
+k4_ss = k4p_ss + k4pp_ss
+    in [1]
+k4p_i = h3_i * wca / hca
+    in [1]
+k4p_ss = h3_ss * wca / hca
+    in [1]
+k4pp_i = h2_i * wnaca
+    in [1]
+k4pp_ss = h2_ss * wnaca
+    in [1]
+k5_i = kcaoff
+    in [1]
+k5_ss = kcaoff
+    in [1]
+k6_i = h6_i * intracellular_ions.cai * kcaon
+    in [1]
+k6_ss = h6_ss * intracellular_ions.casl * kcaon
+    in [1]
+k7_i = h5_i * h2_i * wna
+    in [1]
+k7_ss = h5_ss * h2_ss * wna
+    in [1]
+k8_i = h8_i * h11_i * wna
+    in [1]
+k8_ss = h8_ss * h11_ss * wna
+    in [1]
+kasymm = 19.4258
+    in [1]
+kcaoff = 3853.2 [mS/uF]
+    in [mS/uF]
+kcaon = 3416400 [mS/uF]
+    in [mS/uF]
+kna1 = 11.9712 [mS/uF]
+    in [mS/uF]
+kna2 = 2.76 [mS/uF]
+    in [mS/uF]
+kna3 = 88.767 [mS/uF]
+    in [mS/uF]
+qca = 0.0955
+    in [1]
+qna = 0.6718
+    in [1]
+sex_factor = piecewise(environment.sex == 1, 1 / 1.0724, environment.sex == 2, 1.0724, 1)
+    in [1]
+wca = 51756
+    in [1]
+wna = 32978
+    in [1]
+wnaca = 2776.3
+    in [1]
+x1_i = k2_i * k4_i * (k7_i + k6_i) + k5_i * k7_i * (k2_i + k3_i)
+    in [1]
+x1_ss = k2_ss * k4_ss * (k7_ss + k6_ss) + k5_ss * k7_ss * (k2_ss + k3_ss)
+    in [1]
+x2_i = k1_i * k7_i * (k4_i + k5_i) + k4_i * k6_i * (k1_i + k8_i)
+    in [1]
+x2_ss = k1_ss * k7_ss * (k4_ss + k5_ss) + k4_ss * k6_ss * (k1_ss + k8_ss)
+    in [1]
+x3_i = k1_i * k3_i * (k7_i + k6_i) + k8_i * k6_i * (k2_i + k3_i)
+    in [1]
+x3_ss = k1_ss * k3_ss * (k7_ss + k6_ss) + k8_ss * k6_ss * (k2_ss + k3_ss)
+    in [1]
+x4_i = k2_i * k8_i * (k4_i + k5_i) + k3_i * k5_i * (k1_i + k8_i)
+    in [1]
+x4_ss = k2_ss * k8_ss * (k4_ss + k5_ss) + k3_ss * k5_ss * (k1_ss + k8_ss)
+    in [1]
+
+[INaK]
+INaK = INaKj + INaKsl
+    in [A/F]
+INaK_junc_PKA = membrane.Fjunc * IbarNaK * fnak / (1 + (KmNaip_PKA / intracellular_ions.naj)^4) * extracellular.ko / (extracellular.ko + KmKo)
+    in [A/F]
+INaK_junc_noPKA = membrane.Fjunc * IbarNaK * fnak / (1 + (KmNaip / intracellular_ions.naj)^4) * extracellular.ko / (extracellular.ko + KmKo)
+    in [A/F]
+INaK_sl_PKA = membrane.Fsl * IbarNaK * fnak / (1 + (KmNaip_PKA / intracellular_ions.nasl)^4) * extracellular.ko / (extracellular.ko + KmKo)
+    in [A/F]
+INaK_sl_noPKA = membrane.Fsl * IbarNaK * fnak / (1 + (KmNaip / intracellular_ions.nasl)^4) * extracellular.ko / (extracellular.ko + KmKo)
+    in [A/F]
+INaKj = (1 - PKA.fINaK_PKA) * INaK_junc_noPKA + PKA.fINaK_PKA * INaK_junc_PKA
+    in [A/F]
+INaKsl = (1 - PKA.fINaK_PKA) * INaK_sl_noPKA + PKA.fINaK_PKA * INaK_sl_PKA
+    in [A/F]
+IbarNaK = multipliers.INaK_multiplier * IbarNaK_b
+    in [A/F]
+IbarNaK_b = 2.10774 [A/F]
+    in [A/F]
+KmKo = 1.5 [mM]
+    in [mM]
+KmNaip = 11 [mM]
+    in [mM]
+KmNaip_PKA = 8.4615 [mM]
+    in [mM]
+fnak = 0.75 + (0.00375 [1/mV] - (140 [mM] - extracellular.nao) / 50 [mM] * 0.001 [1/mV]) * membrane.v
+    in [1]
+
+[INaL]
+GNaL = piecewise(environment.celltype == 1, GNaL_b * multipliers.INaL_multiplier * (1 + fINaLp) * 0.7, GNaL_b * multipliers.INaL_multiplier * (1 + fINaLp))
+    in [mS/uF]
+GNaL_b = 0.04229 [mS/uF]
+    in [mS/uF]
+INaL = INaLj + INaLsl
+    in [A/F]
+INaLj = membrane.Fjunc * GNaL * (membrane.v - reversal_potentials.ENaj) * mL * ((1 - fINaLp) * hL + fINaLp * hLp)
+    in [A/F]
+INaLsl = membrane.Fsl * GNaL * (membrane.v - reversal_potentials.ENasl) * mL * ((1 - fINaLp) * hL + fINaLp * hLp)
+    in [A/F]
+fINaLp = CaMK.camk_f_RyR
+    in [1]
+dot(hL) = (hLss - hL) / thL
+    in [1]
+dot(hLp) = (hLssp - hLp) / thLp
+    in [1]
+hLss = 1 / (1 + exp((membrane.v + 87.61 [mV]) / 7.488 [mV]))
+    in [1]
+hLssp = 1 / (1 + exp((membrane.v + 93.81 [mV]) / 7.488 [mV]))
+    in [1]
+dot(mL) = (mLss - mL) / tmL
+    in [1]
+mLss = 1 / (1 + exp(-(membrane.v + 42.85 [mV]) / 5.264 [mV]))
+    in [1]
+thL = 145 [ms]
+    in [ms]
+thLp = 3 * thL
+    in [ms]
+tmL = 0.1292 [ms] * exp(-((membrane.v + 45.79 [mV]) / 15.54 [mV])^2) + 0.06487 [ms] * exp(-((membrane.v - 4.823 [mV]) / 51.12 [mV])^2)
+    in [ms]
+
+[INab]
+GNab = multipliers.INab_multiplier * GNab_b
+    in [mS/uF]
+GNab_b = 0.000594 [mS/uF]
+    in [mS/uF]
+INab = INabj + INabsl
+    in [A/F]
+INabj = membrane.Fjunc * GNab * (membrane.v - reversal_potentials.ENaj)
+    in [A/F]
+INabsl = membrane.Fsl * GNab * (membrane.v - reversal_potentials.ENasl)
+    in [A/F]
+
+[IpCa]
+IbarSLCaP = piecewise(environment.sex == 1, IbarSLCaP_b * 0.8 * multipliers.IpCa_multiplier, environment.sex == 2, IbarSLCaP_b * 1.28 * multipliers.IpCa_multiplier, IbarSLCaP_b * multipliers.IpCa_multiplier)
+    in [mS/uF]
+IbarSLCaP_b = 0.02064 [mS/uF]
+    in [mS/uF]
+IpCa = IpCa_junc + IpCa_sl
+    in [A/F]
+IpCa_junc = membrane.Fjunc * Q10SLCaP^physical_constants.Qpow * IbarSLCaP * intracellular_ions.caj^1.6 / (KmPCa^1.6 + intracellular_ions.caj^1.6)
+    in [A/F]
+IpCa_sl = membrane.Fsl * Q10SLCaP^physical_constants.Qpow * IbarSLCaP * intracellular_ions.casl^1.6 / (KmPCa^1.6 + intracellular_ions.casl^1.6)
+    in [A/F]
+KmPCa = 0.0005 [mM]
+    in [mM]
+Q10SLCaP = 2.35
+    in [1]
+
+[Ito]
+Gto_fast = piecewise(environment.celltype == 1, 0.29856 * multipliers.Itof_multiplier, environment.celltype == 2, 0.14928 * multipliers.Itof_multiplier, 0.01276 * multipliers.Itof_multiplier)
+    in [mS/uF]
+Gto_slow = piecewise(environment.celltype == 1, 0.02036 * multipliers.Itos_multiplier, environment.celltype == 2, 0.04632 * multipliers.Itos_multiplier, 0.0721 * multipliers.Itos_multiplier)
+    in [mS/uF]
+Ito = Itos + Itof
+    in [A/F]
+Itof = Gto_fast * (membrane.v - reversal_potentials.EK) * ((1 - fItop) * xtof * ytof + fItop * xtof_p * ytof_p)
+    in [A/F]
+Itos = Gto_slow * (membrane.v - reversal_potentials.EK) * ((1 - fItop) * xtos * ytos + fItop * xtos_p * ytos_p)
+    in [A/F]
+dti_develop = 1.354 + 0.0001 / (exp((membrane.v - 167.4 [mV]) / 15.89 [mV]) + exp(-(membrane.v - 12.23 [mV]) / 0.2154 [mV]))
+    in [1]
+dti_recover = 1 - 0.5 / (1 + exp((membrane.v + 70 [mV]) / 20 [mV]))
+    in [1]
+fItop = CaMK.camk_f_RyR
+    in [1]
+tauxtof = 8.5 [ms] * exp(-((membrane.v + 45 [mV]) / 50 [mV])^2) + 0.5 [ms]
+    in [ms]
+tauxtos = 9 [ms] / (1 + exp((membrane.v + 3 [mV]) / 15 [mV])) + 0.5 [ms]
+    in [ms]
+tauytof = 85 [ms] * exp(-(membrane.v + 40 [mV])^2 / 220 [mV^2]) + 7 [ms]
+    in [ms]
+tauytof_p = tauytof * dti_develop * dti_recover
+    in [ms]
+tauytos = 800 [ms] / (1 + exp((membrane.v + 60 [mV]) / 10 [mV])) + 30 [ms]
+    in [ms]
+tauytos_p = tauytos * dti_develop * dti_recover
+    in [ms]
+dot(xtof) = (xtoss - xtof) / tauxtof
+    in [1]
+dot(xtof_p) = (xtoss_p - xtof_p) / tauxtof
+    in [1]
+dot(xtos) = (xtoss - xtos) / tauxtos
+    in [1]
+dot(xtos_p) = (xtoss_p - xtos_p) / tauxtos
+    in [1]
+xtoss = 1 / (1 + exp(-(membrane.v - 19 [mV]) / 13 [mV]))
+    in [1]
+xtoss_p = 1 / (1 + exp(-(membrane.v - 29 [mV]) / 13 [mV]))
+    in [1]
+dot(ytof) = (ytoss - ytof) / tauytof
+    in [1]
+dot(ytof_p) = (ytoss - ytof_p) / tauytof_p
+    in [1]
+dot(ytos) = (ytoss - ytos) / tauytos
+    in [1]
+dot(ytos_p) = (ytoss - ytos_p) / tauytos_p
+    in [1]
+ytoss = 1 / (1 + exp((membrane.v + 19.5 [mV]) / 5 [mV]))
+    in [1]
+
+[PKA]
+fICaL_PKA = 0
+    in [1]
+fIKs_PKA = 0
+    in [1]
+fINaK_PKA = 0
+    in [1]
+fINa_PKA = 0
+    in [1]
+fMyBPC_PKA = 0
+    in [1]
+fPLB_PKA = 0
+    in [1]
+fTnI_PKA = 0
+    in [1]
+
+[SERCA]
+Jserca = Jserca_np * (1 - phosphorylationTotal) + Jserca_p * phosphorylationTotal
+    in [mM/ms]
+Jserca_np = Q10SRCaP^physical_constants.Qpow * Vmax_SRCaP * Vmax_mult * ((intracellular_ions.cai / Kmf)^hillSRCaP - (intracellular_ions.casr / Kmr)^hillSRCaP) / (1 + (intracellular_ions.cai / Kmf)^hillSRCaP + (intracellular_ions.casr / Kmr)^hillSRCaP)
+    in [mM/ms]
+Jserca_p = Q10SRCaP^physical_constants.Qpow * Vmax_SRCaP * Vmax_mult * ((intracellular_ions.cai / Kmf_p)^hillSRCaP - (intracellular_ions.casr / Kmr)^hillSRCaP) / (1 + (intracellular_ions.cai / Kmf_p)^hillSRCaP + (intracellular_ions.casr / Kmr)^hillSRCaP)
+    in [mM/ms]
+Km_SERCA_Ca = 0.4 [mM]
+    in [mM]
+Kmf =  3.06720000000000018e-4 [mM]
+    in [mM]
+Kmf_p = Kmf * 0.5
+    in [mM]
+Kmr = 2.31442 [mM]
+    in [mM]
+Max_Vmax_SERCA_Ca = 1.11142
+    in [1]
+Q10SRCaP = 2.6
+    in [1]
+Vmax_SRCaP = piecewise(environment.celltype == 1, 1.2 * Vmax_SRCaP_b * multipliers.Jup_multiplier, Vmax_SRCaP_b * multipliers.Jup_multiplier)
+    in [mM/ms]
+Vmax_SRCaP_b = 0.00543 [mM/ms]
+    in [mM/ms]
+Vmax_mult = 1 + Max_Vmax_SERCA_Ca / (1 + (Km_SERCA_Ca / CaMK.casig_SERCA_act)^2)
+    in [1]
+hillSRCaP = 1.02809
+    in [1]
+phosphorylationTotal = CaMK.camk_f_PLB + PKA.fPLB_PKA - CaMK.camk_f_PLB * PKA.fPLB_PKA
+    in [1]
+
+[cell_geometry]
+cellLength = 100 [um]
+    in [um]
+cellRadius = 10.25 [um]
+    in [um]
+vcell = 1e-15 [1 (1e+15)] *  3.14159265358979312 * cellRadius^2 * cellLength
+    in [L]
+vjunc = 0.000539 * vcell
+    in [L]
+vmyo = 0.65 * vcell
+    in [L]
+vsl = 0.02 * vcell
+    in [L]
+vsr = 0.035 * vcell
+    in [L]
+
+[contraction]
+A = TOT_A * dr / ((1 - dr) * wfrac + dr)
+    in [1]
+Lfac = piecewise(0 >= 1 + beta_0 * (lambda0 + piecewise(lambda_min <= lambda0, lambda_min, lambda0) - (1 + lambda_min)), 0, 1 + beta_0 * (lambda0 + piecewise(lambda_min <= lambda0, lambda_min, lambda0) - (1 + lambda_min)))
+    in [1]
+PKAForceMultiplier = 1 + 0.26 * PKA.fMyBPC_PKA
+    in [1]
+TOT_A = 25
+    in [1]
+TRPN_n = 1.65
+    in [1]
+Ta = Lfac * PKAForceMultiplier * Tref / dr * ((contraction_ZETAS + 1) * contraction_XS + contraction_ZETAW * contraction_XW)
+    in [Pa (1000)]
+Tref = 80 [Pa (1000)]
+    in [Pa (1000)]
+XSSS = dr * 0.5
+    in [1]
+XU = 1 - contraction_TmBlocked - contraction_XW - contraction_XS
+    in [1]
+XWSS = (1 - dr) * wfrac * 0.5
+    in [1]
+beta_0 = 2.3
+    in [1]
+beta_1 = -2.4
+    in [1]
+ca50 = fPKA_TnI * 0.7645 + beta_1 * piecewise(0.2 <= lambda - 1, 0.2, lambda - 1)
+    in [1]
+cds = phi * k_ws * wfrac * (1 - dr) / dr
+    in [1]
+cdw = phi * k_uw * (1 - wfrac) / wfrac
+    in [1]
+dot(contraction_Ca_TRPN) = d_contraction_Ca_TRPN
+    in [1]
+dot(contraction_TmBlocked) = ktm_block * piecewise(100 <= contraction_Ca_TRPN^(-nperm / 2), 100, contraction_Ca_TRPN^(-nperm / 2)) * XU - ktm_unblock * contraction_Ca_TRPN^(nperm / 2) * contraction_TmBlocked
+    in [1]
+dot(contraction_XS) = xb_ws - xb_su - xb_su_gamma
+    in [1]
+dot(contraction_XW) = xb_uw - xb_wu - xb_ws - xb_wu_gamma
+    in [1]
+dot(contraction_ZETAS) = A * lambda_rate - cds * contraction_ZETAS
+    in [1]
+dot(contraction_ZETAW) = A * lambda_rate - cdw * contraction_ZETAW
+    in [1]
+d_contraction_Ca_TRPN = koff * ((intracellular_ions.cai * 1000 [m^3/mol] / ca50)^TRPN_n * (1 - contraction_Ca_TRPN) - contraction_Ca_TRPN)
+    in [mS/uF]
+dr = 0.25
+    in [1]
+fPKA_TnI = 1.45 - 0.45 * (1 - PKA.fTnI_PKA) / (1 - fracTnIpo)
+    in [1]
+fracTnIpo = 0.0031
+    in [1]
+gamma = 0.0085
+    in [1]
+gamma_rate = piecewise(contraction_ZETAS > 0, gamma * contraction_ZETAS, contraction_ZETAS < -1, gamma * (-contraction_ZETAS - 1), 0)
+    in [1]
+gamma_rate_w = gamma_wu * abs(contraction_ZETAW)
+    in [1]
+gamma_wu = 0.615
+    in [1]
+k_su = k_ws * (1 / dr - 1) * wfrac
+    in [1]
+k_uw = 0.026 * nu
+    in [1]
+k_ws = 0.004 * (1 + PKA.fMyBPC_PKA / 2) * mu
+    in [1]
+k_wu = k_uw * (1 / wfrac - 1) - k_ws
+    in [1]
+koff = 0.07854 [mS/uF]
+    in [mS/uF]
+ktm_block = ktm_unblock * perm50^nperm * 0.5 / (0.5 - XSSS - XWSS)
+    in [1]
+ktm_unblock = 0.02626
+    in [1]
+lambda = 1
+    in [1]
+lambda0 = piecewise(lambda_max <= lambda, lambda_max, lambda)
+    in [1]
+lambda_max = 1.2
+    in [1]
+lambda_min = 0.87
+    in [1]
+lambda_rate = 0 [mS/uF]
+    in [mS/uF]
+mu = 3.94046
+    in [1]
+nperm = 2.036
+    in [1]
+nu = 10.15996
+    in [1]
+perm50 = 0.35
+    in [1]
+phi = 2.23
+    in [1]
+wfrac = 0.5
+    in [1]
+xb_su = k_su * contraction_XS
+    in [1]
+xb_su_gamma = gamma_rate * contraction_XS
+    in [1]
+xb_uw = k_uw * XU * (1 + PKA.fMyBPC_PKA / 2)
+    in [1]
+xb_ws = k_ws * contraction_XW
+    in [1]
+xb_wu = k_wu * contraction_XW
+    in [1]
+xb_wu_gamma = gamma_rate_w * contraction_XW
+    in [1]
+
+[environment]
+celltype = 0
+    in [1]
+sex = 0
+    in [1]
+time = 0 [ms] bind time
+    in [ms]
+
+[extracellular]
+cao = 1.8 [mM]
+    in [mM]
+clo = 150 [mM]
+    in [mM]
+ko = 5 [mM]
+    in [mM]
+nao = 140 [mM]
+    in [mM]
+
+[intracellular_ions]
+Bmax_CaM = piecewise(environment.sex == 1, 0.024 [mM] / 1.1, environment.sex == 2, 0.024 [mM] * 1.1, 0.024 [mM])
+    in [mM]
+Bmax_Csqn =  1.36552139999999989e-1 [mM] * cell_geometry.vmyo / cell_geometry.vsr
+    in [mM]
+Bmax_Naj = 7.561 [mM]
+    in [mM]
+Bmax_Nasl = 1.65 [mM]
+    in [mM]
+Bmax_SLhighj =  1.75754999999999987e-4 [mM] * cell_geometry.vmyo / cell_geometry.vjunc
+    in [mM]
+Bmax_SLhighsl =  1.21542300000000002e-2 [mM] * cell_geometry.vmyo / cell_geometry.vsl
+    in [mM]
+Bmax_SLlowj =  4.89983000000000042e-4 [mM] * cell_geometry.vmyo / cell_geometry.vjunc
+    in [mM]
+Bmax_SLlowsl = 0.033923 [mM] * cell_geometry.vmyo / cell_geometry.vsl
+    in [mM]
+Bmax_SR =  1.78585399999999991e-2 [mM]
+    in [mM]
+Bmax_TnChigh = 0.14 [mM]
+    in [mM]
+Bmax_TnClow = 0.07 [mM]
+    in [mM]
+Bmax_myosin = 0.14 [mM]
+    in [mM]
+ICa_tot_junc = ICaL.ICaL_junc + ICab.ICab_junc + IpCa.IpCa_junc - 2 * INaCa.INaCa_ss
+    in [A/F]
+ICa_tot_sl = ICaL.ICaL_sl + ICab.ICab_sl + IpCa.IpCa_sl - 2 * INaCa.INaCa_i
+    in [A/F]
+ICl_tot = ICl.IClCa + ICl.IClb
+    in [A/F]
+IK_tot = Ito.Ito + IKr.IKr + IKs.IKs + IK1.IK1 - 2 * INaK.INaK + ICaL.ICaK + IKb.IKb + membrane.Istim
+    in [A/F]
+INa_tot_junc = INa.INaj + INaL.INaLj + INab.INabj + 3 * INaCa.INaCa_ss + 3 * INaK.INaKj + ICaL.ICaNa_junc
+    in [A/F]
+INa_tot_sl = INa.INasl + INaL.INaLsl + INab.INabsl + 3 * INaCa.INaCa_i + 3 * INaK.INaKsl + ICaL.ICaNa_sl
+    in [A/F]
+I_tot = INa_tot_junc + INa_tot_sl + ICa_tot_junc + ICa_tot_sl + IK_tot + ICl_tot
+    in [A/F]
+J_CaB_cytosol = d_buffers_TnClow + d_buffers_TnCHc + d_buffers_CaM + d_buffers_Myosin_ca + d_buffers_SRB
+    in [mM/ms]
+J_CaB_junction = d_buffers_SLLj + d_buffers_SLHj
+    in [mM/ms]
+J_CaB_sl = d_buffers_SLLsl + d_buffers_SLHsl
+    in [mM/ms]
+J_ca_juncsl =  3.26067463358168778e-13 [mM/ms]
+    in [mM/ms]
+J_ca_slmyo =  1.34127367348033708e-11 [mM/ms]
+    in [mM/ms]
+J_na_juncsl =  1.83127823220607987e-14 [mM/ms]
+    in [mM/ms]
+J_na_slmyo =  1.63862792221979393e-12 [mM/ms]
+    in [mM/ms]
+dot(buffers_CaM) = d_buffers_CaM
+    in [mM]
+dot(buffers_Csqn) = d_buffers_Csqn
+    in [mM]
+dot(buffers_Myosin_ca) = d_buffers_Myosin_ca
+    in [mM]
+dot(buffers_Myosin_mg) = kon_myomg * mgi * (Bmax_myosin - buffers_Myosin_ca - buffers_Myosin_mg) - koff_myomg * buffers_Myosin_mg
+    in [mM]
+dot(buffers_NaBj) = d_buffers_NaBj
+    in [mM]
+dot(buffers_NaBsl) = d_buffers_NaBsl
+    in [mM]
+dot(buffers_SLHj) = d_buffers_SLHj
+    in [mM]
+dot(buffers_SLHsl) = d_buffers_SLHsl
+    in [mM]
+dot(buffers_SLLj) = d_buffers_SLLj
+    in [mM]
+dot(buffers_SLLsl) = d_buffers_SLLsl
+    in [mM]
+dot(buffers_SRB) = d_buffers_SRB
+    in [mM]
+dot(buffers_TnCHc) = d_buffers_TnCHc
+    in [mM]
+dot(buffers_TnCHm) = kon_tnchmg * mgi * (Bmax_TnChigh - buffers_TnCHc - buffers_TnCHm) - koff_tnchmg * buffers_TnCHm
+    in [mM]
+dot(buffers_TnClow) = d_buffers_TnClow
+    in [mM]
+dot(cai) = -SERCA.Jserca * cell_geometry.vsr / cell_geometry.vmyo - J_CaB_cytosol + J_ca_slmyo / cell_geometry.vmyo * (casl - cai)
+    in [mM]
+dot(caj) = -ICa_tot_junc * membrane.Cmem / (cell_geometry.vjunc * 2 * physical_constants.F) + J_ca_juncsl / cell_geometry.vjunc * (casl - caj) - J_CaB_junction + ryr.J_SRCarel * cell_geometry.vsr / cell_geometry.vjunc + ryr.J_SRleak * cell_geometry.vmyo / cell_geometry.vjunc
+    in [mM]
+dot(casl) = -ICa_tot_sl * membrane.Cmem / (cell_geometry.vsl * 2 * physical_constants.F) + J_ca_juncsl / cell_geometry.vsl * (caj - casl) + J_ca_slmyo / cell_geometry.vsl * (cai - casl) - J_CaB_sl
+    in [mM]
+dot(casr) = SERCA.Jserca - (ryr.J_SRleak * cell_geometry.vmyo / cell_geometry.vsr + ryr.J_SRCarel) - d_buffers_Csqn
+    in [mM]
+dot(cli) = ICl_tot * membrane.Cmem / (cell_geometry.vmyo * physical_constants.F)
+    in [mM]
+d_buffers_CaM = kon_cam * cai * (Bmax_CaM - buffers_CaM) - koff_cam * buffers_CaM
+    in [mM/ms]
+d_buffers_Csqn = kon_csqn * casr * (Bmax_Csqn - buffers_Csqn) - koff_csqn * buffers_Csqn
+    in [mM/ms]
+d_buffers_Myosin_ca = kon_myoca * cai * (Bmax_myosin - buffers_Myosin_ca - buffers_Myosin_mg) - koff_myoca * buffers_Myosin_ca
+    in [mM/ms]
+d_buffers_NaBj = kon_na * naj * (Bmax_Naj - buffers_NaBj) - koff_na * buffers_NaBj
+    in [mM/ms]
+d_buffers_NaBsl = kon_na * nasl * (Bmax_Nasl - buffers_NaBsl) - koff_na * buffers_NaBsl
+    in [mM/ms]
+d_buffers_SLHj = kon_slh * caj * (Bmax_SLhighj - buffers_SLHj) - koff_slh * buffers_SLHj
+    in [mM/ms]
+d_buffers_SLHsl = kon_slh * casl * (Bmax_SLhighsl - buffers_SLHsl) - koff_slh * buffers_SLHsl
+    in [mM/ms]
+d_buffers_SLLj = kon_sll * caj * (Bmax_SLlowj - buffers_SLLj) - koff_sll * buffers_SLLj
+    in [mM/ms]
+d_buffers_SLLsl = kon_sll * casl * (Bmax_SLlowsl - buffers_SLLsl) - koff_sll * buffers_SLLsl
+    in [mM/ms]
+d_buffers_SRB = kon_sr * cai * (Bmax_SR - buffers_SRB) - koff_sr * buffers_SRB
+    in [mM/ms]
+d_buffers_TnCHc = kon_tnchca * cai * (Bmax_TnChigh - buffers_TnCHc - buffers_TnCHm) - koff_tnchca * buffers_TnCHc
+    in [mM/ms]
+d_buffers_TnClow = Bmax_TnClow * contraction.d_contraction_Ca_TRPN
+    in [mM/ms]
+dot(ki) = -IK_tot * membrane.Cmem / (cell_geometry.vmyo * physical_constants.F)
+    in [mM]
+koff_cam = 0.238 [mS/uF]
+    in [mS/uF]
+koff_csqn = 65 [mS/uF]
+    in [mS/uF]
+koff_myoca = 0.00046 [mS/uF]
+    in [mS/uF]
+koff_myomg = 5.7e-5 [mS/uF]
+    in [mS/uF]
+koff_na = 0.001 [mS/uF]
+    in [mS/uF]
+koff_slh = 0.03 [mS/uF]
+    in [mS/uF]
+koff_sll = 1.3 [mS/uF]
+    in [mS/uF]
+koff_sr = 0.06 [mS/uF]
+    in [mS/uF]
+koff_tnchca = 3.2e-5 [mS/uF]
+    in [mS/uF]
+koff_tnchmg = 0.00333 [mS/uF]
+    in [mS/uF]
+kon_cam = 34 [1/mM/ms]
+    in [1/mM/ms]
+kon_csqn = 100 [1/mM/ms]
+    in [1/mM/ms]
+kon_myoca = 13.8 [1/mM/ms]
+    in [1/mM/ms]
+kon_myomg = 0.0157 [1/mM/ms]
+    in [1/mM/ms]
+kon_na = 0.0001 [1/mM/ms]
+    in [1/mM/ms]
+kon_slh = 100 [1/mM/ms]
+    in [1/mM/ms]
+kon_sll = 100 [1/mM/ms]
+    in [1/mM/ms]
+kon_sr = 100 [1/mM/ms]
+    in [1/mM/ms]
+kon_tnchca = 2.37 [1/mM/ms]
+    in [1/mM/ms]
+kon_tnchmg = 0.003 [1/mM/ms]
+    in [1/mM/ms]
+mgi = 0.5 [mM]
+    in [mM]
+dot(nai) = J_na_slmyo / cell_geometry.vmyo * (nasl - nai)
+    in [mM]
+dot(naj) = -INa_tot_junc * membrane.Cmem / (cell_geometry.vjunc * physical_constants.F) + J_na_juncsl / cell_geometry.vjunc * (nasl - naj) - d_buffers_NaBj
+    in [mM]
+dot(nasl) = -INa_tot_sl * membrane.Cmem / (cell_geometry.vsl * physical_constants.F) + J_na_juncsl / cell_geometry.vsl * (naj - nasl) + J_na_slmyo / cell_geometry.vsl * (nai - nasl) - d_buffers_NaBsl
+    in [mM]
+
+[membrane]
+Cmem = 1.381e-10 [F]
+    in [F]
+Fjunc = 0.11
+    in [1]
+Fsl = 1 - Fjunc
+    in [1]
+Istim = pace * i_Stim_Amplitude
+    in [A/F]
+i_Stim_Amplitude = -53 [A/F]
+    in [A/F]
+pace = 0 bind pace
+    in [1]
+dot(v) = -intracellular_ions.I_tot
+    in [mV]
+vffrt = v * physical_constants.F * physical_constants.F / (physical_constants.R * physical_constants.T)
+    in [C/mol]
+vfrt = v * physical_constants.F / (physical_constants.R * physical_constants.T)
+    in [1]
+
+[multipliers]
+ICaLPCa_multiplier = 1
+    in [1]
+ICab_multiplier = 1
+    in [1]
+IClCa_multiplier = 1
+    in [1]
+IClb_multiplier = 1
+    in [1]
+IK1_multiplier = 1
+    in [1]
+IKb_multiplier = 1
+    in [1]
+IKr_multiplier = 1
+    in [1]
+IKs_multiplier = 1
+    in [1]
+INaCa_multiplier = 1
+    in [1]
+INaK_multiplier = 1
+    in [1]
+INaL_multiplier = 1
+    in [1]
+INa_multiplier = 1
+    in [1]
+INab_multiplier = 1
+    in [1]
+IpCa_multiplier = 1
+    in [1]
+Itof_multiplier = 1
+    in [1]
+Itos_multiplier = 1
+    in [1]
+Jrel_multiplier = 1
+    in [1]
+Jup_multiplier = 1
+    in [1]
+
+[physical_constants]
+F = 96485 [C/mol]
+    in [C/mol]
+Qpow = (T - 310) / 10
+    in [1]
+R = 8314 [mJ/mol/K]
+    in [mJ/mol/K]
+T = 310 [K]
+    in [K]
+zca = 2
+    in [1]
+zcl = -1
+    in [1]
+zk = 1
+    in [1]
+zna = 1
+    in [1]
+
+[reversal_potentials]
+ECaj = physical_constants.R * physical_constants.T / (physical_constants.zca * physical_constants.F) * log(extracellular.cao / intracellular_ions.caj)
+    in [mV]
+ECasl = physical_constants.R * physical_constants.T / (physical_constants.zca * physical_constants.F) * log(extracellular.cao / intracellular_ions.casl)
+    in [mV]
+ECl = physical_constants.R * physical_constants.T / (physical_constants.zcl * physical_constants.F) * log(extracellular.clo / intracellular_ions.cli)
+    in [mV]
+EK = physical_constants.R * physical_constants.T / (physical_constants.zk * physical_constants.F) * log(extracellular.ko / intracellular_ions.ki)
+    in [mV]
+EKs = physical_constants.R * physical_constants.T / (physical_constants.zk * physical_constants.F) * log((extracellular.ko + PNaK * extracellular.nao) / (intracellular_ions.ki + PNaK * intracellular_ions.nai))
+    in [mV]
+ENaj = physical_constants.R * physical_constants.T / (physical_constants.zna * physical_constants.F) * log(extracellular.nao / intracellular_ions.naj)
+    in [mV]
+ENasl = physical_constants.R * physical_constants.T / (physical_constants.zna * physical_constants.F) * log(extracellular.nao / intracellular_ions.nasl)
+    in [mV]
+PNaK = 0.01833
+    in [1]
+
+[ryr]
+CI_to_RI = 0.00248 [mS/uF]
+    in [mS/uF]
+CaMKIILeakMultiplier = 1 + 2 * CaMK.camk_f_RyR
+    in [1]
+ICaL_junc_positive = abs(ICaL.ICaL_junc)
+    in [A/F]
+ICaL_junc_sigmoided = 1 - 1 / (1 + (ICaL_junc_positive / 0.45 [A/F])^4.5)
+    in [1]
+J_SRCarel = J_SRCarel_p * CaMK.camk_f_RyR + J_SRCarel_np * (1 - CaMK.camk_f_RyR)
+    in [mM/ms]
+J_SRCarel_np = ks * ryr_O * (intracellular_ions.casr - intracellular_ions.caj) + Jrel_ICaLdep
+    in [mM/ms]
+J_SRCarel_p = ks * ryr_O_p * (intracellular_ions.casr - intracellular_ions.caj) + Jrel_ICaLdep
+    in [mM/ms]
+J_SRleak =  1.59306000000000000e-6 [mS/uF] * (intracellular_ions.casr - intracellular_ions.caj) * nonlinearModifier * CaMKIILeakMultiplier
+    in [mM/ms]
+Jrel_ICaLdep = 0.00174 [mM/ms] * jrel_icaldep_act * jrel_icaldep_f1 * jrel_icaldep_f2
+    in [mM/ms]
+Jrel_inact_inf = 1 / (1 + ICaL_junc_sigmoided / 0.001)
+    in [1]
+Jrel_inact_inf2 = 1 / (1 + ICaL_junc_sigmoided / 0.0006)
+    in [1]
+Jrel_inf = a_rel * ICaL_junc_sigmoided / (1 + (directRelMidpoint / intracellular_ions.casr)^7.72672)
+    in [1]
+MaxSR = 15
+    in [1]
+MinSR = 1
+    in [1]
+RI_to_CI = baseRateCaI * sigmoidBaseCaI
+    in [mS/uF]
+RIcleft = 1 - ryr_R - ryr_O - ryr_I - ryr_CaRI
+    in [1]
+RIcleft_p = 1 - ryr_R_p - ryr_O_p - ryr_I_p - ryr_CaRI_p
+    in [1]
+a_rel = 1.25 * bt / 1 [ms]
+    in [1]
+baseRateCaI =  3.02320000000000019e-4 [mS/uF]
+    in [mS/uF]
+bt = 12.4767 [ms]
+    in [ms]
+caExpFactor = 0.68655
+    in [1]
+caExpFactor2 = 2.06273
+    in [1]
+caTransFactor = 0.94428 [mS/uF]
+    in [mS/uF]
+caTransFactor2 = 0.52967 [mS/uF]
+    in [mS/uF]
+caTransFactor2p = caTransFactor2 * 1.5
+    in [mS/uF]
+directRelMidpoint = 0.95271 [mM]
+    in [mM]
+ec50SR = 0.75385 [mM]
+    in [mM]
+ecCaI = 0.001 [mM]
+    in [mM]
+dot(jrel_icaldep_act) = (Jrel_inf - jrel_icaldep_act) / tau_rel
+    in [mM/ms]
+dot(jrel_icaldep_f1) = (Jrel_inact_inf - jrel_icaldep_f1) / tauInact
+    in [1]
+dot(jrel_icaldep_f2) = (Jrel_inact_inf2 - jrel_icaldep_f2) / tauInact2
+    in [1]
+kCaSR = MaxSR - (MaxSR - MinSR) / (1 + (ec50SR / intracellular_ions.casr)^steepnessCaSR)
+    in [1]
+kiCa = 0.39871
+    in [1]
+kiSRCa = kiCa * kCaSR
+    in [1]
+kim = 0.04311 [mS/uF]
+    in [mS/uF]
+koCa = 23.87221
+    in [1]
+koSRCa = koCa / kCaSR
+    in [1]
+kom = 0.16219 [mS/uF]
+    in [mS/uF]
+ks = multipliers.Jrel_multiplier * 26.6 [mS/uF]
+    in [mS/uF]
+maxCaI = 30.13294
+    in [1]
+minCaI = 0.93249
+    in [1]
+nonlinearModifier = 0.2144 * exp(1.83 [m^3/mol] * intracellular_ions.casr)
+    in [1]
+dot(ryr_CaRI) = RI_to_CI * RIcleft - CI_to_RI * ryr_CaRI
+    in [1]
+dot(ryr_CaRI_p) = RI_to_CI * RIcleft_p - CI_to_RI * ryr_CaRI_p
+    in [1]
+dot(ryr_I) = kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_O - kim * ryr_I - (kom * ryr_I - caTransFactor2 * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * RIcleft)
+    in [1]
+dot(ryr_I_p) = kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_O_p - kim * ryr_I_p - (kom * ryr_I_p - caTransFactor2p * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * RIcleft_p)
+    in [1]
+dot(ryr_O) = caTransFactor2 * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * ryr_R - kom * ryr_O - (kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_O - kim * ryr_I)
+    in [1]
+dot(ryr_O_p) = caTransFactor2 * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * ryr_R_p - kom * ryr_O_p - (kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_O_p - kim * ryr_I_p)
+    in [1]
+dot(ryr_R) = kim * RIcleft - kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_R - (caTransFactor2 * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * ryr_R - kom * ryr_O)
+    in [1]
+dot(ryr_R_p) = kim * RIcleft_p - kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_R_p - (caTransFactor2p * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * ryr_R_p - kom * ryr_O_p)
+    in [1]
+sigmoidBaseCaI = minCaI + (maxCaI - minCaI) / (1 + (ecCaI / intracellular_ions.caj)^steepnessCaI)
+    in [1]
+steepnessCaI = 5.93447
+    in [1]
+steepnessCaSR = 5.09473
+    in [1]
+tauInact = 64.11202 [ms]
+    in [ms]
+tauInact2 = 119.48978 [ms]
+    in [ms]
+tau_rel = piecewise(0.001 [ms] >= bt / (1 + 0.0123 [mM] / intracellular_ions.casr), 0.001 [ms], bt / (1 + 0.0123 [mM] / intracellular_ions.casr))
+    in [ms]
+
