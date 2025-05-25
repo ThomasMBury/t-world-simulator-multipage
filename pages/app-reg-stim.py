@@ -23,6 +23,7 @@ from utils.constants import (
     SHOW_LAST_BEATS_DEFAULT,
     TOTAL_BEATS_DEFAULT,
     CELL_TYPE_DICT,
+    PLOT_VARIABLE_TAB_LABELS,
 )
 from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
 from utils.model import MODEL, VARIABLE_NAMES, MODEL_PARAMS_DEFAULT, INITIAL_VALUES
@@ -71,7 +72,7 @@ df_sim = sim_model(
     params={},
     bcl=BCL_DEFAULT,
     total_beats=TOTAL_BEATS_DEFAULT,
-    beats_keep=SHOW_LAST_BEATS_DEFAULT,
+    show_last_beats=SHOW_LAST_BEATS_DEFAULT,
 )
 
 # Need to convert df to dict to store as json on app
@@ -81,7 +82,7 @@ simulation_data = {"data-frame": df_sim.to_dict("records")}
 parameter_data = MODEL_PARAMS_DEFAULT.copy()
 parameter_data["bcl"] = BCL_DEFAULT
 parameter_data["total_beats"] = TOTAL_BEATS_DEFAULT
-parameter_data["beats_keep"] = SHOW_LAST_BEATS_DEFAULT
+parameter_data["show_last_beats"] = SHOW_LAST_BEATS_DEFAULT
 
 
 # Make default figure
@@ -89,7 +90,10 @@ fig = make_simulation_fig(df_sim, "membrane.v")
 div_fig = html.Div(dcc.Graph(figure=fig))
 
 # Setup figure tabs
-list_tabs = [dcc.Tab(value=var, label=var) for var in PLOT_VARIABLES_DEFAULT]
+list_tabs = [
+    dcc.Tab(value=var, label=PLOT_VARIABLE_TAB_LABELS.get(var, var))
+    for var in PLOT_VARIABLES_DEFAULT
+]
 tabs = dcc.Tabs(list_tabs, id="tabs", value="membrane.v")
 
 

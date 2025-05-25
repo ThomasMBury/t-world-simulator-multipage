@@ -1,5 +1,6 @@
 import plotly.express as px
 import plotly.graph_objects as go
+from utils.constants import PLOT_VARIABLE_Y_LABELS, PLOT_Y_RANGES
 
 cols = px.colors.qualitative.Plotly
 
@@ -40,7 +41,10 @@ def make_simulation_fig(df_sim, plot_var):
         )
 
     fig.update_xaxes(title="Time (ms)")
-    fig.update_yaxes(title=plot_var)
+    fig.update_yaxes(
+        title=PLOT_VARIABLE_Y_LABELS.get(plot_var, plot_var),
+        range=PLOT_Y_RANGES.get(plot_var, None),
+    )
 
     fig.update_layout(
         height=600,

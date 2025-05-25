@@ -11,7 +11,7 @@ def sim_model(
     params={},
     bcl=1000,
     total_beats=100,
-    beats_keep=4,
+    show_last_beats=4,
 ):
     """
     Simulate Torord model
@@ -47,13 +47,13 @@ def sim_model(
     s.set_protocol(p)
 
     # Pre-pacing simulation
-    num_beats_pre = max(total_beats - beats_keep, 0)
+    num_beats_pre = max(total_beats - show_last_beats, 0)
     print("Begin prepacing")
     s.pre(num_beats_pre * bcl)
 
     # Pacing simulation
     print("Begin recorded simulation")
-    d = s.run(bcl * beats_keep)
+    d = s.run(bcl * show_last_beats)
 
     # Collect data specified in plot_vars
     data_dict = {key: d[key] for key in plot_vars}

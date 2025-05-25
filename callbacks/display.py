@@ -1,5 +1,5 @@
 from dash import Output, Input, ctx, callback, dcc, State, html
-from utils.constants import PARAM_NAMES_CURRENT_MULTIPLIERS, PARAM_NAMES_PKA
+from utils.constants import PLOT_VARIABLE_TAB_LABELS
 from utils.figures import make_simulation_fig
 import pandas as pd
 
@@ -16,7 +16,10 @@ def register_sync_tabs_with_dropdown():
         Output("tabs_container_div", "children"), Input("dropdown_plot_vars", "value")
     )
     def display_tabs(plot_vars):
-        tabs = [dcc.Tab(value=var, label=var) for var in plot_vars]
+        tabs = [
+            dcc.Tab(value=var, label=PLOT_VARIABLE_TAB_LABELS.get(var, var))
+            for var in plot_vars
+        ]
         children = (
             dcc.Tabs(
                 id="tabs",

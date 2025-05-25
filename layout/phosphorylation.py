@@ -6,9 +6,14 @@ from utils.constants import PARAM_NAMES_PKA
 
 # Make sliders for phosphorylation levels
 list_sliders_pka = []
-for par in PARAM_NAMES_PKA:
+for param_name in PARAM_NAMES_PKA:
+    # Replace dots with underscores
+    param_name = param_name.replace(".", "_")
+    # Remove the PKA prefix and suffix for the label
+    param_label = param_name.replace("PKA_f", "")
+    param_label = param_label.replace("_PKA", " phosphorylation")
     slider = make_slider(
-        label=par, id_prefix=par.replace(".", "_"), default_value=0, slider_range=[0, 1]
+        label=param_label, id_prefix=param_name, default_value=0, slider_range=[0, 1]
     )
     list_sliders_pka.append(slider)
 

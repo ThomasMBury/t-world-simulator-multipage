@@ -92,7 +92,7 @@ def register_run_button(simulation):
     states_callback_run = dict(
         bcl=State("bcl", "value"),
         total_beats=State("total_beats", "value"),
-        beats_keep=State("beats_keep", "value"),
+        show_last_beats=State("show_last_beats", "value"),
         cell_type=State("cell_type", "value"),
         plot_vars=State("dropdown_plot_vars", "value"),
         current_plot_var=State("tabs", "value"),
@@ -120,7 +120,7 @@ def register_run_button(simulation):
         n_clicks,
         bcl,
         total_beats,
-        beats_keep,
+        show_last_beats,
         cell_type,
         plot_vars,
         current_plot_var,
@@ -147,7 +147,7 @@ def register_run_button(simulation):
         parameter_data = params.copy()
         parameter_data["bcl"] = bcl
         parameter_data["total_beats"] = total_beats
-        parameter_data["beats_keep"] = beats_keep
+        parameter_data["show_last_beats"] = show_last_beats
 
         # Run simulation
         df_sim = sim_model(
@@ -157,7 +157,7 @@ def register_run_button(simulation):
             params=params,
             bcl=bcl,
             total_beats=total_beats,
-            beats_keep=beats_keep,
+            show_last_beats=show_last_beats,
         )
 
         # Need to convert df to dict to store as json

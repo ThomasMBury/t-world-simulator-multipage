@@ -42,6 +42,7 @@ PARAM_NAMES_PKA = [
 # The following variables are plotted by default
 PLOT_VARIABLES_DEFAULT = [
     "membrane.v",
+    "intracellular_ions.cai",
     "INa.INa",
     "INaCa.INaCa_i",
     "ICaL.ICaL",
@@ -49,9 +50,36 @@ PLOT_VARIABLES_DEFAULT = [
     "IKs.IKs",
 ]
 
+PLOT_VARIABLE_TAB_LABELS = {
+    "membrane.v": "Voltage",
+    "intracellular_ions.cai": "Cai",
+    "INa.INa": "INa",
+    "INaCa.INaCa_i": "INaCa",
+    "ICaL.ICaL": "ICaL",
+    "IKr.IKr": "IKr",
+    "IKs.IKs": "IKs",
+}
+
+PLOT_VARIABLE_Y_LABELS = {
+    "membrane.v": "Membrane potential (mV)",
+    "intracellular_ions.cai": "Intracellular calcium (mM)",
+    "INa.INa": "Sodium current (A/F)",
+    "INaCa.INaCa_i": "Sodium-calcium exchange current (A/F)",
+    "ICaL.ICaL": "L-Type calcium current (A/F)",
+    "IKr.IKr": "Rapid delayed rectifier potassium current (A/F)",
+    "IKs.IKs": "Slow delayed rectifier potassium current (A/F)",
+}
+
+PLOT_Y_RANGES = {
+    "membrane.v": (-100, 60),
+    # "intracellular_ions.cai": (0, 1e-3),
+    # "INa.INa": (-500, 20),
+    # "INaCa.INaCa_i": (-0.4, 0.3),
+    # "ICaL.ICaL": (-6, 1),
+}
+
 CELL_TYPE_DICT = {"endo": 0, "epi": 1, "mid": 2}
 
-
 BCL_DEFAULT = 1000
-TOTAL_BEATS_DEFAULT = 10
+TOTAL_BEATS_DEFAULT = 100
 SHOW_LAST_BEATS_DEFAULT = 1

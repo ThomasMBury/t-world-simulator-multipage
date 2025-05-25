@@ -3,12 +3,22 @@ import dash_bootstrap_components as dbc
 
 from components.slider import make_slider
 from utils.constants import PARAM_NAMES_CURRENT_MULTIPLIERS
+from utils.presets import PARAMETER_PRESETS
+
 
 # Make sliders for current multipliers
 list_sliders = []
-for par in PARAM_NAMES_CURRENT_MULTIPLIERS:
+for param_name in PARAM_NAMES_CURRENT_MULTIPLIERS:
+    # Replace dots with unnderscores
+    param_name = param_name.replace(".", "_")
+    # Remove the multipliers prefix for the label
+    par_label = param_name.replace("multipliers_", "")
+    # Use spaces instead of underscores
+    par_label = par_label.replace("_", " ")
+    if par_label == "ICaLPCa multiplier":
+        par_label = "ICaL multiplier"
     slider = make_slider(
-        label=par, id_prefix=par.replace(".", "_"), default_value=1, slider_range=[0, 3]
+        label=par_label, id_prefix=param_name, default_value=1, slider_range=[0, 3]
     )
     list_sliders.append(slider)
 
@@ -52,11 +62,11 @@ def make_current_multiplier_section():
                     dbc.Col(
                         dropdown_block(
                             label="Preset",
-                            options=["default", "EAD"],
+                            options=list(PARAMETER_PRESETS.keys()),
                             default_value="default",
                             component_id="dropdown_presets",
                         ),
-                        width=4,
+                        width=6,
                     ),
                 ]
             ),

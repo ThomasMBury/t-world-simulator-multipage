@@ -52,7 +52,7 @@ def make_protocol_section():
                 [
                     html.Label("Show last ", style={"fontSize": 14}),
                     dcc.Input(
-                        id="beats_keep",
+                        id="show_last_beats",
                         value=SHOW_LAST_BEATS_DEFAULT,
                         type="number",
                         style={"width": 80},
