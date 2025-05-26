@@ -43,8 +43,8 @@ from layout.figure_panel import (
     make_run_save_buttons,
 )
 
-from callbacks.sync_bcl_bpm import register_sync_input_bcl_bpm
-from callbacks.sync_slider_box import register_sync_slider_box
+
+from callbacks.sliders import register_sync_slider_box, register_sync_input_bcl_bpm
 from callbacks.buttons import (
     register_phosphorylation_buttons,
     register_save_button,
@@ -59,10 +59,11 @@ import pandas as pd
 
 dash.register_page(__name__)
 
+# Set the page ID for this protocol - used for callbacks and layout
+page_id = 1
 
 # Create simulation object
 simulation = myokit.Simulation(MODEL)
-
 
 # Run default simulation
 df_sim = sim_model(
@@ -94,7 +95,7 @@ list_tabs = [
     dcc.Tab(value=var, label=PLOT_VARIABLE_TAB_LABELS.get(var, var))
     for var in PLOT_VARIABLES_DEFAULT
 ]
-tabs = dcc.Tabs(list_tabs, id="tabs", value="membrane.v")
+tabs = dcc.Tabs(list_tabs, id=f"page-{page_id}-tabs", value="membrane.v")
 
 
 # ------------
@@ -107,18 +108,18 @@ layout = dbc.Container(
         [
             dbc.Col(
                 [
-                    make_protocol_section(),
-                    make_current_multiplier_section(),
-                    make_extracellular_inputs(MODEL_PARAMS_DEFAULT),
-                    make_phosphorylation_section(),
+                    make_protocol_section(page_id),
+                    make_current_multiplier_section(page_id),
+                    make_extracellular_inputs(page_id),
+                    make_phosphorylation_section(page_id),
                 ],
                 width=4,
             ),
             dbc.Col(
                 [
-                    make_plot_variable_section(VARIABLE_NAMES, PLOT_VARIABLES_DEFAULT),
-                    make_fig_panel(tabs, div_fig),
-                    make_run_save_buttons(simulation_data, parameter_data),
+                    make_plot_variable_section(page_id),
+                    make_fig_panel(page_id, tabs, div_fig),
+                    make_run_save_buttons(page_id, simulation_data, parameter_data),
                 ],
                 width=8,
             ),
@@ -134,15 +135,15 @@ layout = html.Div(layout)
 # --------------
 
 # Callbacks for input boxes and sliders
-register_sync_input_bcl_bpm()
-register_sync_slider_box()
-register_phosphorylation_buttons()
-register_change_to_preset_params()
+register_sync_input_bcl_bpm(page_id)
+register_sync_slider_box(page_id)
+register_phosphorylation_buttons(page_id)
+register_change_to_preset_params(page_id)
 
 # Callbacks for display panel
-register_sync_tabs_with_dropdown()
-register_switch_tabs()
+register_sync_tabs_with_dropdown(page_id)
+register_switch_tabs(page_id)
 
 # Callbacks for run and save buttons
-register_save_button()
-register_run_button(simulation)
+register_save_button(page_id)
+register_run_button(page_id, simulation)

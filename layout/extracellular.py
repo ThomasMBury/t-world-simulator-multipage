@@ -1,7 +1,8 @@
 from dash import html, dcc
+from utils.model import MODEL_PARAMS_DEFAULT
 
 
-def make_extracellular_inputs(params_default):
+def make_extracellular_inputs(page_id):
     def param_input(label, id_, value):
         return html.Div(
             [
@@ -22,16 +23,24 @@ def make_extracellular_inputs(params_default):
         [
             dcc.Markdown("-----\n**Extracellular concentrations**:"),
             param_input(
-                "Cao", "extracellular_cao_box", params_default["extracellular.cao"]
+                "Cao",
+                f"page-{page_id}-extracellular_cao-box",
+                MODEL_PARAMS_DEFAULT["extracellular.cao"],
             ),
             param_input(
-                "Clo", "extracellular_clo_box", params_default["extracellular.clo"]
+                "Clo",
+                f"page-{page_id}-extracellular_clo-box",
+                MODEL_PARAMS_DEFAULT["extracellular.clo"],
             ),
             param_input(
-                "Ko", "extracellular_ko_box", params_default["extracellular.ko"]
+                "Ko",
+                f"page-{page_id}-extracellular_ko-box",
+                MODEL_PARAMS_DEFAULT["extracellular.ko"],
             ),
             param_input(
-                "Nao", "extracellular_nao_box", params_default["extracellular.nao"]
+                "Nao",
+                f"page-{page_id}-extracellular_nao-box",
+                MODEL_PARAMS_DEFAULT["extracellular.nao"],
             ),
         ]
     )

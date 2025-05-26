@@ -5,7 +5,7 @@ dash.register_page(__name__)
 
 layout = html.Div(
     [
-        html.H1("App DAD"),
+        html.H1("App rate dep"),
         html.Div(
             [
                 "Select a city: ",
@@ -20,8 +20,3 @@ layout = html.Div(
         html.Div(id="analytics-output"),
     ]
 )
-
-
-@callback(Output("analytics-output", "children"), Input("analytics-input", "value"))
-def update_city_selected(input_value):
-    return f"You selected: {input_value}"

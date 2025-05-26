@@ -8,7 +8,7 @@ from utils.constants import (
 from utils.config import PARAM_LIMITS
 
 
-def make_protocol_section():
+def make_protocol_section(page_id):
     return html.Div(
         [
             dcc.Markdown("-----\n**Protocol settings**:"),
@@ -16,7 +16,7 @@ def make_protocol_section():
                 [
                     html.Label("Basic cycle length =", style={"fontSize": 14}),
                     dcc.Input(
-                        id="bcl",
+                        id=f"page-{page_id}-bcl",
                         value=BCL_DEFAULT,
                         type="number",
                         style={"width": 80, "display": "inline-block"},
@@ -25,7 +25,7 @@ def make_protocol_section():
                     ),
                     html.Label(", BPM = ", style={"fontSize": 14}),
                     dcc.Input(
-                        id="bpm",
+                        id=f"page-{page_id}-bpm",
                         value=60,
                         type="number",
                         style={"width": 80, "display": "inline-block"},
@@ -38,7 +38,7 @@ def make_protocol_section():
                 [
                     html.Label("Number of beats = ", style={"fontSize": 14}),
                     dcc.Input(
-                        id="total_beats",
+                        id=f"page-{page_id}-total-beats",
                         value=TOTAL_BEATS_DEFAULT,
                         type="number",
                         style={"width": 80},
@@ -52,7 +52,7 @@ def make_protocol_section():
                 [
                     html.Label("Show last ", style={"fontSize": 14}),
                     dcc.Input(
-                        id="show_last_beats",
+                        id=f"page-{page_id}-show-last-beats",
                         value=SHOW_LAST_BEATS_DEFAULT,
                         type="number",
                         style={"width": 80},

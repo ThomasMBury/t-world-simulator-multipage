@@ -8,12 +8,13 @@ import pandas as pd
 # ---------
 
 
-def register_sync_tabs_with_dropdown():
+def register_sync_tabs_with_dropdown(page_id):
     # This function updates the tabs to match the variables selected in the dropdown box
     # It also sets the default tab to be the first one in the list
 
     @callback(
-        Output("tabs_container_div", "children"), Input("dropdown_plot_vars", "value")
+        Output(f"page-{page_id}-tabs-container-div", "children"),
+        Input(f"page-{page_id}-dropdown-plot-vars", "value"),
     )
     def display_tabs(plot_vars):
         tabs = [
@@ -22,7 +23,7 @@ def register_sync_tabs_with_dropdown():
         ]
         children = (
             dcc.Tabs(
-                id="tabs",
+                id=f"page-{page_id}-tabs",
                 value="membrane.v",
                 children=tabs,
             ),
@@ -33,12 +34,16 @@ def register_sync_tabs_with_dropdown():
 # ---------
 # Callback to switch between tabs
 # ---------
-def register_switch_tabs():
+def register_switch_tabs(page_id):
 
     @callback(
-        Output("tabs_container_output_div", "children", allow_duplicate=True),
-        Input("tabs", "value"),
-        State("simulation_data", "data"),
+        Output(
+            f"page-{page_id}-tabs-container-output-div",
+            "children",
+            allow_duplicate=True,
+        ),
+        Input(f"page-{page_id}-tabs", "value"),
+        State(f"page-{page_id}-simulation-data", "data"),
         prevent_initial_call=True,
     )
     def render_content(tab, simulation_data):

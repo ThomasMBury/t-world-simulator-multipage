@@ -3,6 +3,7 @@ from utils.constants import (
     PARAM_NAMES_CURRENT_MULTIPLIERS,
     PARAM_NAMES_PKA,
     PARAM_NAMES_EXTRACELLULAR,
+    PARAM_NAMES_CELLTYPE,
 )
 import pandas as pd
 from utils.model import MODEL_PARAMS_DEFAULT, INITIAL_VALUES
@@ -14,29 +15,26 @@ from utils.figures import make_simulation_fig
 # ---------------
 
 
-def register_phosphorylation_buttons():
+def register_phosphorylation_buttons(page_id):
+    list_outputs = []
+    for par in PARAM_NAMES_PKA:
+        # Create output for each parameter
+        par_label = par.replace(".", "_")
+        list_outputs.append(
+            Output(f"page-{page_id}-{par_label}-slider", "value", allow_duplicate=True)
+        )
 
     @callback(
-        [
-            Output(
-                "{}_slider".format(par.replace(".", "_")), "value", allow_duplicate=True
-            )
-            for par in PARAM_NAMES_PKA
-        ],
-        Input("no-beta-ars", "n_clicks"),
+        list_outputs,
+        Input(f"page-{page_id}-no-beta-ars", "n_clicks"),
         prevent_initial_call=True,
     )
     def set_all_sliders_to_zero(n_clicks):
         return [0] * len(PARAM_NAMES_PKA)
 
     @callback(
-        [
-            Output(
-                "{}_slider".format(par.replace(".", "_")), "value", allow_duplicate=True
-            )
-            for par in PARAM_NAMES_PKA
-        ],
-        Input("full-beta-ars", "n_clicks"),
+        list_outputs,
+        Input(f"page-{page_id}-full-beta-ars", "n_clicks"),
         prevent_initial_call=True,
     )
     def set_all_sliders_to_one(n_clicks):
@@ -48,16 +46,16 @@ def register_phosphorylation_buttons():
 # ---------
 
 
-def register_save_button():
+def register_save_button(page_id):
 
     @callback(
         [
-            Output("download_simulation", "data"),
-            Output("download_parameters", "data"),
+            Output(f"page-{page_id}-download-simulation", "data"),
+            Output(f"page-{page_id}-download-parameters", "data"),
         ],
-        Input("button_savedata", "n_clicks"),
-        State("simulation_data", "data"),
-        State("parameter_data", "data"),
+        Input(f"page-{page_id}-button-savedata", "n_clicks"),
+        State(f"page-{page_id}-simulation-data", "data"),
+        State(f"page-{page_id}-parameter-data", "data"),
         prevent_initial_call=True,
     )
     def func(n_clicks, simulation_data, parameter_data):
@@ -76,44 +74,47 @@ def register_save_button():
 # ---------
 
 
-def register_run_button(simulation):
+def register_run_button(page_id, simulation):
 
     # Output includes (i) all figures, (ii) loading sign (iii) simulation and parameter data for download
-    outputs_callback_run = (
-        Output("tabs_container_output_div", "children"),
-        Output("loading-output", "children"),
-        Output("simulation_data", "data"),
-        Output("parameter_data", "data"),
-    )
+    list_outputs = [
+        Output(f"page-{page_id}-tabs-container-output-div", "children"),
+        Output(f"page-{page_id}-loading-output", "children"),
+        Output(f"page-{page_id}-simulation-data", "data"),
+        Output(f"page-{page_id}-parameter-data", "data"),
+    ]
     # Input is click of run button
-    inputs_callback_run = dict(n_clicks=[Input("run_button", "n_clicks")])
+    dict_inputs = dict(n_clicks=[Input(f"page-{page_id}-run-button", "n_clicks")])
 
     # State values are all parameters contained in sliders + boxes
-    states_callback_run = dict(
-        bcl=State("bcl", "value"),
-        total_beats=State("total_beats", "value"),
-        show_last_beats=State("show_last_beats", "value"),
-        cell_type=State("cell_type", "value"),
-        plot_vars=State("dropdown_plot_vars", "value"),
-        current_plot_var=State("tabs", "value"),
+    dict_states = dict(
+        bcl=State(f"page-{page_id}-bcl", "value"),
+        total_beats=State(f"page-{page_id}-total-beats", "value"),
+        show_last_beats=State(f"page-{page_id}-show-last-beats", "value"),
+        cell_type=State(f"page-{page_id}-cell-type", "value"),
+        plot_vars=State(f"page-{page_id}-dropdown-plot-vars", "value"),
+        current_plot_var=State(f"page-{page_id}-tabs", "value"),
         params_cond={
-            par: State("{}_box".format(par.replace(".", "_")), "value")
+            par: State(f"page-{page_id}-{par_id}-box", "value")
             for par in PARAM_NAMES_CURRENT_MULTIPLIERS
+            for par_id in [par.replace(".", "_")]
         },
         params_extracell={
-            par: State("{}_box".format(par.replace(".", "_")), "value")
+            par: State(f"page-{page_id}-{par_id}-box", "value")
             for par in PARAM_NAMES_EXTRACELLULAR
+            for par_id in [par.replace(".", "_")]
         },
         params_pka={
-            par: State("{}_box".format(par.replace(".", "_")), "value")
+            par: State(f"page-{page_id}-{par_id}-box", "value")
             for par in PARAM_NAMES_PKA
+            for par_id in [par.replace(".", "_")]
         },
     )
 
     @callback(
-        output=outputs_callback_run,
-        inputs=inputs_callback_run,
-        state=states_callback_run,
+        output=list_outputs,
+        inputs=dict_inputs,
+        state=dict_states,
         prevent_initial_call=True,
     )
     def run_sim_and_update_fig(
@@ -142,6 +143,10 @@ def register_run_button(simulation):
         # Phosphorylation
         for par in PARAM_NAMES_PKA:
             params[par] = params_pka[par]
+
+        # Cell type
+        for par in PARAM_NAMES_CELLTYPE:
+            params[par] = cell_type
 
         # Make dict contianing all parameter values to save
         parameter_data = params.copy()

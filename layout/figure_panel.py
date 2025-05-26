@@ -3,15 +3,19 @@ import dash_bootstrap_components as dbc
 
 from components.slider import make_slider
 
+from utils.model import VARIABLE_NAMES
 
-def make_plot_variable_section(variable_names, default_vars):
+from utils.constants import PLOT_VARIABLES_DEFAULT
+
+
+def make_plot_variable_section(page_id):
     return html.Div(
         [
             dcc.Markdown("-----\n**Plot variables:**"),
             dcc.Dropdown(
-                id="dropdown_plot_vars",
-                options=variable_names,
-                value=default_vars,
+                id=f"page-{page_id}-dropdown-plot-vars",
+                options=VARIABLE_NAMES,
+                value=PLOT_VARIABLES_DEFAULT,
                 multi=True,
                 maxHeight=400,
                 optionHeight=20,
@@ -21,24 +25,24 @@ def make_plot_variable_section(variable_names, default_vars):
     )
 
 
-def make_fig_panel(tabs, div_fig):
+def make_fig_panel(page_id, tabs, div_fig):
     return html.Div(
         [
-            html.Div(tabs, id="tabs_container_div"),
-            html.Div(id="tabs_container_output_div", children=div_fig),
+            html.Div(tabs, id=f"page-{page_id}-tabs-container-div"),
+            html.Div(id=f"page-{page_id}-tabs-container-output-div", children=div_fig),
         ]
     )
 
 
-def make_run_save_buttons(simulation_data, parameter_data):
+def make_run_save_buttons(page_id, simulation_data, parameter_data):
     return dbc.Row(
         [
             dbc.Col(
                 html.Div(
                     dcc.Loading(
-                        id="loading-anim",
+                        id=f"page-{page_id}-loading-anim",
                         type="circle",
-                        children=html.Div(id="loading-output"),
+                        children=html.Div(id=f"page-{page_id}-loading-output"),
                     ),
                     style={
                         "paddingTop": "20px",
@@ -51,7 +55,7 @@ def make_run_save_buttons(simulation_data, parameter_data):
             dbc.Col(
                 dbc.Button(
                     "Run",
-                    id="run_button",
+                    id=f"page-{page_id}-run-button",
                     color="success",
                     n_clicks=0,
                     style={"fontSize": 14},
@@ -64,15 +68,19 @@ def make_run_save_buttons(simulation_data, parameter_data):
                     [
                         dbc.Button(
                             "Save data",
-                            id="button_savedata",
+                            id=f"page-{page_id}-button-savedata",
                             className="d-grid gap-2",
                             n_clicks=0,
                             style={"fontSize": 14},
                         ),
-                        dcc.Download(id="download_simulation"),
-                        dcc.Download(id="download_parameters"),
-                        dcc.Store(id="simulation_data", data=simulation_data),
-                        dcc.Store(id="parameter_data", data=parameter_data),
+                        dcc.Download(id=f"page-{page_id}-download-simulation"),
+                        dcc.Download(id=f"page-{page_id}-download-parameters"),
+                        dcc.Store(
+                            id=f"page-{page_id}-simulation-data", data=simulation_data
+                        ),
+                        dcc.Store(
+                            id=f"page-{page_id}-parameter-data", data=parameter_data
+                        ),
                     ]
                 ),
                 className="d-grid gap-2",

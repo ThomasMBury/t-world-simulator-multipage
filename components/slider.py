@@ -2,7 +2,9 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 
 
-def make_slider(label="ICaL", id_prefix="ical", default_value=1, slider_range=[0, 3]):
+def make_slider(
+    page_id, label="ICaL", id_prefix="ical", default_value=1, slider_range=[0, 3]
+):
     """Make a connected slider and input box for a parameter in the model
 
     Args:
@@ -20,7 +22,7 @@ def make_slider(label="ICaL", id_prefix="ical", default_value=1, slider_range=[0
             # Title for slider
             html.Label(
                 label,
-                id="{}_slider_text".format(id_prefix),
+                id=f"page-{page_id}-{id_prefix}-slider-text",
                 style={"fontSize": 14},
             ),
             dbc.Row(
@@ -29,7 +31,7 @@ def make_slider(label="ICaL", id_prefix="ical", default_value=1, slider_range=[0
                         [
                             # Slider
                             dcc.Slider(
-                                id="{}_slider".format(id_prefix),
+                                id=f"page-{page_id}-{id_prefix}-slider",
                                 min=slider_range[0],
                                 max=slider_range[1],
                                 marks={i: "{}".format(i) for i in range(4)},
@@ -42,7 +44,7 @@ def make_slider(label="ICaL", id_prefix="ical", default_value=1, slider_range=[0
                         [
                             # Input box
                             dcc.Input(
-                                id="{}_box".format(id_prefix),
+                                id=f"page-{page_id}-{id_prefix}-box",
                                 type="number",
                                 min=slider_range[0],
                                 max=slider_range[1],
