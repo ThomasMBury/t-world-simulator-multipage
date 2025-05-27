@@ -3,8 +3,8 @@ FROM python:3.10.1
 # Set environment variable to indicate the app is running on the server
 ENV APP_ENV=server
 
-# WORKDIR /code
-# COPY . /code
+# WORKDIR /
+COPY . .
 
 # Install sundials
 RUN apt update
