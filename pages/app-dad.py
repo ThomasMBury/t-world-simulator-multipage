@@ -101,27 +101,38 @@ tabs = dcc.Tabs(list_tabs, id=f"page-{page_id}-tabs", value="membrane.v")
 
 # width of a container is 12 units
 layout = dbc.Container(
-    dbc.Row(
-        [
+    [
+        dbc.Row(
             dbc.Col(
-                [
-                    make_protocol_section_dad(page_id),
-                    make_current_multiplier_section(page_id),
-                    make_extracellular_inputs(page_id),
-                    make_phosphorylation_section(page_id),
-                ],
-                width=4,
-            ),
-            dbc.Col(
-                [
-                    make_plot_variable_section(page_id),
-                    make_fig_panel(page_id, tabs, div_fig),
-                    make_run_save_buttons(page_id, simulation_data, parameter_data),
-                ],
-                width=8,
-            ),
-        ]
-    ),
+                html.H3(
+                    "Delayed afterdepolarizations",
+                    className="text-left mt-5 mb-4",
+                ),
+                width=12,
+            )
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        make_protocol_section_dad(page_id),
+                        make_current_multiplier_section(page_id),
+                        make_extracellular_inputs(page_id),
+                        make_phosphorylation_section(page_id),
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    [
+                        make_plot_variable_section(page_id),
+                        make_fig_panel(page_id, tabs, div_fig),
+                        make_run_save_buttons(page_id, simulation_data, parameter_data),
+                    ],
+                    width=8,
+                ),
+            ]
+        ),
+    ],
     # fluid=True,
     # style={"paddingLeft": "100px", "paddingRight": "100px"},
 )

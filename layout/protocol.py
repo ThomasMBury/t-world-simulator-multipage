@@ -18,7 +18,7 @@ from utils.config import LIMIT_PARAMS
 def make_protocol_section(page_id):
     return html.Div(
         [
-            dcc.Markdown("-----\n**Protocol: Periodic stimulation**"),
+            dcc.Markdown("-----\n**Protocol:**"),
             html.Div(
                 [
                     html.Label("Basic cycle length =", style={"fontSize": 14}),
@@ -81,7 +81,7 @@ def make_protocol_section(page_id):
 def make_protocol_section_dad(page_id):
     return html.Div(
         [
-            dcc.Markdown("-----\n**Protocol: Delayed afterdepolarizations**"),
+            dcc.Markdown("-----\n**Protocol:**"),
             html.Div(
                 [
                     html.Label("Basic cycle length =", style={"fontSize": 14}),
@@ -144,7 +144,7 @@ def make_protocol_section_dad(page_id):
 def make_protocol_section_s1s2(page_id):
     return html.Div(
         [
-            dcc.Markdown("-----\n**Protocol: S1-S2 restitution**"),
+            dcc.Markdown("-----\n**Protocol:**"),
             html.Div(
                 [
                     html.Label("S1 cycle length =", style={"fontSize": 14}),
@@ -210,7 +210,7 @@ def make_protocol_section_s1s2(page_id):
 def make_protocol_section_ratedep(page_id):
     return html.Div(
         [
-            dcc.Markdown("-----\n**Protocol: Rate dependence and alternans**"),
+            dcc.Markdown("-----\n**Protocol:**"),
             # BCL div is hidden
             html.Div(
                 dcc.Input(id=f"page-{page_id}-bcl", value=BCL_DEFAULT, type="number"),

@@ -6,7 +6,7 @@ navbar = dbc.NavbarSimple(
         dbc.DropdownMenu(
             [
                 dbc.DropdownMenuItem(
-                    "Periodic stimulation",
+                    "Periodic pacing",
                     href="/app-reg-stim",
                 ),
                 dbc.DropdownMenuItem(
@@ -35,16 +35,18 @@ navbar = dbc.NavbarSimple(
             dbc.NavLink(
                 "Article",
                 href="https://www.biorxiv.org/content/10.1101/2025.03.24.645031v2.abstract",
+                target="_blank",
             )
         ),
         dbc.NavItem(
             dbc.NavLink(
                 "Source Code",
-                href="https://github.com/ThomasMBury/ap_simulation_app",
+                href="https://github.com/ThomasMBury/-world-simulator-multipage",
+                target="_blank",
             )
         ),
     ],
-    brand="Simulator for T-World: A computational model of the human ventricular cardiomyocyte",
+    brand="T-World Online: Simulate the human ventricular cardiomycyte",
     brand_href="/",
     color="dark",
     dark=True,
