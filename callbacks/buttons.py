@@ -4,7 +4,10 @@ from utils.constants import (
     PARAM_NAMES_PKA,
     PARAM_NAMES_EXTRACELLULAR,
     PARAM_NAMES_CELLTYPE,
-    NUM_BCL_VALUES_LIMIT,
+    NUM_BCL_VALUES_LIMIT_ONLINE,
+    NUM_BCL_VALUES_LIMIT_OFFLINE,
+    NUM_S2_INTERVALS_LIMIT_ONLINE,
+    NUM_S2_INTERVALS_LIMIT_OFFLINE,
 )
 import pandas as pd
 from utils.model import MODEL_PARAMS_DEFAULT, INITIAL_VALUES
@@ -376,7 +379,11 @@ def register_run_button_s1s2(page_id, simulation):
         parameter_data["bcl"] = bcl
         parameter_data["total_beats"] = total_beats
 
-        num_s2_intervals_max = 50 if LIMIT_PARAMS else 10_000
+        num_s2_intervals_max = (
+            NUM_S2_INTERVALS_LIMIT_ONLINE
+            if LIMIT_PARAMS
+            else NUM_S2_INTERVALS_LIMIT_OFFLINE
+        )
 
         # Run simulation
         df_ts, df_restitution = sim_s1s2_restitution(
@@ -519,7 +526,11 @@ def register_run_button_ratedep(page_id, simulation):
             params=params,
             bcl_values=bcl_values,
             nbeats=total_beats,
-            num_bcl_values_max=NUM_BCL_VALUES_LIMIT if LIMIT_PARAMS else 10_000,
+            num_bcl_values_max=(
+                NUM_BCL_VALUES_LIMIT_ONLINE
+                if LIMIT_PARAMS
+                else NUM_BCL_VALUES_LIMIT_OFFLINE
+            ),
         )
 
         # Need to convert df to dict to store as json on app

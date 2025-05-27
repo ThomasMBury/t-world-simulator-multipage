@@ -6,8 +6,11 @@ from utils.constants import (
     SHOW_LAST_BEATS_DEFAULT,
     QUIESCENCE_DURATION_DEFAULT,
     S2_INTERVALS_DEFAULT,
-    NUM_BCL_VALUES_LIMIT,
     BCL_VALUES_DEFAULT,
+    NUM_S2_INTERVALS_LIMIT_ONLINE,
+    NUM_S2_INTERVALS_LIMIT_OFFLINE,
+    TOTAL_BEATS_LIMIT_OFFLINE,
+    TOTAL_BEATS_LIMIT_ONLINE,
 )
 from utils.config import LIMIT_PARAMS
 
@@ -47,7 +50,11 @@ def make_protocol_section(page_id):
                         type="number",
                         style={"width": 80},
                         min=1,
-                        max=500 if LIMIT_PARAMS else 10_000,
+                        max=(
+                            TOTAL_BEATS_LIMIT_ONLINE
+                            if LIMIT_PARAMS
+                            else TOTAL_BEATS_LIMIT_OFFLINE
+                        ),
                         step=1,
                     ),
                 ]
@@ -106,7 +113,11 @@ def make_protocol_section_dad(page_id):
                         type="number",
                         style={"width": 80},
                         min=1,
-                        max=500 if LIMIT_PARAMS else 10_000,
+                        max=(
+                            TOTAL_BEATS_LIMIT_ONLINE
+                            if LIMIT_PARAMS
+                            else TOTAL_BEATS_LIMIT_OFFLINE
+                        ),
                         step=1,
                     ),
                 ]
@@ -165,7 +176,11 @@ def make_protocol_section_s1s2(page_id):
                         type="number",
                         style={"width": 80},
                         min=1,
-                        max=500 if LIMIT_PARAMS else 10_000,
+                        max=(
+                            TOTAL_BEATS_LIMIT_ONLINE
+                            if LIMIT_PARAMS
+                            else TOTAL_BEATS_LIMIT_OFFLINE
+                        ),
                         step=1,
                     ),
                 ],
@@ -225,7 +240,11 @@ def make_protocol_section_ratedep(page_id):
                         type="number",
                         style={"width": 80},
                         min=1,
-                        max=500 if LIMIT_PARAMS else 10_000,
+                        max=(
+                            TOTAL_BEATS_LIMIT_ONLINE
+                            if LIMIT_PARAMS
+                            else TOTAL_BEATS_LIMIT_OFFLINE
+                        ),
                         step=1,
                     ),
                 ],

@@ -10,7 +10,7 @@ PARAMETER_PRESETS = {
     "alternans with low SERCA": {
         "bcl": 300,
         # "show_last_beats": 4,
-        "total_beats": 250,
+        "total_beats": 100,
         "multipliers.Jup_multiplier": 0.65,
     },
     "DAD prone": {
