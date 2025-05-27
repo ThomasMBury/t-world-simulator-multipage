@@ -7,6 +7,7 @@ ENV = os.getenv("APP_ENV", "local")  # Default to "local" if not set
 # Global flags based on environment
 IS_LOCAL = ENV == "local"
 IS_PRODUCTION = ENV == "production"
+IS_SERVER = ENV == "server"
 
 # Enforce parameter limits if not running locally
 LIMIT_PARAMS = not IS_LOCAL
