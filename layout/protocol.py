@@ -199,6 +199,7 @@ def make_protocol_section_s1s2(page_id):
                         type="text",
                         style=dict(width=300),
                         placeholder=S2_INTERVALS_DEFAULT,
+                        pattern=r"^\s*\d+:\d+:\d+\s*(,\s*\d+:\d+:\d+\s*)*$",
                     ),
                 ]
             ),
@@ -228,6 +229,7 @@ def make_protocol_section_ratedep(page_id):
                         type="text",
                         style=dict(width=300, display="inline-block"),
                         placeholder=BCL_VALUES_DEFAULT,
+                        pattern=r"^\s*\d+:\d+:\d+\s*(,\s*\d+:\d+:\d+\s*)*$",
                     ),
                 ]
             ),
