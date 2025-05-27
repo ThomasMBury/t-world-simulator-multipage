@@ -17,5 +17,9 @@ app.layout = html.Div(
         dash.page_container,
     ]
 )
+
+# For gunicorn compatibility
+server = app.server
+
 if __name__ == "__main__":
     app.run(debug=True)
