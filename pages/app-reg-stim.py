@@ -27,7 +27,7 @@ from utils.constants import (
 )
 from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
 from utils.model import MODEL, VARIABLE_NAMES, MODEL_PARAMS_DEFAULT, INITIAL_VALUES
-from utils.config import PARAM_LIMITS
+from utils.config import LIMIT_PARAMS
 from utils.simulation import sim_model
 from utils.figures import make_simulation_fig
 

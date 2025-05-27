@@ -88,3 +88,117 @@ def make_run_save_buttons(page_id, simulation_data, parameter_data):
             ),
         ]
     )
+
+
+def make_run_save_buttons_s1s2(page_id, ts_data, restitution_data, parameter_data):
+    return dbc.Row(
+        [
+            dbc.Col(
+                html.Div(
+                    dcc.Loading(
+                        id=f"page-{page_id}-loading-anim",
+                        type="circle",
+                        children=html.Div(id=f"page-{page_id}-loading-output"),
+                    ),
+                    style={
+                        "paddingTop": "20px",
+                        "paddingBottom": "10px",
+                        "verticalAlign": "middle",
+                    },
+                ),
+                width={"size": 1, "offset": 7},
+            ),
+            dbc.Col(
+                dbc.Button(
+                    "Run",
+                    id=f"page-{page_id}-run-button",
+                    color="success",
+                    n_clicks=0,
+                    style={"fontSize": 14},
+                ),
+                className="d-grid gap-2",
+                width=2,
+            ),
+            dbc.Col(
+                html.Div(
+                    [
+                        dbc.Button(
+                            "Save data",
+                            id=f"page-{page_id}-button-savedata",
+                            className="d-grid gap-2",
+                            n_clicks=0,
+                            style={"fontSize": 14},
+                        ),
+                        dcc.Download(id=f"page-{page_id}-download-ts"),
+                        dcc.Download(id=f"page-{page_id}-download-restitution"),
+                        dcc.Download(id=f"page-{page_id}-download-parameters"),
+                        dcc.Store(id=f"page-{page_id}-ts-data", data=ts_data),
+                        dcc.Store(
+                            id=f"page-{page_id}-restitution-data", data=restitution_data
+                        ),
+                        dcc.Store(
+                            id=f"page-{page_id}-parameter-data", data=parameter_data
+                        ),
+                    ]
+                ),
+                className="d-grid gap-2",
+                width=2,
+            ),
+        ]
+    )
+
+
+def make_run_save_buttons_ratedep(page_id, ts_data, rate_data, parameter_data):
+    return dbc.Row(
+        [
+            dbc.Col(
+                html.Div(
+                    dcc.Loading(
+                        id=f"page-{page_id}-loading-anim",
+                        type="circle",
+                        children=html.Div(id=f"page-{page_id}-loading-output"),
+                    ),
+                    style={
+                        "paddingTop": "20px",
+                        "paddingBottom": "10px",
+                        "verticalAlign": "middle",
+                    },
+                ),
+                width={"size": 1, "offset": 7},
+            ),
+            dbc.Col(
+                dbc.Button(
+                    "Run",
+                    id=f"page-{page_id}-run-button",
+                    color="success",
+                    n_clicks=0,
+                    style={"fontSize": 14},
+                ),
+                className="d-grid gap-2",
+                width=2,
+            ),
+            dbc.Col(
+                html.Div(
+                    [
+                        dbc.Button(
+                            "Save data",
+                            id=f"page-{page_id}-button-savedata",
+                            className="d-grid gap-2",
+                            n_clicks=0,
+                            style={"fontSize": 14},
+                        ),
+                        dcc.Download(id=f"page-{page_id}-download-ts"),
+                        dcc.Download(id=f"page-{page_id}-download-rate"),
+                        dcc.Download(id=f"page-{page_id}-download-parameters"),
+                        dcc.Store(id=f"page-{page_id}-ts-data", data=ts_data),
+                        dcc.Store(id=f"page-{page_id}-rate-data", data=rate_data),
+                        dcc.Store(
+                            id=f"page-{page_id}-parameter-data", data=parameter_data
+                        ),
+                    ]
+                ),
+                className="d-grid gap-2",
+                width=2,
+            ),
+        ]
+    )

@@ -9,4 +9,4 @@ IS_LOCAL = ENV == "local"
 IS_PRODUCTION = ENV == "production"
 
 # Enforce parameter limits if not running locally
-PARAM_LIMITS = not IS_LOCAL
+LIMIT_PARAMS = not IS_LOCAL

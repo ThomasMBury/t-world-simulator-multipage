@@ -14,7 +14,7 @@ def make_extracellular_inputs(page_id):
                     style={"width": 80, "display": "inline-block"},
                     min=0,
                     max=1000,
-                    step=0.1,
+                    step=0.01,
                 ),
             ]
         )

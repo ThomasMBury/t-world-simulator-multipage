@@ -4,11 +4,24 @@ from utils.constants import (
     PARAM_NAMES_PKA,
     PARAM_NAMES_EXTRACELLULAR,
     PARAM_NAMES_CELLTYPE,
+    NUM_BCL_VALUES_LIMIT,
 )
 import pandas as pd
 from utils.model import MODEL_PARAMS_DEFAULT, INITIAL_VALUES
-from utils.simulation import sim_model
-from utils.figures import make_simulation_fig
+from utils.simulation import (
+    sim_model,
+    sim_model_dad,
+    sim_s1s2_restitution,
+    sim_rate_change,
+)
+from utils.figures import (
+    make_simulation_fig,
+    make_s1s2_fig,
+    make_restitution_fig,
+    make_bcl_ts_fig,
+    make_rate_fig,
+)
+from utils.config import LIMIT_PARAMS
 
 # --------------
 # Bbuttons to set all phosphorylation parameters to 0 or 1
@@ -172,3 +185,377 @@ def register_run_button(page_id, simulation):
         div_fig = html.Div(dcc.Graph(figure=fig))
 
         return [div_fig, "", simulation_data, parameter_data]
+
+
+# ---------
+# DAD app: Button to run the simulation and make figure
+# ---------
+
+
+def register_run_button_dad(page_id, simulation):
+
+    # Output includes (i) all figures, (ii) loading sign (iii) simulation and parameter data for download
+    list_outputs = [
+        Output(f"page-{page_id}-tabs-container-output-div", "children"),
+        Output(f"page-{page_id}-loading-output", "children"),
+        Output(f"page-{page_id}-simulation-data", "data"),
+        Output(f"page-{page_id}-parameter-data", "data"),
+    ]
+    # Input is click of run button
+    dict_inputs = dict(n_clicks=[Input(f"page-{page_id}-run-button", "n_clicks")])
+
+    # State values are all parameters contained in sliders + boxes
+    dict_states = dict(
+        bcl=State(f"page-{page_id}-bcl", "value"),
+        total_beats=State(f"page-{page_id}-total-beats", "value"),
+        quiescence_duration=State(f"page-{page_id}-quiescence-duration", "value"),
+        cell_type=State(f"page-{page_id}-cell-type", "value"),
+        plot_vars=State(f"page-{page_id}-dropdown-plot-vars", "value"),
+        current_plot_var=State(f"page-{page_id}-tabs", "value"),
+        params_cond={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_CURRENT_MULTIPLIERS
+            for par_id in [par.replace(".", "_")]
+        },
+        params_extracell={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_EXTRACELLULAR
+            for par_id in [par.replace(".", "_")]
+        },
+        params_pka={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_PKA
+            for par_id in [par.replace(".", "_")]
+        },
+    )
+
+    @callback(
+        output=list_outputs,
+        inputs=dict_inputs,
+        state=dict_states,
+        prevent_initial_call=True,
+    )
+    def run_sim_and_update_fig(
+        n_clicks,
+        bcl,
+        total_beats,
+        quiescence_duration,
+        cell_type,
+        plot_vars,
+        current_plot_var,
+        params_cond,
+        params_extracell,
+        params_pka,
+    ):
+        # Updated parameter values
+        params = {}
+
+        # Multipliers
+        for par in PARAM_NAMES_CURRENT_MULTIPLIERS:
+            params[par] = MODEL_PARAMS_DEFAULT[par] * params_cond[par]
+
+        # Extracellular
+        for par in PARAM_NAMES_EXTRACELLULAR:
+            params[par] = params_extracell[par]
+
+        # Phosphorylation
+        for par in PARAM_NAMES_PKA:
+            params[par] = params_pka[par]
+
+        # Cell type
+        for par in PARAM_NAMES_CELLTYPE:
+            params[par] = cell_type
+
+        # Make dict contianing all parameter values to save
+        parameter_data = params.copy()
+        parameter_data["bcl"] = bcl
+        parameter_data["total_beats"] = total_beats
+        parameter_data["quiescence_duration"] = quiescence_duration
+
+        # Run simulation
+        df_sim = sim_model_dad(
+            simulation,
+            INITIAL_VALUES,
+            plot_vars,
+            params=params,
+            bcl=bcl,
+            total_beats=total_beats,
+            quiescence_duration=quiescence_duration,
+        )
+
+        # Need to convert df to dict to store as json
+        simulation_data = {"data-frame": df_sim.to_dict("records")}
+
+        fig = make_simulation_fig(df_sim, current_plot_var)
+        div_fig = html.Div(dcc.Graph(figure=fig))
+
+        return [div_fig, "", simulation_data, parameter_data]
+
+
+# ---------
+# S1S2 app: Button to run the simulation and make figure
+# ---------
+
+
+def register_run_button_s1s2(page_id, simulation):
+
+    # Output includes (i) all figures, (ii) loading sign (iii) simulation and parameter data for download
+    list_outputs = [
+        Output(f"page-{page_id}-tabs-container-output-div", "children"),
+        Output(f"page-{page_id}-loading-output", "children"),
+        Output(f"page-{page_id}-ts-data", "data"),
+        Output(f"page-{page_id}-restitution-data", "data"),
+        Output(f"page-{page_id}-parameter-data", "data"),
+    ]
+    # Input is click of run button
+    dict_inputs = dict(n_clicks=[Input(f"page-{page_id}-run-button", "n_clicks")])
+
+    # State values are all parameters contained in sliders + boxes
+    dict_states = dict(
+        bcl=State(f"page-{page_id}-bcl", "value"),
+        total_beats=State(f"page-{page_id}-total-beats", "value"),
+        s2_intervals=State(f"page-{page_id}-s2-intervals", "value"),
+        cell_type=State(f"page-{page_id}-cell-type", "value"),
+        # plot_vars=State(f"page-{page_id}-dropdown-plot-vars", "value"),
+        current_plot_var=State(f"page-{page_id}-tabs", "value"),
+        params_cond={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_CURRENT_MULTIPLIERS
+            for par_id in [par.replace(".", "_")]
+        },
+        params_extracell={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_EXTRACELLULAR
+            for par_id in [par.replace(".", "_")]
+        },
+        params_pka={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_PKA
+            for par_id in [par.replace(".", "_")]
+        },
+    )
+
+    @callback(
+        output=list_outputs,
+        inputs=dict_inputs,
+        state=dict_states,
+        prevent_initial_call=True,
+    )
+    def run_sim_and_update_fig(
+        n_clicks,
+        bcl,
+        total_beats,
+        s2_intervals,
+        cell_type,
+        current_plot_var,
+        params_cond,
+        params_extracell,
+        params_pka,
+    ):
+        # Updated parameter values
+        params = {}
+
+        # Multipliers
+        for par in PARAM_NAMES_CURRENT_MULTIPLIERS:
+            params[par] = MODEL_PARAMS_DEFAULT[par] * params_cond[par]
+
+        # Extracellular
+        for par in PARAM_NAMES_EXTRACELLULAR:
+            params[par] = params_extracell[par]
+
+        # Phosphorylation
+        for par in PARAM_NAMES_PKA:
+            params[par] = params_pka[par]
+
+        # Cell type
+        for par in PARAM_NAMES_CELLTYPE:
+            params[par] = cell_type
+
+        # Make dict contianing all parameter values to save
+        parameter_data = params.copy()
+        parameter_data["bcl"] = bcl
+        parameter_data["total_beats"] = total_beats
+
+        num_s2_intervals_max = 50 if LIMIT_PARAMS else 10_000
+
+        # Run simulation
+        df_ts, df_restitution = sim_s1s2_restitution(
+            simulation,
+            INITIAL_VALUES,
+            params=params,
+            s1_interval=bcl,
+            s1_nbeats=total_beats,
+            s2_intervals=s2_intervals,
+            num_s2_intervals_max=num_s2_intervals_max,
+        )
+
+        # Need to convert df to dict to store as json on app
+        ts_data = {"data-frame": df_ts.to_dict("records")}
+        restitution_data = {"data-frame": df_restitution.to_dict("records")}
+
+        # Make figs
+        fig_ts = make_s1s2_fig(df_ts, current_plot_var)
+        fig_restitution = make_restitution_fig(df_restitution, current_plot_var)
+        div_fig = html.Div(
+            [dcc.Graph(figure=fig_ts), dcc.Graph(figure=fig_restitution)]
+        )
+
+        return [div_fig, "", ts_data, restitution_data, parameter_data]
+
+
+def register_save_button_s1s2(page_id):
+
+    @callback(
+        [
+            Output(f"page-{page_id}-download-ts", "data"),
+            Output(f"page-{page_id}-download-restitution", "data"),
+            Output(f"page-{page_id}-download-parameters", "data"),
+        ],
+        Input(f"page-{page_id}-button-savedata", "n_clicks"),
+        State(f"page-{page_id}-ts-data", "data"),
+        State(f"page-{page_id}-restitution-data", "data"),
+        State(f"page-{page_id}-parameter-data", "data"),
+        prevent_initial_call=True,
+    )
+    def func(n_clicks, ts_data, restitution_data, parameter_data):
+        df_ts = pd.DataFrame(ts_data["data-frame"])
+        df_restitution = pd.DataFrame(restitution_data["data-frame"])
+        df_pars = pd.DataFrame()
+        df_pars["name"] = parameter_data.keys()
+        df_pars["value"] = parameter_data.values()
+        # df_pars = df_pars.astype("object")
+        out1 = dcc.send_data_frame(df_ts.to_csv, "ts_data.csv")
+        out2 = dcc.send_data_frame(df_restitution.to_csv, "restitution_data.csv")
+        out3 = dcc.send_data_frame(df_pars.to_csv, "parameters.csv")
+        return [out1, out2, out3]
+
+
+# ---------
+# Rate dep app: Button to run the simulation and make figure
+# ---------
+
+
+def register_run_button_ratedep(page_id, simulation):
+
+    # Output includes (i) all figures, (ii) loading sign (iii) simulation and parameter data for download
+    list_outputs = [
+        Output(f"page-{page_id}-tabs-container-output-div", "children"),
+        Output(f"page-{page_id}-loading-output", "children"),
+        Output(f"page-{page_id}-ts-data", "data"),
+        Output(f"page-{page_id}-rate-data", "data"),
+        Output(f"page-{page_id}-parameter-data", "data"),
+    ]
+    # Input is click of run button
+    dict_inputs = dict(n_clicks=[Input(f"page-{page_id}-run-button", "n_clicks")])
+
+    # State values are all parameters contained in sliders + boxes
+    dict_states = dict(
+        bcl_values=State(f"page-{page_id}-bcl-values", "value"),
+        total_beats=State(f"page-{page_id}-total-beats", "value"),
+        cell_type=State(f"page-{page_id}-cell-type", "value"),
+        # plot_vars=State(f"page-{page_id}-dropdown-plot-vars", "value"),
+        current_plot_var=State(f"page-{page_id}-tabs", "value"),
+        params_cond={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_CURRENT_MULTIPLIERS
+            for par_id in [par.replace(".", "_")]
+        },
+        params_extracell={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_EXTRACELLULAR
+            for par_id in [par.replace(".", "_")]
+        },
+        params_pka={
+            par: State(f"page-{page_id}-{par_id}-box", "value")
+            for par in PARAM_NAMES_PKA
+            for par_id in [par.replace(".", "_")]
+        },
+    )
+
+    @callback(
+        output=list_outputs,
+        inputs=dict_inputs,
+        state=dict_states,
+        prevent_initial_call=True,
+    )
+    def run_sim_and_update_fig(
+        n_clicks,
+        bcl_values,
+        total_beats,
+        cell_type,
+        current_plot_var,
+        params_cond,
+        params_extracell,
+        params_pka,
+    ):
+        # Updated parameter values
+        params = {}
+
+        # Multipliers
+        for par in PARAM_NAMES_CURRENT_MULTIPLIERS:
+            params[par] = MODEL_PARAMS_DEFAULT[par] * params_cond[par]
+
+        # Extracellular
+        for par in PARAM_NAMES_EXTRACELLULAR:
+            params[par] = params_extracell[par]
+
+        # Phosphorylation
+        for par in PARAM_NAMES_PKA:
+            params[par] = params_pka[par]
+
+        # Cell type
+        for par in PARAM_NAMES_CELLTYPE:
+            params[par] = cell_type
+
+        # Make dict contianing all parameter values to save
+        parameter_data = params.copy()
+        parameter_data["bcl_values"] = bcl_values
+        parameter_data["total_beats"] = total_beats
+
+        # Run simulation
+        df_ts, df_rate = sim_rate_change(
+            simulation,
+            INITIAL_VALUES,
+            params=params,
+            bcl_values=bcl_values,
+            nbeats=total_beats,
+            num_bcl_values_max=NUM_BCL_VALUES_LIMIT if LIMIT_PARAMS else 10_000,
+        )
+
+        # Need to convert df to dict to store as json on app
+        ts_data = {"data-frame": df_ts.to_dict("records")}
+        rate_data = {"data-frame": df_rate.to_dict("records")}
+
+        # Make figs
+        fig_ts = make_bcl_ts_fig(df_ts, current_plot_var)
+        fig_rate = make_rate_fig(df_rate, current_plot_var)
+        div_fig = html.Div([dcc.Graph(figure=fig_ts), dcc.Graph(figure=fig_rate)])
+
+        return [div_fig, "", ts_data, rate_data, parameter_data]
+
+
+def register_save_button_ratedep(page_id):
+
+    @callback(
+        [
+            Output(f"page-{page_id}-download-ts", "data"),
+            Output(f"page-{page_id}-download-rate", "data"),
+            Output(f"page-{page_id}-download-parameters", "data"),
+        ],
+        Input(f"page-{page_id}-button-savedata", "n_clicks"),
+        State(f"page-{page_id}-ts-data", "data"),
+        State(f"page-{page_id}-rate-data", "data"),
+        State(f"page-{page_id}-parameter-data", "data"),
+        prevent_initial_call=True,
+    )
+    def func(n_clicks, ts_data, rate_data, parameter_data):
+        df_ts = pd.DataFrame(ts_data["data-frame"])
+        df_rate = pd.DataFrame(rate_data["data-frame"])
+        df_pars = pd.DataFrame()
+        df_pars["name"] = parameter_data.keys()
+        df_pars["value"] = parameter_data.values()
+        # df_pars = df_pars.astype("object")
+        out1 = dcc.send_data_frame(df_ts.to_csv, "ts_data.csv")
+        out2 = dcc.send_data_frame(df_rate.to_csv, "rate_data.csv")
+        out3 = dcc.send_data_frame(df_pars.to_csv, "parameters.csv")
+        return [out1, out2, out3]

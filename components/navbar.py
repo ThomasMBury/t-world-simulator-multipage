@@ -6,7 +6,7 @@ navbar = dbc.NavbarSimple(
         dbc.DropdownMenu(
             [
                 dbc.DropdownMenuItem(
-                    "Regular stimulation",
+                    "Periodic stimulation",
                     href="/app-reg-stim",
                 ),
                 dbc.DropdownMenuItem(

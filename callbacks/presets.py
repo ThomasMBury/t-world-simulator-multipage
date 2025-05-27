@@ -20,7 +20,6 @@ from utils.model import MODEL_PARAMS_DEFAULT
 model_params_default = MODEL_PARAMS_DEFAULT.copy()
 model_params_default["bcl"] = BCL_DEFAULT
 model_params_default["total_beats"] = TOTAL_BEATS_DEFAULT
-model_params_default["show_last_beats"] = SHOW_LAST_BEATS_DEFAULT
 
 
 def register_change_to_preset_params(page_id):
@@ -50,9 +49,6 @@ def register_change_to_preset_params(page_id):
     # Protocol input boxes
     outputs.append(Output(f"page-{page_id}-bcl", "value", allow_duplicate=True))
     outputs.append(Output(f"page-{page_id}-total-beats", "value", allow_duplicate=True))
-    outputs.append(
-        Output(f"page-{page_id}-show-last-beats", "value", allow_duplicate=True)
-    )
 
     # Input is dropdown box that contains preset labels
     inputs = Input(f"page-{page_id}-dropdown-presets", "value")
@@ -60,7 +56,7 @@ def register_change_to_preset_params(page_id):
     @callback(
         outputs,
         inputs,
-        prevent_initial_call=True,
+        prevent_initial_call="initial_duplicate",
         allow_duplicate=True,
     )
     def udpate_sliders_and_boxes(preset):
@@ -69,15 +65,3 @@ def register_change_to_preset_params(page_id):
         # Update the default parameters with the preset parameters
         new_params = {**model_params_default, **preset_params}
         return list(new_params.values())
-
-        # if preset == "default":
-        #     return list(model_params_default.values())
-
-        # elif preset == "EAD":
-        #     preset_params = PARAMETER_PRESETS["EAD"].copy()
-        #     # Update the default parameters with the preset parameters
-        #     new_params = {**model_params_default, **preset_params}
-        #     return list(new_params.values())
-
-        # else:
-        #     return 0

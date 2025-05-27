@@ -43,11 +43,20 @@ def make_current_multiplier_section(page_id):
         )
         list_sliders.append(slider)
 
+    # Default value for preset dropdown
+    if page_id == 3:
+        preset_default_value = "alternans with low SERCA"
+    elif page_id == 4:
+        preset_default_value = "DAD prone"
+    else:
+        preset_default_value = "default"
+
     return html.Div(
         [
             dcc.Markdown("-----\n**Cell type and current multipliers:**"),
             dbc.Row(
                 [
+                    # Dropdown for cell type
                     dbc.Col(
                         dropdown_block(
                             label="Cell type",
@@ -62,11 +71,12 @@ def make_current_multiplier_section(page_id):
                         ),
                         width=4,
                     ),
+                    # Dropdown for presets - default value depends on prootocol
                     dbc.Col(
                         dropdown_block(
                             label="Preset",
                             options=list(PARAMETER_PRESETS.keys()),
-                            default_value="default",
+                            default_value=preset_default_value,
                             component_id=f"page-{page_id}-dropdown-presets",
                         ),
                         width=6,
