@@ -2,7 +2,7 @@
 
 A web app for running and interacting with simulations of [T-world](https://elifesciences.org/articles/48890), a state-of-the-art computational model for a human ventricular myocyte.
 
-<img src="readme_img.jpg" width="50%">
+<img src="assets/homepage_banner2.png" width="50%">
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -16,43 +16,71 @@ A web app for running and interacting with simulations of [T-world](https://elif
 
 
 ## Overview
-Welcome to **T-World Simulator**! 
-This web application accompanies [T-world](https://elifesciences.org/articles/48890)---a state-of-the-art computational model for a human ventricular myocyte.
-It provides an interface for exploring different stimulation protocols, visualizing membrane voltage and conduction traces, and experimenting with model parameters.
-We hope it serves as a valuable tool for both educators and researchers.
+Welcome to **T-World Online**! 
+This web application accompanies [T-world](https://www.biorxiv.org/content/10.1101/2025.03.24.645031v1)—a state-of-the-art computational model of the human ventricular cardiomyocyte. It allows users to simulate the T-World model using a range of stimulation protocols and visualize the outputs. We hope it serves as a valuable tool for both educators and researchers.
 
-## Features:
-- **Stimulation Protocols**:
-  - Regular pacing
-  - S1-S2 pacing
-  - Pacing at multiple rates
-  - Pacing followed by a pause
-- **Parameter Variations**:
-  - Channel conductances
-  - Extracellular concentrations
-  - Phosphorylation levels
-- **Visualizations**
-  - Voltage and conduction traces
-  - Restitution curves
-- **Data Export**
-  - Download simulation results and parameter configurations in CSV format.
 
-The app is built on top of [Plotly Dash](https://dash.plotly.com/) and [myokit](https://www.myokit.org/).
+## Getting Started
+0. Head over to [https://t-world-simulator-multipage-production.up.railway.app/](https://t-world-simulator-multipage-production.up.railway.app/)
+1. Select a pacing protocol from the top navigation bar.
+2. Set the desired parameters for the pacing protocol and model using the controls on the left.
+3. Choose variables to plot using the dropdown menu above the plotting window.
+4. Click the green Run button. A loading ring will appear—your plot will display when it's done.
 
-## Installation
 
-### Online access
-You can access T-World Simulator online without installation at:
-[https://t-world.up.railway.app/](https://t-world.up.railway.app/)
+## Stimulation Protocols
+### Periodic Pacing
+- Standard, fixed-rate pacing.
+- Configure pacing frequency, number of beats, and how many final beats to display.
 
-Limitations on the online version:
-- **Maximum number of pre-pacing beats**: 500
-- **Maximum number of S2 interval values**: 50
-- **Maximum number of basic cycle length values**: 50
+### S1-S2 Restitution
+- A sequence of regular stimuli (S1) followed by a single extra stimulus (S2) at varying intervals.
+- Useful for constructing restitution curves (APD vs. DI).
+- Enter ranges in the format min:max:increment (e.g., 300:500:50 → [300, 350, 400, 450]).
+- Multiple ranges can be comma-separated.
+- APD and DI are computed at 90% repolarization.
+- Upper plot: final two beats per S2 interval; lower plot: restitution curve.
 
-These limitations are not imposed on the offline version. 
+### Rate Dependence and Alternans
+- Fixed-rate pacing over a range of cycle lengths.
+- Investigate APD and CaT dependence on pacing frequency and check for alternans.
+- Upper plot: last 4 APs for each pacing frequency; lower plot: APD and CaT amplitude vs. basic cycle length.
 
-### Offline access - Installation instructions
+### Delayed Afterdepolarizations (DADs)
+- Fixed-rate pacing followed by quiescence.
+- Configure the number of beats and the quiescence duration to study DAD behavior.
+
+
+## Online Limits
+Due to limited compute resources, the online version imposes:
+- Max pre-pacing beats: 500
+- Max S2 intervals: 50
+- Max basic cycle lengths: 20
+Running the app offline removes these limits.
+
+## Parameter Controls
+Located on the left of the app, these allow configuration via sliders, dropdowns, and input fields. Invalid inputs highlight red. Users can:
+- Choose from three cell types: endocardium, epicardium, midmyocardium.
+- Select a preset: default, EAD prone, alternans with low SERCA, DAD prone.
+- Adjust current multipliers.
+- Set extracellular concentrations.
+- Modify β-adrenergic signaling (β-ARS) via phosphorylation levels.
+
+## Plotting Window
+- Use dropdowns and tabs to select output variables.
+- Note: rerun the simulation when new variables are selected.
+- Click-and-drag to zoom; double-click to reset axes.
+- Navigation tools appear in the top-right corner of the plot.
+
+
+## Exporting Data
+After running a simulation, click the Save data button to export the simulation and parameters as CSV files.
+
+
+
+
+
+## Offline access - Installation instructions
 
 #### 1. Ensure you have Python (≥3.x) installed
 This can be verified by opening Termianl (MacOS/Linus) or Command Prompt (Windows) and typing
@@ -62,7 +90,7 @@ python --version
 
 #### 2. Clone the repository
 ```
-git clone https://github.com/ThomasMBury/t-world-simulator.git
+git clone https://github.com/ThomasMBury/t-world-simulator-multipage.git
 cd t-world-simulator
 ```
 #### 3. Set up a virtual environment (recommended)
@@ -83,71 +111,25 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-#### 5. Run the app that uses regularly spaced stimulation
+#### 5. Run the app
 ```
-cd app_reg_stim
 python app.py
 ```
 Then, open a browser and go to http://127.0.0.1:8050/ to view the app.
 
 
-#### 6. Run a different stimulation protocol
-Each stimulation protocol has its own app. To run a different protocol, terminate the current app in the Terminal with Control+C. Then, navigate the appropriate directory and run the app as before. For example, to run the S1-S2 protocol app, enter
-```
-cd ../app_s1_s2
-python app.py
-```
-and refresh the browser at http://127.0.0.1:8050/.
-
-## Usage
-
-### Tips
-
-1. **Basic Interactions:**
-- Adjust **sliders** and **dropdown menus** on the left side of the app to modify parameters.
-- Click the **green Run button** to start the simulation.
-- When the simulation is running, a **loading ring** will appear next to the Run button to indicate progress.
-
-2. **Visualization panel**
- - The panel displays the **membrane voltage** by default.
- - **Switch between tabs** at the top to view traces of other variables.
- - Use the dropdown menu to add additional variables to the tabs. Note that you’ll need to re-run the simulation to visualize these new variables.
-
-3. **Plotly Functions**
-- **Zoom and Pan:** Use the tools in the top-right corner of the visualization to zoom in, zoom out, or pan across the plot.
-- **Toggle Traces:** For plots with multiple traces, click on any legend item to show or hide that specific trace. Double-click a legend item to isolate it by turning off all other traces.
-- **Hover for Details:** Move your cursor over a trace to view information about the values at specific points.
-
-4. **Refreshing the Page:**
- - If the app seems unresponsive, try refreshing the page in your browser.
-
-5. **Exporting Data:**
- - Click the **blue Save button** to download CSV files containing the simulation results and the current parameter settings.
-
-6. **Browser Compatibility:**
- - The app works best in modern browsers like Google Chrome, Mozilla Firefox, Microsoft Edge, or Safari.
-
-
-### Details on stimulation protocols
-
-#### Regular Stimulation
-Periodic pacing.
-
-#### S1-S2
-Designed to construct the restitution curve.
-
-#### Multiple rates
-Designed to construct a bifurcaiton diagram and test for **alternans**.
-
-#### Stimulate and pause
-Designed to test for **delayed afterdepolarizations**. By default all phosphorylation on.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Troubleshooting
+- If unresponsive, refresh your browser.
+- Use a modern browser (Chrome, Firefox, Edge, Safari).
+- For slow performance, consider installing the app locally.
 
 ## Feedback
+Encounter an issue? Please submit it through [GitHub Issues](https://github.com/ThomasMBury/t-world-simulator-multipage/issues).
 
-If you encounter any issues, please post a [GitHub Issue](https://github.com/ThomasMBury/ap-simulator/issues).
+## License
+This project is licensed under the [MIT License](https://github.com/ThomasMBury/t-world-simulator-multipage/blob/main/LICENSE).
 
----
-
+## Acknowledgements
+The app is built using Dash and simulations are run using myokit.
+- TMB is supported by the FRQNT postdoctoral fellowship (314100). 
+- JT is supported by the Sir Henry Wellcome Fellowship (222781/Z/21/Z).
