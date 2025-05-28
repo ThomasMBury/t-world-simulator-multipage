@@ -2,17 +2,21 @@
 
 A web app for running and interacting with simulations of [T-world](https://elifesciences.org/articles/48890), a state-of-the-art computational model for a human ventricular myocyte.
 
-<img src="assets/homepage_banner2.png" width="50%">
+<img src="assets/homepage_banner2.png" width="100%">
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Installation](#installation)
-   - [Online Access](#online-access)
-   - [Offline Access - Installation Instructions](#offline-access---installation-instructions)
-4. [Tips for Use](#usage)
-5. [License](#license)
-6. [Feedback](#feedback)
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+- [Stimulation Protocols](#stimulation-protocols)
+- [Online Limits](#online-limits)
+- [Parameter Controls](#parameter-controls)
+- [Plotting Window](#plotting-window)
+- [Exporting Data](#exporting-data)
+- [Offline Access: Installation Instructions](#offline-access-installation-instructions)
+- [Troubleshooting](#troubleshooting)
+- [Feedback](#feedback)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 
 ## Overview
