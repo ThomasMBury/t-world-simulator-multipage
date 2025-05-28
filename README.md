@@ -1,4 +1,4 @@
-# T-World Simulator
+# T-World Online
 
 A web app for running and interacting with simulations of [T-world](https://elifesciences.org/articles/48890), a state-of-the-art computational model for a human ventricular myocyte.
 
@@ -57,15 +57,16 @@ This web application accompanies [T-world](https://www.biorxiv.org/content/10.11
 
 ## Online Limits
 Due to limited compute resources, the online version imposes:
-- Max pre-pacing beats: 500
-- Max S2 intervals: 50
-- Max basic cycle lengths: 20
+- Max pre-pacing beats: **500**
+- Max S2 intervals: **50**
+- Max basic cycle lengths: **20**
+
 Running the app offline removes these limits.
 
 ## Parameter Controls
 Located on the left of the app, these allow configuration via sliders, dropdowns, and input fields. Invalid inputs highlight red. Users can:
-- Choose from three cell types: endocardium, epicardium, midmyocardium.
-- Select a preset: default, EAD prone, alternans with low SERCA, DAD prone.
+- Choose from three cell types: *endocardium*, *epicardium*, *midmyocardium*.
+- Select a preset: *default*, *EAD prone*, *alternans with low SERCA*, *DAD prone*.
 - Adjust current multipliers.
 - Set extracellular concentrations.
 - Modify β-adrenergic signaling (β-ARS) via phosphorylation levels.
@@ -95,7 +96,7 @@ python --version
 #### 2. Clone the repository
 ```
 git clone https://github.com/ThomasMBury/t-world-simulator-multipage.git
-cd t-world-simulator
+cd t-world-simulator-multipage
 ```
 #### 3. Set up a virtual environment (recommended)
 **MacOS/Linus:**
