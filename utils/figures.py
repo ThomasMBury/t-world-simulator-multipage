@@ -1,8 +1,9 @@
 import plotly.express as px
 import plotly.graph_objects as go
 from utils.constants import PLOT_VARIABLE_Y_LABELS, PLOT_Y_RANGES
+from itertools import cycle
 
-cols = px.colors.qualitative.Plotly
+colors = px.colors.qualitative.Plotly
 
 
 def make_simulation_fig(df_sim, plot_var):
@@ -34,7 +35,7 @@ def make_simulation_fig(df_sim, plot_var):
                 showlegend=False,
                 mode="lines",
                 line={
-                    "color": cols[0],
+                    "color": colors[0],
                     "width": line_width,
                 },
             ),
@@ -57,6 +58,8 @@ def make_simulation_fig(df_sim, plot_var):
 def make_bcl_ts_fig(df_ts, plot_var):
     line_width = 1
 
+    color_cycle = cycle(colors)
+
     fig = go.Figure()
 
     if plot_var in df_ts.columns:
@@ -69,7 +72,7 @@ def make_bcl_ts_fig(df_ts, plot_var):
                     name=f"{bcl}",
                     mode="lines",
                     line={
-                        "color": cols[idx],
+                        "color": next(color_cycle),
                         "width": line_width,
                     },
                     visible="legendonly" if idx > 0 else True,
@@ -92,6 +95,7 @@ def make_bcl_ts_fig(df_ts, plot_var):
 
 
 def make_rate_fig(df_rate, plot_var):
+
     line_width = 1
     fig = go.Figure()
 
@@ -110,7 +114,7 @@ def make_rate_fig(df_rate, plot_var):
                 # showlegend=False,
                 mode="markers",
                 line={
-                    "color": cols[0],
+                    "color": colors[0],
                     "width": line_width,
                 },
             ),
@@ -131,6 +135,8 @@ def make_s1s2_fig(df_ts, plot_var):
     line_width = 1
     fig = go.Figure()
 
+    color_cycle = cycle(colors)
+
     if plot_var in df_ts.columns:
         for idx, s2_interval in enumerate(df_ts["s2_interval"].unique()):
             df_s2 = df_ts[df_ts["s2_interval"] == s2_interval]
@@ -141,7 +147,7 @@ def make_s1s2_fig(df_ts, plot_var):
                     name=f"{s2_interval}",
                     mode="lines",
                     line={
-                        "color": cols[idx],
+                        "color": next(color_cycle),
                         "width": line_width,
                     },
                     visible="legendonly" if idx > 0 else True,
@@ -185,7 +191,7 @@ def make_restitution_fig(df_restitution, plot_var):
                 # showlegend=False,
                 mode="lines+markers",
                 line={
-                    "color": cols[0],
+                    "color": colors[0],
                     "width": line_width,
                 },
             ),

@@ -168,9 +168,9 @@ layout = dbc.Container(
         html.P("Due to limited compute resources, the online version imposes:"),
         html.Ul(
             [
-                html.Li("Max pre-pacing beats: 500"),
-                html.Li("Max S2 intervals: 50"),
-                html.Li("Max basic cycle lengths: 20"),
+                html.Li("Max no. of pre-pacing beats: 500"),
+                html.Li("Max no. of S2 intervals for restitution curve: 50"),
+                html.Li("Max no. of BCL values for rate dependent curve: 20"),
             ]
         ),
         html.P("Running the app offline removes these limits."),

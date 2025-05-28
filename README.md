@@ -57,9 +57,9 @@ This web application accompanies [T-world](https://www.biorxiv.org/content/10.11
 
 ## Online Limits
 Due to limited compute resources, the online version imposes:
-- Max pre-pacing beats: **500**
-- Max S2 intervals: **50**
-- Max basic cycle lengths: **20**
+- Max no. of pre-pacing beats: **500**
+- Max no. of S2 intervals for restitution curve: **50**
+- Max no. of BCL values for rate dependent curve: **20**
 
 Running the app offline removes these limits.
 
