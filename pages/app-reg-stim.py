@@ -26,7 +26,12 @@ from utils.constants import (
     PLOT_VARIABLE_TAB_LABELS,
 )
 from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
-from utils.model import MODEL, VARIABLE_NAMES, MODEL_PARAMS_DEFAULT, INITIAL_VALUES
+from utils.model import (
+    MODEL,
+    VARIABLE_NAMES,
+    MODEL_PARAMS_DEFAULT,
+    INITIAL_VALUES_ENDO,
+)
 from utils.config import LIMIT_PARAMS
 from utils.simulation import sim_model
 from utils.figures import make_simulation_fig
@@ -68,7 +73,7 @@ simulation = myokit.Simulation(MODEL)
 # Run default simulation
 df_sim = sim_model(
     simulation,
-    INITIAL_VALUES,
+    INITIAL_VALUES_ENDO,
     PLOT_VARIABLES_DEFAULT,
     params={},
     bcl=BCL_DEFAULT,
@@ -139,6 +144,7 @@ layout = dbc.Container(
     # fluid=True,
     style={
         "paddingBottom": "50px",
+        "zoom": "0.8",
     },
 )
 layout = html.Div(layout)

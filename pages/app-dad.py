@@ -32,7 +32,11 @@ from utils.constants import (
     QUIESCENCE_DURATION_DEFAULT,
 )
 from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
-from utils.model import MODEL, VARIABLE_NAMES, MODEL_PARAMS_DEFAULT, INITIAL_VALUES
+from utils.model import (
+    MODEL,
+    VARIABLE_NAMES,
+    MODEL_PARAMS_DEFAULT,
+)
 from utils.config import LIMIT_PARAMS
 from utils.simulation import sim_model_dad
 from utils.figures import make_simulation_fig
@@ -134,7 +138,10 @@ layout = dbc.Container(
         ),
     ],
     # fluid=True,
-    # style={"paddingLeft": "100px", "paddingRight": "100px"},
+    style={
+        "paddingBottom": "50px",
+        "zoom": "0.8",
+    },
 )
 layout = html.Div(layout)
 

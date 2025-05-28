@@ -30,20 +30,19 @@ layout = dbc.Container(
                 html.Li(html.A("Feedback", href="#feedback")),
             ]
         ),
-        html.H2("Overview", id="overview", className="mt-5"),
+        html.H2("Welcome", id="overview", className="mt-5"),
         html.P(
             [
                 "Welcome to ",
-                html.Strong("T-World Simulator"),
+                html.Strong("T-World Online"),
                 "! This web application accompanies ",
                 html.A(
                     "T-world",
                     href="https://elifesciences.org/articles/48890",
                     target="_blank",
                 ),
-                " — a state-of-the-art computational model for a human ventricular myocyte. "
-                "It provides an interface for exploring different stimulation protocols, "
-                "visualizing membrane voltage and conduction traces, and experimenting with model parameters.",
+                "—a state-of-the-art computational model for a human ventricular myocyte. ",
+                "It allows the user to simulate T-World under a range of stimulation protocols and analyze the output",
             ]
         ),
         html.H2("Features", id="features", className="mt-5"),

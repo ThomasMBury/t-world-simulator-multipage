@@ -8,9 +8,15 @@ from utils.constants import (
     NUM_BCL_VALUES_LIMIT_OFFLINE,
     NUM_S2_INTERVALS_LIMIT_ONLINE,
     NUM_S2_INTERVALS_LIMIT_OFFLINE,
+    CELL_TYPE_DICT,
 )
 import pandas as pd
-from utils.model import MODEL_PARAMS_DEFAULT, INITIAL_VALUES
+from utils.model import (
+    MODEL_PARAMS_DEFAULT,
+    INITIAL_VALUES_ENDO,
+    INITIAL_VALUES_EPI,
+    INITIAL_VALUES_MID,
+)
 from utils.simulation import (
     sim_model,
     sim_model_dad,
@@ -164,6 +170,14 @@ def register_run_button(page_id, simulation):
         for par in PARAM_NAMES_CELLTYPE:
             params[par] = cell_type
 
+        # Initial conditions
+        if cell_type == CELL_TYPE_DICT["endo"]:
+            initial_values = INITIAL_VALUES_ENDO
+        elif cell_type == CELL_TYPE_DICT["mid"]:
+            initial_values = INITIAL_VALUES_MID
+        elif cell_type == CELL_TYPE_DICT["epi"]:
+            initial_values = INITIAL_VALUES_EPI
+
         # Make dict contianing all parameter values to save
         parameter_data = params.copy()
         parameter_data["bcl"] = bcl
@@ -173,7 +187,7 @@ def register_run_button(page_id, simulation):
         # Run simulation
         df_sim = sim_model(
             simulation,
-            INITIAL_VALUES,
+            initial_values,
             plot_vars,
             params=params,
             bcl=bcl,
@@ -268,17 +282,24 @@ def register_run_button_dad(page_id, simulation):
         # Cell type
         for par in PARAM_NAMES_CELLTYPE:
             params[par] = cell_type
-
         # Make dict contianing all parameter values to save
         parameter_data = params.copy()
         parameter_data["bcl"] = bcl
         parameter_data["total_beats"] = total_beats
         parameter_data["quiescence_duration"] = quiescence_duration
 
+        # Initial conditions
+        if cell_type == CELL_TYPE_DICT["endo"]:
+            initial_values = INITIAL_VALUES_ENDO
+        elif cell_type == CELL_TYPE_DICT["mid"]:
+            initial_values = INITIAL_VALUES_MID
+        elif cell_type == CELL_TYPE_DICT["epi"]:
+            initial_values = INITIAL_VALUES_EPI
+
         # Run simulation
         df_sim = sim_model_dad(
             simulation,
-            INITIAL_VALUES,
+            initial_values,
             plot_vars,
             params=params,
             bcl=bcl,
@@ -385,10 +406,18 @@ def register_run_button_s1s2(page_id, simulation):
             else NUM_S2_INTERVALS_LIMIT_OFFLINE
         )
 
+        # Initial conditions
+        if cell_type == CELL_TYPE_DICT["endo"]:
+            initial_values = INITIAL_VALUES_ENDO
+        elif cell_type == CELL_TYPE_DICT["mid"]:
+            initial_values = INITIAL_VALUES_MID
+        elif cell_type == CELL_TYPE_DICT["epi"]:
+            initial_values = INITIAL_VALUES_EPI
+
         # Run simulation
         df_ts, df_restitution = sim_s1s2_restitution(
             simulation,
-            INITIAL_VALUES,
+            initial_values,
             params=params,
             s1_interval=bcl,
             s1_nbeats=total_beats,
@@ -519,10 +548,18 @@ def register_run_button_ratedep(page_id, simulation):
         parameter_data["bcl_values"] = bcl_values
         parameter_data["total_beats"] = total_beats
 
+        # Initial conditions
+        if cell_type == CELL_TYPE_DICT["endo"]:
+            initial_values = INITIAL_VALUES_ENDO
+        elif cell_type == CELL_TYPE_DICT["mid"]:
+            initial_values = INITIAL_VALUES_MID
+        elif cell_type == CELL_TYPE_DICT["epi"]:
+            initial_values = INITIAL_VALUES_EPI
+
         # Run simulation
         df_ts, df_rate = sim_rate_change(
             simulation,
-            INITIAL_VALUES,
+            initial_values,
             params=params,
             bcl_values=bcl_values,
             nbeats=total_beats,
