@@ -41,12 +41,12 @@ navbar = dbc.NavbarSimple(
         dbc.NavItem(
             dbc.NavLink(
                 "Source Code",
-                href="https://github.com/ThomasMBury/-world-simulator-multipage",
+                href="https://github.com/ThomasMBury/t-world-simulator-multipage",
                 target="_blank",
             )
         ),
     ],
-    brand="T-World Online: Simulate the human ventricular cardiomycyte",
+    brand="T-World Online: Simulate a human ventricular cardiomycyte",
     brand_href="/",
     color="dark",
     dark=True,

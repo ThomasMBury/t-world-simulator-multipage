@@ -72,6 +72,7 @@ def make_bcl_ts_fig(df_ts, plot_var):
                         "color": cols[idx],
                         "width": line_width,
                     },
+                    visible="legendonly" if idx > 0 else True,
                 ),
             )
     fig.update_xaxes(title="Time (ms)")
@@ -143,6 +144,7 @@ def make_s1s2_fig(df_ts, plot_var):
                         "color": cols[idx],
                         "width": line_width,
                     },
+                    visible="legendonly" if idx > 0 else True,
                 ),
             )
 
