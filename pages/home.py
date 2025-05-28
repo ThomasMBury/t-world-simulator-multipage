@@ -19,7 +19,7 @@ layout = dbc.Container(
         dbc.Row(
             dbc.Col(
                 html.P(
-                    "This application allows users to run simulations of T-World: a computational model of the human ventricular cardiomycyte. "
+                    "This application allows users to run simulations of T-World: a computational model of the human ventricular cardiomyocyte. "
                     "Get started by selecting a protocol, setting parameters and clicking RUN.",
                     className="lead text-center",
                 ),

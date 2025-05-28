@@ -163,7 +163,7 @@ def sim_s1s2_restitution(
         threshold_v = vmin + 0.1 * (vmax - vmin)
         # thresh_apd = -77  # mV - threshold for computing APD
         crossings_ap = find_crossings(
-            voltage_vals, 0
+            voltage_vals, -40
         )  # places where voltage crosses zero
         crossings_thresh = find_crossings(
             voltage_vals, threshold_v
