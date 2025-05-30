@@ -86,8 +86,8 @@ def register_save_button(page_id):
         df_pars["name"] = parameter_data.keys()
         df_pars["value"] = parameter_data.values()
         # df_pars = df_pars.astype("object")
-        out1 = dcc.send_data_frame(df_sim.to_csv, "simulation_data.csv")
-        out2 = dcc.send_data_frame(df_pars.to_csv, "parameters.csv")
+        out1 = dcc.send_data_frame(df_sim.to_csv, "simulation_data.csv", index=False)
+        out2 = dcc.send_data_frame(df_pars.to_csv, "parameters.csv", index=False)
         return [out1, out2]
 
 

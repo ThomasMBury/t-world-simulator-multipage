@@ -30,7 +30,7 @@ def make_simulation_fig(df_sim, plot_var):
     if plot_var in df_sim.columns:
         fig.add_trace(
             go.Scatter(
-                x=df_sim["time"],
+                x=df_sim["environment.time"],
                 y=df_sim[plot_var],
                 showlegend=False,
                 mode="lines",

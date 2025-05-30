@@ -33,7 +33,7 @@ def sim_model(
 
     Returns
     -------
-    df : pd.DataFrame
+    df_sim : pd.DataFrame
         Dataframe of variables at each time value.
 
     """
@@ -56,15 +56,14 @@ def sim_model(
     d = s.run(bcl * show_last_beats)
 
     # Collect data specified in plot_vars
-    data_dict = {key: d[key] for key in plot_vars}
-    data_dict["time"] = d["environment.time"]
-    df = pd.DataFrame(data_dict)
+    data_dict = {key: d[key] for key in (["environment.time"] + plot_vars)}
+    df_sim = pd.DataFrame(data_dict)
 
     # Reset simulation (don't use s.reset as this only goes to end of pre-pacing)
     s.set_state(initial_values)
     s.set_time(0)
 
-    return df
+    return df_sim
 
 
 def sim_s1s2_restitution(
@@ -148,8 +147,8 @@ def sim_s1s2_restitution(
 
         # Collect data
         data_dict = {}
+        data_dict["environment.time"] = d["environment.time"]
         data_dict["membrane.v"] = d["membrane.v"]
-        data_dict["time"] = d["environment.time"]
         data_dict["intracellular_ions.cai"] = d["intracellular_ions.cai"]
         df = pd.DataFrame(data_dict)
         df["s2_interval"] = s2_interval
@@ -294,8 +293,8 @@ def sim_rate_change(
 
         # Collect data
         data_dict = {}
+        data_dict["environment.time"] = d["environment.time"]
         data_dict["membrane.v"] = d["membrane.v"]
-        data_dict["time"] = d["environment.time"]
         data_dict["intracellular_ions.cai"] = d["intracellular_ions.cai"]
         df = pd.DataFrame(data_dict)
         df["bcl"] = bcl
@@ -434,8 +433,7 @@ def sim_model_dad(
     log = s.run(quiescence_duration * 1000, log=log)
 
     # Collect data specified in plot_vars
-    data_dict = {key: log[key] for key in plot_vars}
-    data_dict["time"] = log["environment.time"]
+    data_dict = {key: log[key] for key in (["environment.time"] + plot_vars)}
     df = pd.DataFrame(data_dict)
 
     # Reset simulation (don't use s.reset as this only goes to end of pre-pacing)
