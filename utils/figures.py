@@ -67,7 +67,7 @@ def make_bcl_ts_fig(df_ts, plot_var):
             df_bcl = df_ts[df_ts["bcl"] == bcl]
             fig.add_trace(
                 go.Scatter(
-                    x=df_bcl["time"],
+                    x=df_bcl["environment.time"],
                     y=df_bcl[plot_var],
                     name=f"{bcl}",
                     mode="lines",
@@ -142,7 +142,7 @@ def make_s1s2_fig(df_ts, plot_var):
             df_s2 = df_ts[df_ts["s2_interval"] == s2_interval]
             fig.add_trace(
                 go.Scatter(
-                    x=df_s2["time"],
+                    x=df_s2["environment.time"],
                     y=df_s2[plot_var],
                     name=f"{s2_interval}",
                     mode="lines",

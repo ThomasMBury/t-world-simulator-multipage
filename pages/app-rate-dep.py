@@ -72,7 +72,7 @@ page_id = 3
 simulation = myokit.Simulation(MODEL)
 
 # Create empty DataFrame for simulation data
-df_ts = pd.DataFrame(columns=VARIABLE_NAMES + ["time", "bcl"])
+df_ts = pd.DataFrame(columns=VARIABLE_NAMES + ["bcl"])
 df_rate = pd.DataFrame(columns=["bcl", "apd", "cat_amplitude"])
 # Need to convert df to dict to store as json on app
 ts_data = {"data-frame": df_ts.to_dict("records")}

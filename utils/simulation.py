@@ -207,7 +207,12 @@ def sim_s1s2_restitution(
     )
     if len(list_df) == 0:
         df_ts = pd.DataFrame(
-            columns=["membrane.v", "time", "intracellular_ions.cai", "s2_interval"]
+            columns=[
+                "environment.time",
+                "membrane.v",
+                "intracellular_ions.cai",
+                "s2_interval",
+            ]
         )
     else:
         df_ts = pd.concat(list_df)
@@ -368,7 +373,7 @@ def sim_rate_change(
 
     if len(list_df) == 0:
         df_ts = pd.DataFrame(
-            columns=["membrane.v", "time", "intracellular_ions.cai", "bcl"]
+            columns=["environment.time", "membrane.v", "intracellular_ions.cai", "bcl"]
         )
     else:
         df_ts = pd.concat(list_df)

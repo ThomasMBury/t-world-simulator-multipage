@@ -76,7 +76,7 @@ page_id = 4
 simulation = myokit.Simulation(MODEL)
 
 # Create empty DataFrame for simulation data
-df_sim = pd.DataFrame(columns=VARIABLE_NAMES + ["time"])
+df_sim = pd.DataFrame(columns=VARIABLE_NAMES)
 
 # # Need to convert df to dict to store as json on app
 simulation_data = {"data-frame": df_sim.to_dict("records")}
