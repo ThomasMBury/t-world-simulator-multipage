@@ -7,7 +7,11 @@ from utils.helpers import (
     find_downward_crossings,
     find_upward_crossings,
 )
-from utils.constants import STIM_DURATION_DEFAULT, STIM_AMPLIUDE_DEFAULT
+from utils.constants import (
+    STIM_DURATION_DEFAULT,
+    STIM_AMPLIUDE_DEFAULT,
+    STIM_LEVEL_DEFAULT,
+)
 
 
 def sim_model(
@@ -141,9 +145,11 @@ def sim_s1s2_restitution(
         # Set pacing protocol
         p = myokit.Protocol()
         # Single S1 stimulus
-        p.schedule(level=1.0, start=0, duration=STIM_DURATION_DEFAULT)
+        p.schedule(level=STIM_LEVEL_DEFAULT, start=0, duration=STIM_DURATION_DEFAULT)
         # Single S2 stimulus
-        p.schedule(level=1.0, start=s2_interval, duration=STIM_DURATION_DEFAULT)
+        p.schedule(
+            level=STIM_LEVEL_DEFAULT, start=s2_interval, duration=STIM_DURATION_DEFAULT
+        )
 
         # Update protoocl
         s.set_protocol(p)
@@ -292,17 +298,23 @@ def sim_rate_change(
     for bcl in list_bcl_values:
 
         # Pre-pacing
-        p = myokit.pacing.blocktrain(bcl, duration=STIM_DURATION_DEFAULT, offset=0)
+        p = myokit.pacing.blocktrain(
+            bcl, duration=STIM_DURATION_DEFAULT, level=STIM_LEVEL_DEFAULT, offset=0
+        )
         s.set_protocol(p)
         s.pre(nbeats * bcl)
 
         # Set pacing protocol
         p = myokit.Protocol()
         # Schedule 4 stimuli
-        p.schedule(level=1.0, start=0, duration=STIM_DURATION_DEFAULT)
-        p.schedule(level=1.0, start=bcl, duration=STIM_DURATION_DEFAULT)
-        p.schedule(level=1.0, start=2 * bcl, duration=STIM_DURATION_DEFAULT)
-        p.schedule(level=1.0, start=3 * bcl, duration=STIM_DURATION_DEFAULT)
+        p.schedule(level=STIM_LEVEL_DEFAULT, start=0, duration=STIM_DURATION_DEFAULT)
+        p.schedule(level=STIM_LEVEL_DEFAULT, start=bcl, duration=STIM_DURATION_DEFAULT)
+        p.schedule(
+            level=STIM_LEVEL_DEFAULT, start=2 * bcl, duration=STIM_DURATION_DEFAULT
+        )
+        p.schedule(
+            level=STIM_LEVEL_DEFAULT, start=3 * bcl, duration=STIM_DURATION_DEFAULT
+        )
 
         # Update protoocl
         s.set_protocol(p)

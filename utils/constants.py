@@ -86,7 +86,7 @@ SHOW_LAST_BEATS_DEFAULT = 4
 
 STIM_DURATION_DEFAULT = 1.0  # ms
 STIM_AMPLIUDE_DEFAULT = -53.0  # A/F
-
+STIM_LEVEL_DEFAULT = 1  # multiplier of stim amplitude
 
 # Parameter limits for online version of app
 NUM_S2_INTERVALS_LIMIT_ONLINE = 50
