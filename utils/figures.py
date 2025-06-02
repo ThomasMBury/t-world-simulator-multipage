@@ -101,7 +101,7 @@ def make_rate_fig(df_rate, plot_var):
 
     if plot_var == "membrane.v":
         y_var = "apd"
-        y_axes_title = "APD90 (ms)"
+        y_axes_title = "APD (ms)"
     elif plot_var == "intracellular_ions.cai":
         y_var = "cat_amplitude"
         y_axes_title = "CaT amplitude"
@@ -178,7 +178,7 @@ def make_restitution_fig(df_restitution, plot_var):
 
     if plot_var == "membrane.v":
         y_var = "apd"
-        y_axes_title = "APD90 (ms)"
+        y_axes_title = "APD (ms)"
     elif plot_var == "intracellular_ions.cai":
         y_var = "cat_amplitude"
         y_axes_title = "CaT amplitude"
