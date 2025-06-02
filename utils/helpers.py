@@ -1,13 +1,27 @@
 import numpy as np
 
 
-def find_crossings(arr, value):
+def find_upward_crossings(x, y, value):
     crossings = []
-    for i in range(len(arr) - 1):
-        if (arr[i] < value and arr[i + 1] >= value) or (
-            arr[i] > value and arr[i + 1] <= value
-        ):
-            crossings.append(i)
+    for i in range(len(y) - 1):
+        y0, y1 = y[i], y[i + 1]
+        if y0 < value and y1 >= value:
+            # Linear interpolation
+            frac = (value - y0) / (y1 - y0)
+            x_cross = x[i] + frac * (x[i + 1] - x[i])
+            crossings.append(x_cross)
+    return crossings
+
+
+def find_downward_crossings(x, y, value):
+    crossings = []
+    for i in range(len(y) - 1):
+        y0, y1 = y[i], y[i + 1]
+        if y0 > value and y1 <= value:
+            # Linear interpolation
+            frac = (value - y0) / (y1 - y0)
+            x_cross = x[i] + frac * (x[i + 1] - x[i])
+            crossings.append(x_cross)
     return crossings
 
 

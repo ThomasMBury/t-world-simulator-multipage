@@ -25,7 +25,7 @@ from utils.constants import (
     CELL_TYPE_DICT,
     PLOT_VARIABLE_TAB_LABELS,
 )
-from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
+from utils.helpers import find_local_maxima, s2_input_to_list
 from utils.model import (
     MODEL,
     VARIABLE_NAMES,

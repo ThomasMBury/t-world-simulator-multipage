@@ -28,7 +28,7 @@ from utils.constants import (
     PLOT_VARIABLE_TAB_LABELS,
     S2_INTERVALS_DEFAULT,
 )
-from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
+from utils.helpers import find_local_maxima, s2_input_to_list
 from utils.model import (
     MODEL,
     VARIABLE_NAMES,
@@ -76,7 +76,7 @@ page_id = 2
 simulation = myokit.Simulation(MODEL)
 
 # Create empty DataFrame for simulation data
-df_ts = pd.DataFrame(columns=VARIABLE_NAMES + ["environment.time", "s2_interval"])
+df_ts = pd.DataFrame(columns=VARIABLE_NAMES + ["s2_interval"])
 df_restitution = pd.DataFrame(columns=["s2_interval", "di", "apd", "cat_amplitude"])
 # Need to convert df to dict to store as json on app
 ts_data = {"data-frame": df_ts.to_dict("records")}

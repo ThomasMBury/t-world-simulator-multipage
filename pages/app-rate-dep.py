@@ -28,7 +28,7 @@ from utils.constants import (
     PLOT_VARIABLE_TAB_LABELS,
     S2_INTERVALS_DEFAULT,
 )
-from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
+from utils.helpers import find_local_maxima, s2_input_to_list
 from utils.model import (
     MODEL,
     VARIABLE_NAMES,

@@ -1,7 +1,13 @@
 import numpy as np
 import pandas as pd
 import myokit as myokit
-from utils.helpers import find_crossings, find_local_maxima, s2_input_to_list
+from utils.helpers import (
+    find_local_maxima,
+    s2_input_to_list,
+    find_downward_crossings,
+    find_upward_crossings,
+)
+from utils.constants import STIM_DURATION_DEFAULT, STIM_AMPLIUDE_DEFAULT
 
 
 def sim_model(
@@ -43,7 +49,7 @@ def sim_model(
         s.set_constant(key, params[key])
 
     # Set pacing protocol and assign to simulation object
-    p = myokit.pacing.blocktrain(bcl, duration=1.0, offset=0)
+    p = myokit.pacing.blocktrain(bcl, duration=STIM_DURATION_DEFAULT, offset=0)
     s.set_protocol(p)
 
     # Pre-pacing simulation
@@ -115,14 +121,14 @@ def sim_s1s2_restitution(
     list_s2_intervals = [s2 for s2 in list_s2_intervals if s2 > 0]
 
     # Get default state of model
-    default_state = s.default_state()
+    # default_state = s.default_state()
 
     # Assign parameters to simulation object
     for key in params.keys():
         s.set_constant(key, params[key])
 
     # Pre-pacing with S1 interval (only needs to be done once)
-    p = myokit.pacing.blocktrain(s1_interval, duration=0.5, offset=0)
+    p = myokit.pacing.blocktrain(s1_interval, duration=STIM_DURATION_DEFAULT, offset=0)
     s.set_protocol(p)
     s.pre(s1_nbeats * s1_interval)
 
@@ -135,9 +141,9 @@ def sim_s1s2_restitution(
         # Set pacing protocol
         p = myokit.Protocol()
         # Single S1 stimulus
-        p.schedule(level=1.0, start=0, duration=0.5)
+        p.schedule(level=1.0, start=0, duration=STIM_DURATION_DEFAULT)
         # Single S2 stimulus
-        p.schedule(level=1.0, start=s2_interval, duration=0.5)
+        p.schedule(level=1.0, start=s2_interval, duration=STIM_DURATION_DEFAULT)
 
         # Update protoocl
         s.set_protocol(p)
@@ -154,28 +160,36 @@ def sim_s1s2_restitution(
         df["s2_interval"] = s2_interval
         list_df.append(df)
 
-        # Compute APD and DI using 90% repolarization threshold of S1 beat
         voltage_vals = d["membrane.v"]
         time_vals = d["environment.time"]
-        vmin = np.min(voltage_vals)
-        vmax = np.max(voltage_vals)
-        threshold_v = vmin + 0.1 * (vmax - vmin)
-        # thresh_apd = -77  # mV - threshold for computing APD
-        crossings_ap = find_crossings(
-            voltage_vals, -40
-        )  # places where voltage crosses zero
-        crossings_thresh = find_crossings(
-            voltage_vals, threshold_v
-        )  # places where voltage crosses repolarization threshold
 
-        # Must be 4 crossings at zero voltage to determine DI and APD
-        if (len(crossings_ap) == 4) & (len(crossings_thresh) == 4):
+        # # Compute APD and DI using 90% repolarization threshold of S1 beat
+        # vmin = np.min(voltage_vals)
+        # vmax = np.max(voltage_vals)
+        # threshold_v = vmin + 0.1 * (vmax - vmin)
+
+        # Compute APD and DI using -70 mV threshold
+        threshold_v = -70
+
+        # Times where voltage crosses zero going upwards
+        crossings_ap_upwards = find_upward_crossings(time_vals, voltage_vals, 0)
+
+        # Times where voltage crosses APD threshold
+        crossings_thresh_upwards = find_upward_crossings(
+            time_vals, voltage_vals, threshold_v
+        )
+        crossings_thresh_downwards = find_downward_crossings(
+            time_vals, voltage_vals, threshold_v
+        )
+
+        # Must be 2 upwards crossings at zero voltage to determine DI and APD
+        if (len(crossings_ap_upwards) == 2) & (len(crossings_thresh_upwards) == 2):
             # Get DI and APD info
-            di_start = crossings_thresh[1]
-            di_end = crossings_thresh[2]
-            ap_end = crossings_thresh[3]
-            di = time_vals[di_end] - time_vals[di_start]
-            apd = time_vals[ap_end] - time_vals[di_end]
+            di = crossings_thresh_upwards[1] - crossings_thresh_downwards[0]
+            apd = crossings_thresh_downwards[1] - crossings_thresh_upwards[1]
+            # Assert that di and apd are positive
+            if di < 0 or apd < 0:
+                raise ValueError("DI or APD cannot be negative")
 
         else:
             di = np.nan
@@ -278,17 +292,17 @@ def sim_rate_change(
     for bcl in list_bcl_values:
 
         # Pre-pacing
-        p = myokit.pacing.blocktrain(bcl, duration=0.5, offset=0)
+        p = myokit.pacing.blocktrain(bcl, duration=STIM_DURATION_DEFAULT, offset=0)
         s.set_protocol(p)
         s.pre(nbeats * bcl)
 
         # Set pacing protocol
         p = myokit.Protocol()
         # Schedule 4 stimuli
-        p.schedule(level=1.0, start=0, duration=0.5)
-        p.schedule(level=1.0, start=bcl, duration=0.5)
-        p.schedule(level=1.0, start=2 * bcl, duration=0.5)
-        p.schedule(level=1.0, start=3 * bcl, duration=0.5)
+        p.schedule(level=1.0, start=0, duration=STIM_DURATION_DEFAULT)
+        p.schedule(level=1.0, start=bcl, duration=STIM_DURATION_DEFAULT)
+        p.schedule(level=1.0, start=2 * bcl, duration=STIM_DURATION_DEFAULT)
+        p.schedule(level=1.0, start=3 * bcl, duration=STIM_DURATION_DEFAULT)
 
         # Update protoocl
         s.set_protocol(p)
@@ -305,35 +319,50 @@ def sim_rate_change(
         df["bcl"] = bcl
         list_df.append(df)
 
-        # Compute APD using 90% repolarization threshold
         voltage_vals = d["membrane.v"]
         time_vals = d["environment.time"]
-        vmin = np.min(voltage_vals)
-        vmax = np.max(voltage_vals)
-        threshold_v = vmin + 0.1 * (vmax - vmin)
-        # thresh_apd = -77  # mV - threshold for computing APD
-        crossings_ap = find_crossings(
-            voltage_vals, 0
-        )  # places where voltage crosses zero
-        crossings_thresh = find_crossings(
-            voltage_vals, threshold_v
-        )  # places where voltage crosses repolarization threshold
+        # # Compute APD and DI using 90% repolarization threshold of S1 beat
+        # vmin = np.min(voltage_vals)
+        # vmax = np.max(voltage_vals)
+        # threshold_v = vmin + 0.1 * (vmax - vmin)
 
-        # Must be 8 crossings at zero voltage to determine APD
-        if (len(crossings_ap) == 8) & (len(crossings_thresh) == 8):
+        # Compute APD and DI using -70 mV threshold
+        threshold_v = -70
+
+        # Times where voltage crosses zero going upwards
+        crossings_ap_upwards = find_upward_crossings(time_vals, voltage_vals, 0)
+
+        # Times where voltage crosses APD threshold
+        crossings_thresh_upwards = find_upward_crossings(
+            time_vals, voltage_vals, threshold_v
+        )
+        crossings_thresh_downwards = find_downward_crossings(
+            time_vals, voltage_vals, threshold_v
+        )
+
+        crossings_ap_upwards = find_upward_crossings(time_vals, voltage_vals, 0)
+        crossings_thresh_upwards = find_upward_crossings(
+            time_vals, voltage_vals, threshold_v
+        )
+        crossings_thresh_downwards = find_downward_crossings(
+            time_vals, voltage_vals, threshold_v
+        )
+
+        # Must be 4 upwards crossings at zero voltage to determine APD
+        if (len(crossings_ap_upwards) == 4) & (len(crossings_thresh_upwards) == 4):
             # Get DI and APD info
-            ap1_start = crossings_thresh[0]
-            ap1_end = crossings_thresh[1]
-            ap2_start = crossings_thresh[2]
-            ap2_end = crossings_thresh[3]
-            ap3_start = crossings_thresh[4]
-            ap3_end = crossings_thresh[5]
-            ap4_start = crossings_thresh[6]
-            ap4_end = crossings_thresh[7]
-            apd1 = time_vals[ap1_end] - time_vals[ap1_start]
-            apd2 = time_vals[ap2_end] - time_vals[ap2_start]
-            apd3 = time_vals[ap3_end] - time_vals[ap3_start]
-            apd4 = time_vals[ap4_end] - time_vals[ap4_start]
+            ap1_start = crossings_thresh_upwards[0]
+            ap1_end = crossings_thresh_downwards[0]
+            ap2_start = crossings_thresh_upwards[1]
+            ap2_end = crossings_thresh_downwards[1]
+            ap3_start = crossings_thresh_upwards[2]
+            ap3_end = crossings_thresh_downwards[2]
+            ap4_start = crossings_thresh_upwards[3]
+            ap4_end = crossings_thresh_downwards[3]
+            apd1 = ap1_end - ap1_start
+            apd2 = ap2_end - ap2_start
+            apd3 = ap3_end - ap3_start
+            apd4 = ap4_end - ap4_start
 
         else:
             apd1 = np.nan
@@ -421,7 +450,7 @@ def sim_model_dad(
         s.set_constant(key, params[key])
 
     # Set pacing protocol and assign to simulation object
-    p = myokit.pacing.blocktrain(bcl, duration=1.0, offset=0)
+    p = myokit.pacing.blocktrain(bcl, duration=STIM_DURATION_DEFAULT, offset=0)
     s.set_protocol(p)
 
     # Pre-pacing simulation
