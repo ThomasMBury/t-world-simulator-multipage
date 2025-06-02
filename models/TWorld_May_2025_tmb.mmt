@@ -1521,7 +1521,7 @@ dot(ryr_I_p) = kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpF
     in [1]
 dot(ryr_O) = caTransFactor2 * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * ryr_R - kom * ryr_O - (kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_O - kim * ryr_I)
     in [1]
-dot(ryr_O_p) = caTransFactor2 * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * ryr_R_p - kom * ryr_O_p - (kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_O_p - kim * ryr_I_p)
+dot(ryr_O_p) = caTransFactor2p * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * ryr_R_p - kom * ryr_O_p - (kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_O_p - kim * ryr_I_p)
     in [1]
 dot(ryr_R) = kim * RIcleft - kiSRCa * caTransFactor * (intracellular_ions.caj / 1 [mM])^caExpFactor * ryr_R - (caTransFactor2 * koSRCa * (intracellular_ions.caj / 1 [mM])^caExpFactor2 * ryr_R - kom * ryr_O)
     in [1]
