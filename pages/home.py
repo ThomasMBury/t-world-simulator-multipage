@@ -81,5 +81,5 @@ layout = dbc.Container(
         ),
     ],
     # fluid=True,
-    style={"zoom": "0.8"},
+    # style={"zoom": "0.8"},
 )

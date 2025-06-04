@@ -14,7 +14,7 @@ PARAMETER_PRESETS = {
         "multipliers.Jup_multiplier": 0.65,
     },
     "DAD prone": {
-        "extracellular.cao": 4.0,
+        "extracellular.cao": 3.25,
         "bcl": 400,
         "total_beats": 200,
         "PKA.fICaL_PKA": 1,

@@ -140,7 +140,7 @@ layout = dbc.Container(
     # fluid=True,
     style={
         "paddingBottom": "50px",
-        "zoom": "0.8",
+        # "zoom": "0.8",
     },
 )
 layout = html.Div(layout)
