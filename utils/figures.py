@@ -25,6 +25,10 @@ def make_simulation_fig(df_sim, plot_var):
 
     line_width = 1
 
+    # If plotting Cai, scale from mM to nM for better visualization
+    if plot_var == "intracellular_ions.cai":
+        df_sim[plot_var] = df_sim[plot_var] * 1e6
+
     fig = go.Figure()
 
     if plot_var in df_sim.columns:
@@ -63,6 +67,11 @@ def make_bcl_ts_fig(df_ts, plot_var):
     fig = go.Figure()
 
     if plot_var in df_ts.columns:
+
+        # If plotting Cai, scale from mM to nM for better visualization
+        if plot_var == "intracellular_ions.cai":
+            df_ts[plot_var] = df_ts[plot_var] * 1e6
+
         for idx, bcl in enumerate(df_ts["bcl"].unique()):
             df_bcl = df_ts[df_ts["bcl"] == bcl]
             fig.add_trace(
@@ -104,9 +113,14 @@ def make_rate_fig(df_rate, plot_var):
         y_axes_title = "APD (ms)"
     elif plot_var == "intracellular_ions.cai":
         y_var = "cat_amplitude"
-        y_axes_title = "CaT amplitude"
+        y_axes_title = "CaT amplitude (nM)"
 
     if ("apd" in df_rate.columns) | ("cat_amplitude" in df_rate.columns):
+
+        # If plotting Cai, scale from mM to nM for better visualization
+        if plot_var == "intracellular_ions.cai":
+            df_rate[y_var] = df_rate[y_var] * 1e6
+
         fig.add_trace(
             go.Scatter(
                 x=df_rate["bcl"],
@@ -138,6 +152,11 @@ def make_s1s2_fig(df_ts, plot_var):
     color_cycle = cycle(colors)
 
     if plot_var in df_ts.columns:
+
+        # If plotting Cai, scale from mM to nM for better visualization
+        if plot_var == "intracellular_ions.cai":
+            df_ts[plot_var] = df_ts[plot_var] * 1e6
+
         for idx, s2_interval in enumerate(df_ts["s2_interval"].unique()):
             df_s2 = df_ts[df_ts["s2_interval"] == s2_interval]
             fig.add_trace(
@@ -181,9 +200,14 @@ def make_restitution_fig(df_restitution, plot_var):
         y_axes_title = "APD (ms)"
     elif plot_var == "intracellular_ions.cai":
         y_var = "cat_amplitude"
-        y_axes_title = "CaT amplitude"
+        y_axes_title = "CaT amplitude (nM)"
 
     if ("apd" in df_restitution.columns) | ("cat_amplitude" in df_restitution.columns):
+
+        # If plotting Cai, scale from mM to nM for better visualization
+        if plot_var == "intracellular_ions.cai":
+            df_restitution[y_var] = df_restitution[y_var] * 1e6
+
         fig.add_trace(
             go.Scatter(
                 x=df_restitution["di"],

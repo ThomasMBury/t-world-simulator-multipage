@@ -62,7 +62,7 @@ PLOT_VARIABLE_TAB_LABELS = {
 
 PLOT_VARIABLE_Y_LABELS = {
     "membrane.v": "Membrane potential (mV)",
-    "intracellular_ions.cai": "Intracellular calcium (mM)",
+    "intracellular_ions.cai": "Intracellular calcium (nM)",
     "INa.INa": "Sodium current (A/F)",
     "INaCa.INaCa_i": "Sodium-calcium exchange current (A/F)",
     "ICaL.ICaL": "L-Type calcium current (A/F)",
