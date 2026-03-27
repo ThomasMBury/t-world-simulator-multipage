@@ -25,13 +25,14 @@ def make_simulation_fig(df_sim, plot_var):
 
     line_width = 1
 
-    # If plotting Cai, scale from mM to nM for better visualization
-    if plot_var == "intracellular_ions.cai":
-        df_sim[plot_var] = df_sim[plot_var] * 1e6
-
     fig = go.Figure()
 
     if plot_var in df_sim.columns:
+
+        # If plotting Cai, scale from mM to nM for better visualization
+        if plot_var == "intracellular_ions.cai":
+            df_sim[plot_var] = df_sim[plot_var] * 1e6
+
         fig.add_trace(
             go.Scatter(
                 x=df_sim["environment.time"],
