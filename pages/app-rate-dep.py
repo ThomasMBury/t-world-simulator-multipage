@@ -34,7 +34,7 @@ from utils.model import (
     VARIABLE_NAMES,
     MODEL_PARAMS_DEFAULT,
 )
-from utils.config import LIMIT_PARAMS
+from utils.config import LIMIT_PARAMS, IS_LOCAL
 from utils.simulation import sim_model
 from utils.figures import make_bcl_ts_fig, make_rate_fig
 
@@ -62,6 +62,19 @@ from callbacks.display import (
 import myokit as myokit
 
 import pandas as pd
+
+# # For testing case where app is running on a server
+# IS_LOCAL = False
+
+
+def make_disabled_message():
+    return dbc.Alert(
+        "⚠️ This page is disabled for online use because it is computationally intensive. "
+        "Please run the app locally to enable this feature.",
+        color="warning",
+        className="mt-4",
+    )
+
 
 dash.register_page(__name__)
 
@@ -100,7 +113,7 @@ tabs = dcc.Tabs(list_tabs, id=f"page-{page_id}-tabs", value="membrane.v")
 # App layout
 # --------------
 
-# width of a container is 12 units
+# if the app is running locally
 layout = dbc.Container(
     [
         dbc.Row(
@@ -112,6 +125,7 @@ layout = dbc.Container(
                 width=12,
             )
         ),
+        make_disabled_message() if not IS_LOCAL else html.Div(),
         dbc.Row(
             [
                 dbc.Col(
@@ -144,6 +158,7 @@ layout = dbc.Container(
 )
 layout = html.Div(layout)
 
+
 # --------------
 # Callback functions
 # --------------
@@ -156,6 +171,8 @@ register_change_to_preset_params(page_id)
 # Callbacks for display panel
 register_switch_tabs_ratedep(page_id)
 
-# Callbacks for run and save buttons
-register_save_button_ratedep(page_id)
-register_run_button_ratedep(page_id, simulation)
+
+if IS_LOCAL:
+    # Callbacks for run and save buttons
+    register_run_button_ratedep(page_id, simulation)
+    register_save_button_ratedep(page_id)

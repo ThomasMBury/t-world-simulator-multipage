@@ -14,12 +14,12 @@ navbar = dbc.NavbarSimple(
                     href="/app-s1-s2",
                 ),
                 dbc.DropdownMenuItem(
-                    "Rate dependence and alternans",
-                    href="/app-rate-dep",
-                ),
-                dbc.DropdownMenuItem(
                     "Delayed afterdepolariztions",
                     href="/app-dad",
+                ),
+                dbc.DropdownMenuItem(
+                    "Rate dependence and alternans",
+                    href="/app-rate-dep",
                 ),
             ],
             label="Protocol",
