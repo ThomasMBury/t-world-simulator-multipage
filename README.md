@@ -45,23 +45,25 @@ This web application accompanies [T-world](https://www.biorxiv.org/content/10.11
 - APD and DI are computed at 90% repolarization.
 - Upper plot: final two beats per S2 interval; lower plot: restitution curve.
 
-### Rate Dependence and Alternans
-- Fixed-rate pacing over a range of cycle lengths.
-- Investigate APD and CaT dependence on pacing frequency and check for alternans.
-- Upper plot: last 4 APs for each pacing frequency; lower plot: APD and CaT amplitude vs. basic cycle length.
-
 ### Delayed Afterdepolarizations (DADs)
 - Fixed-rate pacing followed by quiescence.
 - Configure the number of beats and the quiescence duration to study DAD behavior.
 
+### Rate Dependence and Alternans
+- Fixed-rate pacing over a range of cycle lengths.
+- Investigate APD and CaT dependence on pacing frequency and check for alternans.
+- Upper plot: last 4 APs for each pacing frequency; lower plot: APD and CaT amplitude vs. basic cycle length.
+- This protocol is disabled for the online version of the app due to computational limits.
+
 
 ## Online Limits
-Due to limited compute resources, the online version imposes:
-- Max no. of pre-pacing beats: **500**
-- Max no. of S2 intervals for restitution curve: **50**
-- Max no. of BCL values for rate dependent curve: **20**
+Due to limited compute resources, the online version:
+- Limits the number of of pre-pacing beats to **500**
+- Limits the number of S2 intervals for restitution curves to **50**
+<!-- - Max no. of BCL values for rate dependent curve: **20** -->
+- Disables the rate dependence and alternans protocol
 
-Running the app offline removes these limits.
+Running the app locally removes these limits.
 
 ## Parameter Controls
 Located on the left of the app, these allow configuration via sliders, dropdowns, and input fields. Invalid inputs highlight red. Users can:
